@@ -1,5 +1,6 @@
 package panels;
 
+import componentes.BuscadorGenius;
 import componentes.LogoGenius;
 import util.Estilo;
 
@@ -8,6 +9,7 @@ import java.awt.*;
 
 public class Header extends JPanel {
     private LogoGenius homeButton;
+    private BuscadorGenius buscadorGenius;
 
     public Header() {
         setBackground(Color.BLACK);
@@ -24,6 +26,14 @@ public class Header extends JPanel {
         gbc.anchor = GridBagConstraints.WEST;
         gbc.insets = new Insets(5, 25, 5, 0);
         add(homeButton, gbc);
+
+        // Segunda seccion
+        buscadorGenius = new BuscadorGenius();
+        gbc.gridx = 1;
+        gbc.weightx = 0.9;
+        gbc.anchor = GridBagConstraints.CENTER;
+        gbc.insets = new Insets(0, 0, 0, 0);
+        add(buscadorGenius, gbc);
 
         // Borde amarillo
         setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, Estilo.AMARILLO_GENIUS));
