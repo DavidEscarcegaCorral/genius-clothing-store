@@ -7,10 +7,10 @@ import java.awt.*;
 
 public class LogoGenius extends JButton {
     public LogoGenius() {
-        super("Genus");
+        super("Genius");
 
         // Visual
-        setFont(Estilo.FONT_PRGRAMME_NORMAL);
+        setFont(Estilo.FONT_LOGO);
         setForeground(Estilo.AMARILLO_GENIUS);
 
         // Estilizacion

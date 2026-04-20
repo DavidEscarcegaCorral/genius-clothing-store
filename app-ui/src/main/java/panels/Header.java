@@ -7,20 +7,26 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Header extends JPanel {
-    private JPanel panelSuperior;
     private LogoGenius homeButton;
 
-    public Header(){
+    public Header() {
         setBackground(Color.BLACK);
 
         // Layout
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        panelSuperior = new JPanel();
+        // Primera seccion
+        homeButton = new LogoGenius();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.weightx = 0.1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 25, 5, 0);
+        add(homeButton, gbc);
 
         // Borde amarillo
-        setBorder(BorderFactory.createMatteBorder(0, 0, 3, 0, Estilo.AMARILLO_GENIUS));
+        setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, Estilo.AMARILLO_GENIUS));
 
 
     }
