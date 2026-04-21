@@ -9,4 +9,6 @@ public class Estilo {
 
     // Fonts
     public static final Font FONT_LOGO = new FontLoader().cargarFont("programme_normal.ttf", 32f);
+    public static final String FONT_NORMAL = "programme_normal.ttf";
+    public static final String FONT_LIGHT = "programme_light.ttf";
 }
