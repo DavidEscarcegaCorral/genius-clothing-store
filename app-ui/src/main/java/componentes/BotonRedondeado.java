@@ -9,16 +9,17 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class BotonRedondeado extends JButton {
-    private final int radio = 6;
+    private final int radio = 26;
     private final Color colorFondo = Estilo.AMARILLO_GENIUS;
-    private Color colorHover = new Color(244, 244, 95);
+    private Color colorHover = new Color(238, 238, 93);
     private boolean isHovered = false;
 
     public BotonRedondeado(String texto) {
         super(texto);
 
-        setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 16));
+        setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 18));
         setForeground(Color.BLACK);
+        setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
         setContentAreaFilled(false);
         setFocusPainted(false);
@@ -46,13 +47,24 @@ public class BotonRedondeado extends JButton {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+        // Definir coordenadas para el borde
+        int grosorBorde = 3;
+        int x = grosorBorde / 2;
+        int y = grosorBorde / 2;
+        int ancho = getWidth() - grosorBorde;
+        int alto = getHeight() - grosorBorde;
+
         if (isHovered){
             g2.setColor(colorHover);
         }else{
             g2.setColor(colorFondo);
         }
 
-        g2.fillRoundRect(0, 0, getWidth(), getHeight(), radio, radio);
+        // Borde
+        g2.fillRoundRect(x, y, ancho, alto, radio, radio);
+        g2.setColor(Color.BLACK);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(x, y, ancho, alto, radio, radio);
         g2.dispose();
 
         super.paintComponent(g);
