@@ -6,6 +6,7 @@ public class Estilo {
 
     // Colores
     public static final Color AMARILLO_GENIUS = new Color(255, 255, 100);
+    public static final Color AMARILLO_GENIUS_HOVER = new Color(238, 238, 93);
 
     // Fonts
     public static final Font FONT_LOGO = new FontLoader().cargarFont("programme_normal.ttf", 32f);

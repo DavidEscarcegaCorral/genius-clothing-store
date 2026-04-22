@@ -11,7 +11,7 @@ import java.awt.event.MouseEvent;
 public class BotonRedondeado extends JButton {
     private final int radio = 26;
     private final Color colorFondo = Estilo.AMARILLO_GENIUS;
-    private Color colorHover = new Color(238, 238, 93);
+    private final Color colorHover = Estilo.AMARILLO_GENIUS_HOVER;
     private boolean isHovered = false;
 
     public BotonRedondeado(String texto) {
