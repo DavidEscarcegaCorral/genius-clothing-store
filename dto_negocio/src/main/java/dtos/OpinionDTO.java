@@ -7,6 +7,7 @@ package dtos;
 /**
  *
  * @author Usuario
+ * 
  */
 public class OpinionDTO {
     
