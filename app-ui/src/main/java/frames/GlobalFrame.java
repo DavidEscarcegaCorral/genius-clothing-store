@@ -1,5 +1,6 @@
 package frames;
 
+import componentes.BotonRedondeado;
 import org.genius.team.Main;
 import panels.Header;
 
@@ -22,7 +23,12 @@ public class GlobalFrame extends JFrame {
         header = new Header();
 
         mainPanel.add(header, BorderLayout.NORTH);
-        add(mainPanel);
 
+        // PRUEBAS DE COMPONENTES VISUALES
+        JPanel panelAuxiliar = new JPanel();
+        panelAuxiliar.add(new BotonRedondeado("Prueba de boton redondeado"));
+        mainPanel.add(panelAuxiliar, BorderLayout.CENTER);
+
+        add(mainPanel);
     }
 }

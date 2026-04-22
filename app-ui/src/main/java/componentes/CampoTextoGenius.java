@@ -1,6 +1,5 @@
 package componentes;
 
-import util.Estilo;
 import util.FontLoader;
 import util.RoundBorder;
 
