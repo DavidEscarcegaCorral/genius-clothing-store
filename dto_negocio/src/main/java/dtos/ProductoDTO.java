@@ -1,24 +1,36 @@
 package dtos;
 
+import enumeradores.estadoProducto;
 import java.math.BigDecimal;
 
 public class ProductoDTO {
     private String sku;
     private String nombre;
     private String descrpcionProducto;
+    //Posible enum de Tallas
     private BigDecimal precio;
     private String rutaImagen;
+    private estadoProducto estado;
 
     public ProductoDTO(){
 
     }
 
-    public ProductoDTO(String sku, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen) {
+    public ProductoDTO(String sku, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, estadoProducto estado) {
         this.sku = sku;
         this.nombre = nombre;
         this.descrpcionProducto = descrpcionProducto;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
+        this.estado = estado;
+    }
+
+    public estadoProducto getEstado() {
+        return estado;
+    }
+
+    public void setEstado(estadoProducto estado) {
+        this.estado = estado;
     }
 
     public String getSku() {
