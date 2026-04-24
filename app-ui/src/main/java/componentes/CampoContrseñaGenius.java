@@ -6,8 +6,10 @@ import util.RoundBorder;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
-public class CampoTextoGenius extends JTextField {
+public class CampoContrseñaGenius extends JPasswordField {
     private String textoPH;
     private int cornerRadius;
     private Color colorFondo;
@@ -18,7 +20,7 @@ public class CampoTextoGenius extends JTextField {
     private final String fontName = "programme_normal.ttf";
     private final int fontSize = 16;
 
-    public CampoTextoGenius(String textoPH, int cornerRadius, Color colorFondo, Color colorTexto, int ancho, int alto) {
+    public CampoContrseñaGenius(String textoPH, int cornerRadius, Color colorFondo, Color colorTexto, int ancho, int alto) {
         this.textoPH = textoPH;
         this.cornerRadius = cornerRadius;
         this.colorFondo = colorFondo;
@@ -26,8 +28,8 @@ public class CampoTextoGenius extends JTextField {
         this.ancho = ancho;
         this.alto = alto;
 
-        setBackground(this.colorFondo);
-        setForeground(this.colorTexto);
+        setBackground(colorFondo);
+        setForeground(colorTexto);
         setPreferredSize(new Dimension(this.ancho, this.alto));
         setOpaque(false);
         setFont(FontLoader.cargarFont(fontName, fontSize));
