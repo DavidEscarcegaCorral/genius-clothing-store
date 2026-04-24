@@ -16,7 +16,7 @@ public class CampoTextoGenius extends JTextField {
     private int alto;
 
     private final String fontName = "programme_normal.ttf";
-    private final int fontSize = 18;
+    private final int fontSize = 16;
 
     public CampoTextoGenius(String textoPH, int cornerRadius, Color colorFondo, Color colorTexto, int ancho, int alto) {
         this.textoPH = textoPH;
@@ -29,10 +29,9 @@ public class CampoTextoGenius extends JTextField {
         setBackground(this.colorFondo);
         setForeground(this.colorTexto);
         setPreferredSize(new Dimension(this.ancho, this.alto));
-
         setOpaque(false);
-
         setFont(FontLoader.cargarFont(fontName, fontSize));
+
         setBorder(BorderFactory.createCompoundBorder(
                 new RoundBorder(this.cornerRadius, Color.black),
                 new EmptyBorder(0, 10, 0, 10)
@@ -46,7 +45,7 @@ public class CampoTextoGenius extends JTextField {
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth() - 1, getHeight() - 1, cornerRadius, cornerRadius);
 
-        // Capa de texto
+        // Capa de te
         super.paintComponent(g);
         g2.setColor(colorTexto);
         g2.setFont(FontLoader.cargarFont(fontName, fontSize));

@@ -61,13 +61,21 @@ public class LogInPanel extends JPanel {
         add(contraseñaLlb, gbc);
 
         // Campo contraseña
-        contrseñaTxt = new CampoContrseñaGenius("Ingresa tu contraseña", 20, Color.BLACK, Color.white);
+        contrseñaTxt = new CampoContrseñaGenius("Ingresa tu contraseña", 20, Color.BLACK, Color.white, 220, 40);
         gbc.gridy = 4;
         gbc.insets = new Insets(0, 0, 40, 0);
         add(contrseñaTxt, gbc);
 
+        // Boton ingresar
+        ingresarBtn = new BotonRedondeado("Ingresar");
+        gbc.gridy = 5;
+        gbc.insets = new Insets(0, 0, 15, 0);
+        add(ingresarBtn, gbc);
 
-
-
+        // Boton registrarse
+        registrarseBtn = new BotonRedondeado("Registrarse");
+        gbc.gridy = 6;
+        gbc.insets = new Insets(0, 0, 15, 0);
+        add(registrarseBtn, gbc);
     }
 }
