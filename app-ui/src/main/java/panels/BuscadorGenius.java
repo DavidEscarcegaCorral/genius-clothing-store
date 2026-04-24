@@ -12,7 +12,7 @@ public class BuscadorGenius extends JPanel {
         setOpaque(false);
 
         // Campo de texto de busqueda
-        campoTextoGenius = new CampoTextoGenius("Buscar", 0, Color.white);
+        campoTextoGenius = new CampoTextoGenius("Buscar", 0, Color.white, Color.BLACK);
 
         // Añadir componentes
         add(campoTextoGenius);

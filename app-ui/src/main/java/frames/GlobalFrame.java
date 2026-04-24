@@ -1,6 +1,7 @@
 package frames;
 
 import componentes.BotonRedondeado;
+import componentes.CampoTextoGenius;
 import org.genius.team.Main;
 import panels.Header;
 

@@ -11,14 +11,13 @@ import java.awt.event.FocusListener;
 
 public class CampoContrseñaGenius extends JPasswordField {
     private String textoPH;
-    private int width;
-    private int height;
     private float cornerRadius;
 
-    public CampoContrseñaGenius(String textoPH, float cornerRadius, Color colorFondo){
+    public CampoContrseñaGenius(String textoPH, float cornerRadius, Color colorFondo, Color colorTexto){
         this.textoPH = textoPH;
         this.cornerRadius = cornerRadius;
         setBackground(colorFondo);
+        setForeground(colorTexto);
 
         setFont(FontLoader.cargarFont("programme_normal.ttf", 16));
         setBorder(new EmptyBorder(0, 10, 0, 10));
