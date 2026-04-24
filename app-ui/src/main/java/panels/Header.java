@@ -1,5 +1,6 @@
 package panels;
 
+import componentes.BotonIcono;
 import componentes.LogoGenius;
 import util.Estilo;
 
@@ -9,6 +10,9 @@ import java.awt.*;
 public class Header extends JPanel {
     private LogoGenius homeButton;
     private BuscadorGenius buscadorGenius;
+    private BotonIcono usuarioBtn;
+    private BotonIcono favoritosBtn;
+    private BotonIcono carritoBtn;
 
     public Header() {
         setBackground(Color.BLACK);
@@ -36,9 +40,5 @@ public class Header extends JPanel {
 
         // Borde amarillo
         setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, Estilo.AMARILLO_GENIUS));
-
-
     }
-
-
 }

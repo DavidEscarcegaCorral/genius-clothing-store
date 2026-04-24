@@ -48,7 +48,7 @@ public class LogInPanel extends JPanel {
         add(usuarioLbl, gbc);
 
         // Campo de texto
-        usuarioTxt = new CampoTextoGenius("Usuario", 20, Color.BLACK, Color.white);
+        usuarioTxt = new CampoTextoGenius("Usuario", 20, Color.BLACK, Color.white, 220, 40);
         gbc.gridy = 2;
         gbc.insets = new Insets(0, 0, 28, 0);
         add(usuarioTxt, gbc);
