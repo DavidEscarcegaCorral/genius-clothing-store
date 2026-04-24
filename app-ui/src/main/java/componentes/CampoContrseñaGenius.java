@@ -9,13 +9,13 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class CampoTextoGenius extends JTextField {
+public class CampoContrseñaGenius extends JPasswordField {
     private String textoPH;
     private int width;
     private int height;
     private float cornerRadius;
 
-    public CampoTextoGenius(String textoPH, float cornerRadius, Color colorFondo) {
+    public CampoContrseñaGenius(String textoPH, float cornerRadius, Color colorFondo){
         this.textoPH = textoPH;
         this.cornerRadius = cornerRadius;
         setBackground(colorFondo);

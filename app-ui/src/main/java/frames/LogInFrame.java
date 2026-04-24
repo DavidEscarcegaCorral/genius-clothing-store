@@ -1,12 +1,27 @@
 package frames;
 
+import panels.LogInPanel;
+import util.Estilo;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class LogInFrame extends JFrame {
+    public LogInPanel logInPanel;
+
     public LogInFrame() {
+        // Configuracion del frame
         setTitle("Log In");
-        setSize(400, 300);
+        getContentPane().setBackground(Estilo.AMARILLO_GENIUS);
+        setMinimumSize(new Dimension(300, 200));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Panel principal del frame
+        logInPanel = new LogInPanel();
+        add(logInPanel);
+
+        // Emapquetado del frame
+        pack();
         setLocationRelativeTo(null);
     }
 }

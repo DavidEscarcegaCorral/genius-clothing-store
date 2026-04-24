@@ -1,6 +1,5 @@
 package panels;
 
-import componentes.BuscadorGenius;
 import componentes.LogoGenius;
 import util.Estilo;
 
