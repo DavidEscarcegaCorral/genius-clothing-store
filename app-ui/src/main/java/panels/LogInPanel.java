@@ -14,10 +14,12 @@ public class LogInPanel extends JPanel {
     private JLabel iniciarSesionLbl;
     private JLabel usuarioLbl;
     private JLabel contraseñaLlb;
-    private CampoTextoGenius usuarioTxt;
-    private CampoContrseñaGenius contrseñaTxt;
-    private BotonRedondeado ingresarBtn;
-    private BotonRedondeado registrarseBtn;
+    public CampoTextoGenius usuarioTxt;
+    public CampoContrseñaGenius contrseñaTxt;
+    public BotonRedondeado ingresarBtn;
+    public BotonRedondeado registrarseBtn;
+
+    private final JLabel errorLbl = new JLabel("El usuario o la contraseña no coinciden");
 
     public LogInPanel() {
         setOpaque(false);
@@ -77,5 +79,26 @@ public class LogInPanel extends JPanel {
         gbc.gridy = 6;
         gbc.insets = new Insets(0, 0, 15, 0);
         add(registrarseBtn, gbc);
+    }
+
+    private void limpiarCampos(){
+        usuarioTxt.setText("");
+        contrseñaTxt.setText("");
+    }
+
+    public CampoTextoGenius getUsuarioTxt() {
+        return usuarioTxt;
+    }
+
+    public CampoContrseñaGenius getContrseñaTxt() {
+        return contrseñaTxt;
+    }
+
+    public BotonRedondeado getIngresarBtn() {
+        return ingresarBtn;
+    }
+
+    public BotonRedondeado getRegistrarseBtn() {
+        return registrarseBtn;
     }
 }
