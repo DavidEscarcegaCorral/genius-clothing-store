@@ -14,6 +14,8 @@
         <module>autorizacion_negocio</module>
         <module>compras_negocio</module>
         <module>ventas_negocio</module>
+        <module>dominio_persistencia</module>
+        <module>dao_presistencia</module>
     </modules>
 
 

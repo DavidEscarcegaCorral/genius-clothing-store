@@ -1,4 +1,4 @@
-package navegacion;
+package control;
 
 public class NavegacionControl {
 }
