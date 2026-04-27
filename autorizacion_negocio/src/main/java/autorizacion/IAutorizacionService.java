@@ -1,5 +1,7 @@
 package autorizacion;
 
+import dtos.CredencialesDTO;
+
 public interface IAutorizacionService {
-    boolean verificarLogin(String usuario, String contraseña);
+    boolean verificarLogin(CredencialesDTO credencialesDTO);
 }

@@ -9,7 +9,7 @@ package enumeradores;
  * @author Usuario
  * Enumerador para ver el estado del pedido una vez pagado
  */
-public enum estadoPedido {
+public enum EstadoPedido {
     PENDIENTE_PAGO, // Cuando lo selecciona pero no lo ha pagado
     PAGADO, //Cuando hace el pago
     EN_PREPARACION, //Cuando se esta armando el pedido

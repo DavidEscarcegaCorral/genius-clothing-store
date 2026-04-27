@@ -4,8 +4,8 @@
  */
 package dtos;
 
-import enumeradores.estadoPedido;
-import enumeradores.metodoPago;
+import enumeradores.EstadoPedido;
+import enumeradores.MetodoPago;
 import java.util.Date;
 import java.util.List;
 
@@ -22,10 +22,10 @@ public class PedidoDTO {
     private List<DetallePedidoDTO> detalles;
     private Date fecha;
     private Double total;
-    private metodoPago pago;
-    private estadoPedido estado;
+    private MetodoPago pago;
+    private EstadoPedido estado;
 
-    public PedidoDTO(Integer idPedido, UsuarioDTO usuario, List<DetallePedidoDTO> detalles, Date fecha, Double total, metodoPago pago, estadoPedido estado) {
+    public PedidoDTO(Integer idPedido, UsuarioDTO usuario, List<DetallePedidoDTO> detalles, Date fecha, Double total, MetodoPago pago, EstadoPedido estado) {
         this.idPedido = idPedido;
         this.usuario = usuario;
         this.detalles = detalles;
@@ -35,7 +35,7 @@ public class PedidoDTO {
         this.estado = estado;
     }
 
-    public PedidoDTO(UsuarioDTO usuario, List<DetallePedidoDTO> detalles, Date fecha, Double total, metodoPago pago, estadoPedido estado) {
+    public PedidoDTO(UsuarioDTO usuario, List<DetallePedidoDTO> detalles, Date fecha, Double total, MetodoPago pago, EstadoPedido estado) {
         this.usuario = usuario;
         this.detalles = detalles;
         this.fecha = fecha;
@@ -93,19 +93,19 @@ public class PedidoDTO {
         this.total = total;
     }
 
-    public metodoPago getPago() {
+    public MetodoPago getPago() {
         return pago;
     }
 
-    public void setPago(metodoPago pago) {
+    public void setPago(MetodoPago pago) {
         this.pago = pago;
     }
 
-    public estadoPedido getEstado() {
+    public EstadoPedido getEstado() {
         return estado;
     }
 
-    public void setEstado(estadoPedido estado) {
+    public void setEstado(EstadoPedido estado) {
         this.estado = estado;
     }
     
