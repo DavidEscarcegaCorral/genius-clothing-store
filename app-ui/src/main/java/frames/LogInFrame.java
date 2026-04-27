@@ -24,4 +24,8 @@ public class LogInFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
+
+    public LogInPanel getLogInPanel(){
+        return this.logInPanel;
+    }
 }

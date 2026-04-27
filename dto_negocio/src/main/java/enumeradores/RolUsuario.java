@@ -11,5 +11,6 @@ package enumeradores;
  */
 public enum RolUsuario {
     CLIENTE,
+    EMPLEADO,
     ADMINISTRADOR
 }
