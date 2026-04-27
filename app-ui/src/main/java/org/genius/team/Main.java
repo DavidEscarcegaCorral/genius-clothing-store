@@ -18,6 +18,8 @@ public class Main {
                 autorizacionService,
                 navegacionControl);
 
+
+
         navegacionControl.setLogInFrame(logInFrame);
 
         logInFrame.setVisible(true);

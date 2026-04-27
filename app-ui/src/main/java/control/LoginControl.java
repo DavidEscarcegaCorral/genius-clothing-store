@@ -11,7 +11,9 @@ public class LoginControl {
     private final IAutorizacionService autorizacionService;
     private final NavegacionControl navegacionControl;
 
-    public LoginControl(LogInPanel logInPanel, IAutorizacionService autorizacionService, NavegacionControl navegacionControl) {
+    public LoginControl(LogInPanel logInPanel,
+                        IAutorizacionService autorizacionService,
+                        NavegacionControl navegacionControl) {
         this.logInPanel = logInPanel;
         this.autorizacionService = autorizacionService;
         this.navegacionControl = navegacionControl;
@@ -29,7 +31,7 @@ public class LoginControl {
         String contraseña = logInPanel.getContrseñaTxt().getText();
 
         // Validacion de formato de usuario
-        if (!ValidadorFormato.esUsuarioValido(usuario)){
+        if (!ValidadorFormato.esUsuarioValido(usuario)) {
             MensajeUtil.mostrarError(logInPanel, "El nombre de usuario no puede contener espacios ni esar vacio.");
             return;
         }
@@ -38,10 +40,10 @@ public class LoginControl {
         CredencialesDTO credencialesDTO = new CredencialesDTO(usuario, contraseña);
         boolean loginExitoso = autorizacionService.verificarLogin(credencialesDTO);
 
-        if (loginExitoso){
+        if (loginExitoso) {
             navegacionControl.abrirGlobalFrame();
             limpiarFormulario();
-        }else{
+        } else {
             MensajeUtil.mostrarError(logInPanel, "Usuario o contraseña invalidos.");
         }
     }
