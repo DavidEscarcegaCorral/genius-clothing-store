@@ -7,8 +7,9 @@ package enumeradores;
 /**
  *
  * @author Usuario
- * Enumerador para el metodo de pago
+ * Enumerador para el rol del usuario
  */
-public enum metodoPago {
-    PAYPAL
+public enum RolUsuario {
+    CLIENTE,
+    ADMINISTRADOR
 }

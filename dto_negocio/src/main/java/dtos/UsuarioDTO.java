@@ -4,7 +4,7 @@
  */
 package dtos;
 
-import enumeradores.rolUsuario;
+import enumeradores.RolUsuario;
 
 /**
  *
@@ -19,9 +19,9 @@ public class UsuarioDTO {
     private String apellidoMaterno;
     private String correo;
     private String contraseña;
-    private rolUsuario rol;
+    private RolUsuario rol;
 
-    public UsuarioDTO(Integer idUsuarioDTO, String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, rolUsuario rol) {
+    public UsuarioDTO(Integer idUsuarioDTO, String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, RolUsuario rol) {
         this.idUsuarioDTO = idUsuarioDTO;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
@@ -32,7 +32,7 @@ public class UsuarioDTO {
         this.rol = rol;
     } 
     
-    public UsuarioDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, rolUsuario rol) {
+    public UsuarioDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, RolUsuario rol) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -102,11 +102,11 @@ public class UsuarioDTO {
         this.contraseña = contraseña;
     }
 
-    public rolUsuario getRol() {
+    public RolUsuario getRol() {
         return rol;
     }
 
-    public void setRol(rolUsuario rol) {
+    public void setRol(RolUsuario rol) {
         this.rol = rol;
     }
 

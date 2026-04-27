@@ -9,7 +9,7 @@ package enumeradores;
  * @author Usuario
  * Enumerador para los estados de un producto
  */
-public enum estadoProducto {
+public enum EstadoProducto {
     BORRADOR,//Cuando se crea el producto sin publicarlo
     PUBLICADO,//Cuando se publica el producto en la pagina
     AGOTADO,//Cuando no hay stock

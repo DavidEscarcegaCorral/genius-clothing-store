@@ -4,7 +4,7 @@
  */
 package dtos;
 
-import enumeradores.metodoPago;
+import enumeradores.MetodoPago;
 
 /**
  *
@@ -13,14 +13,14 @@ import enumeradores.metodoPago;
 public class PagoDTO {
     
     private Integer idPagoDTO;
-    private metodoPago metodo;
+    private MetodoPago metodo;
 
-    public PagoDTO(Integer idPagoDTO, metodoPago metodo) {
+    public PagoDTO(Integer idPagoDTO, MetodoPago metodo) {
         this.idPagoDTO = idPagoDTO;
         this.metodo = metodo;
     }
 
-    public PagoDTO(metodoPago metodo) {
+    public PagoDTO(MetodoPago metodo) {
         this.metodo = metodo;
     }
 
@@ -28,11 +28,11 @@ public class PagoDTO {
     }
     
 
-    public metodoPago getMetodo() {
+    public MetodoPago getMetodo() {
         return metodo;
     }
 
-    public void setMetodo(metodoPago metodo) {
+    public void setMetodo(MetodoPago metodo) {
         this.metodo = metodo;
     }
 
