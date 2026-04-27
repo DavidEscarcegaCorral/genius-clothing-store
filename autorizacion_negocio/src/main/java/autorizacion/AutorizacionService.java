@@ -14,6 +14,5 @@ public class AutorizacionService implements IAutorizacionService{
     @Override
     public boolean verificarLogin(CredencialesDTO credencialesDTO) {
         return true;
-
     }
 }
