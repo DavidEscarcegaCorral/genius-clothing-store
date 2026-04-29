@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class MensajeUtil {
 
-    public static void mostrarError(Component parentComponent, String mensaje){
-        JOptionPane.showConfirmDialog(
+    public static void mostrarError(Component parentComponent, String mensaje) {
+        JOptionPane.showMessageDialog(
                 parentComponent,
                 mensaje,
                 "Error",
@@ -14,7 +14,7 @@ public class MensajeUtil {
         );
     }
 
-    public static void mostrarMostrarExito(Component parentComponent, String mensaje){
+    public static void mostrarMostrarExito(Component parentComponent, String mensaje) {
         JOptionPane.showConfirmDialog(
                 parentComponent,
                 mensaje,
@@ -23,7 +23,7 @@ public class MensajeUtil {
         );
     }
 
-    public static void mostrarMostrarAdvertencia(Component parentComponent, String mensaje){
+    public static void mostrarMostrarAdvertencia(Component parentComponent, String mensaje) {
         JOptionPane.showConfirmDialog(
                 parentComponent,
                 mensaje,

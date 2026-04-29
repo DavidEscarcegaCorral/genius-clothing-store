@@ -1,7 +1,6 @@
 package repository;
 
 import dominio.UsuarioEntidad;
-import dtos.UsuarioDTO;
 import enumeradores.RolUsuario;
 import org.bson.types.ObjectId;
 
@@ -19,8 +18,8 @@ public class UsuarioRepository {
     public boolean existeUsuario(String usuario, String contraseña) {
         return usuariosMock.stream()
                 .anyMatch(u -> u.getNombreUsuario().equals(usuario)
-                && u.getPasswordHash().equals(contraseña)
-                && u.isActivo());
+                        && u.getPasswordHash().equals(contraseña)
+                        && u.isActivo());
     }
 
     public void inicialiarUsuariosMock() {
@@ -33,7 +32,7 @@ public class UsuarioRepository {
                 "Perez",
                 "Garcia",
                 "juan.perez@gmail.com",
-                "usuario1",
+                "Usuario1",
                 "1234",
                 RolUsuario.CLIENTE,
                 true,

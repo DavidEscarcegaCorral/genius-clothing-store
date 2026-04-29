@@ -37,14 +37,14 @@ public class LogInPanel extends JPanel {
     private void iniciarComponentes() {
         // Label de iniciar sesion
         iniciarSesionLbl = new JLabel("Iniciar sesión");
-        iniciarSesionLbl.setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 38));
+        iniciarSesionLbl.setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 38));
         gbc.gridy = 0;
-        gbc.insets = new Insets(0, 0, 40, 0);
+        gbc.insets = new Insets(20, 0, 40, 0);
         add(iniciarSesionLbl, gbc);
 
         // Label de usuario
         usuarioLbl = new JLabel("Usuario");
-        usuarioLbl.setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 20));
+        usuarioLbl.setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 20));
         gbc.gridy = 1;
         gbc.insets = new Insets(0, 0, 10, 0);
         add(usuarioLbl, gbc);
@@ -57,7 +57,7 @@ public class LogInPanel extends JPanel {
 
         // Label contraseña
         contraseñaLlb = new JLabel("Contraseña");
-        contraseñaLlb.setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 20));
+        contraseñaLlb.setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 20));
         gbc.gridy = 3;
         gbc.insets = new Insets(0, 0, 10, 0);
         add(contraseñaLlb, gbc);
@@ -81,7 +81,7 @@ public class LogInPanel extends JPanel {
         add(registrarseBtn, gbc);
     }
 
-    private void limpiarCampos(){
+    private void limpiarCampos() {
         usuarioTxt.setText("");
         contrseñaTxt.setText("");
     }
