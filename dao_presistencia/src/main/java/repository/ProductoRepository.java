@@ -46,7 +46,7 @@ public class ProductoRepository {
         ));   
     }
 
-    public List<ProductoEntidad> getProductosMock() {
+    public List<ProductoEntidad> obtenerProductos() {
         return productosMock;
     }  
 }

@@ -17,6 +17,7 @@
         <module>dominio_persistencia</module>
         <module>dao_presistencia</module>
         <module>objetosnegocio_negocio</module>
+        <module>almacen_negocio</module>
     </modules>
 
 
