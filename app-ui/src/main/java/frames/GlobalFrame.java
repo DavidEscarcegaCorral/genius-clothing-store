@@ -1,6 +1,8 @@
 package frames;
 
 import componentes.BotonRedondeado;
+import componentes.ProductoCard;
+import dtos.ProductoCardDTO;
 import panels.Header;
 
 import javax.swing.*;
@@ -30,7 +32,9 @@ public class GlobalFrame extends JFrame {
         JPanel panelAuxiliar = new JPanel();
         panelAuxiliar.setOpaque(false);
         panelAuxiliar.add(new BotonRedondeado("Prueba de boton redondeado"));
+        panelAuxiliar.add(new ProductoCard(new ProductoCardDTO()));
         panelPrincipal.add(panelAuxiliar, BorderLayout.CENTER);
+
 
         // Agregar componentes al frame principal
         add(panelPrincipal);
