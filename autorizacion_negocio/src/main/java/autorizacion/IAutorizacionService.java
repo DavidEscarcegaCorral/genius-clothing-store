@@ -1,7 +1,8 @@
 package autorizacion;
 
 import dtos.CredencialesDTO;
+import objetosnegocio.UsuarioBO;
 
 public interface IAutorizacionService {
-    boolean verificarLogin(CredencialesDTO credencialesDTO);
+    UsuarioBO verificarLogin(CredencialesDTO credencialesDTO);
 }
