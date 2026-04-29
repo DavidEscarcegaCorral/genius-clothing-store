@@ -1,10 +1,20 @@
-package dtos;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package dominio;
 
 import enumeradores.EstadoProducto;
 import java.math.BigDecimal;
+import org.bson.types.ObjectId;
 
-public class ProductoDTO {
-    private String sku;
+/**
+ *
+ * @author Usuario
+ */
+public class ProductoEntidad {
+    
+    private ObjectId id;
     private String nombre;
     private String descrpcionProducto;
     //Posible enum de Tallas
@@ -13,12 +23,12 @@ public class ProductoDTO {
     private Integer stock;
     private EstadoProducto estado;
 
-    public ProductoDTO(){
+    public ProductoEntidad(){
 
     }
 
-    public ProductoDTO(String sku, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, EstadoProducto estado) {
-        this.sku = sku;
+    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, EstadoProducto estado) {
+        this.id = id;
         this.nombre = nombre;
         this.descrpcionProducto = descrpcionProducto;
         this.precio = precio;
@@ -26,8 +36,8 @@ public class ProductoDTO {
         this.estado = estado;
     }
 
-    public ProductoDTO(String sku, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, Integer stock, EstadoProducto estado) {
-        this.sku = sku;
+    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, Integer stock, EstadoProducto estado) {
+        this.id = id;
         this.nombre = nombre;
         this.descrpcionProducto = descrpcionProducto;
         this.precio = precio;
@@ -35,9 +45,6 @@ public class ProductoDTO {
         this.stock = stock;
         this.estado = estado;
     }
-    
-    
-
     public EstadoProducto getEstado() {
         return estado;
     }
@@ -46,13 +53,22 @@ public class ProductoDTO {
         this.estado = estado;
     }
 
-    public String getSku() {
-        return sku;
+    public ObjectId getId() {
+        return id;
     }
 
-    public void setSku(String sku) {
-        this.sku = sku;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
 
     public String getNombre() {
         return nombre;
@@ -86,3 +102,6 @@ public class ProductoDTO {
         this.rutaImagen = rutaImagen;
     }
 }
+
+    
+
