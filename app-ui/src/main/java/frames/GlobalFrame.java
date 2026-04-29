@@ -1,6 +1,5 @@
 package frames;
 
-import componentes.BotonRedondeado;
 import componentes.ProductoCard;
 import dtos.ProductoCardDTO;
 import panels.Header;
@@ -18,6 +17,7 @@ public class GlobalFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setBackground(Color.white);
         setMinimumSize(new Dimension(300, 200));
+        setPreferredSize(new Dimension(1200, 800));
 
         // Panel principal del frame
         panelPrincipal = new JPanel();
@@ -31,10 +31,8 @@ public class GlobalFrame extends JFrame {
         // PRUEBAS DE COMPONENTES VISUALES
         JPanel panelAuxiliar = new JPanel();
         panelAuxiliar.setOpaque(false);
-        panelAuxiliar.add(new BotonRedondeado("Prueba de boton redondeado"));
         panelAuxiliar.add(new ProductoCard(new ProductoCardDTO()));
         panelPrincipal.add(panelAuxiliar, BorderLayout.CENTER);
-
 
         // Agregar componentes al frame principal
         add(panelPrincipal);
