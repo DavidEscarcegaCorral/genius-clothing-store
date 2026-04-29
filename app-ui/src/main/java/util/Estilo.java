@@ -14,4 +14,6 @@ public class Estilo {
     public static final String FONT_PROGRAMME_LIGHT = "programme_light.ttf";
     public static final String FONT_OPNS_REGULAR = "OpenSans-Regular.ttf";
     public static final String FONT_OPNS_COND_REGULAR = "OpenSans_Condensed-Regular.ttf";
+    public static final String FONT_OPNS_COND_BLOD = "OpenSans_Condensed-Bold.ttf";
+
 }
