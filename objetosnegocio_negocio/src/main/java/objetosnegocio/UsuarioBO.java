@@ -33,7 +33,7 @@ public class UsuarioBO {
         this.activo = activo;
     }
 
-    // No para el login
+    // Validar contraseña
     public boolean validarContraseña(String contraseña) {
         if (contraseña == null || this.contraseñaHash == null) {
             return false;

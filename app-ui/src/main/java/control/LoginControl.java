@@ -2,25 +2,35 @@ package control;
 
 import autorizacion.IAutorizacionService;
 import dtos.CredencialesDTO;
+import objetosnegocio.UsuarioBO;
+import panels.Header;
 import panels.LogInPanel;
-import util.MensajeUtil;
+import util.SesionService;
 import util.ValidadorFormato;
+
+import static util.MensajeUtil.mostrarError;
 
 public class LoginControl {
     private final LogInPanel logInPanel;
+    private final Header header;
     private final IAutorizacionService autorizacionService;
     private final NavegacionControl navegacionControl;
 
-    public LoginControl(LogInPanel logInPanel, IAutorizacionService autorizacionService, NavegacionControl navegacionControl) {
+    public LoginControl(LogInPanel logInPanel, Header header, IAutorizacionService autorizacionService, NavegacionControl navegacionControl) {
         this.logInPanel = logInPanel;
+        this.header = header;
         this.autorizacionService = autorizacionService;
         this.navegacionControl = navegacionControl;
         iniciarlizarListeners();
     }
 
     public void iniciarlizarListeners() {
+        header.getUsuarioBtn().addActionListener(e -> iniciarSesion());
         logInPanel.getIngresarBtn().addActionListener(e -> proceasrLogin());
+    }
 
+    public void iniciarSesion() {
+        navegacionControl.abrirLoginFrame();
     }
 
     public void proceasrLogin() {
@@ -29,20 +39,21 @@ public class LoginControl {
         String contraseña = logInPanel.getContrseñaTxt().getText();
 
         // Validacion de formato de usuario
-        if (!ValidadorFormato.esUsuarioValido(usuario)){
-            MensajeUtil.mostrarError(logInPanel, "El nombre de usuario no puede contener espacios ni esar vacio.");
+        if (!ValidadorFormato.esUsuarioValido(usuario)) {
+            mostrarError(logInPanel, "El nombre de usuario no puede contener espacios ni esar vacio.");
             return;
         }
 
         // Crear el DTO
         CredencialesDTO credencialesDTO = new CredencialesDTO(usuario, contraseña);
-        boolean loginExitoso = autorizacionService.verificarLogin(credencialesDTO);
 
-        if (loginExitoso){
+        // mejorar el manejo de excepciones
+        try {
+            UsuarioBO userLogeado = autorizacionService.verificarLogin(credencialesDTO);
+            SesionService.iniciarSesion(userLogeado);
             navegacionControl.abrirGlobalFrame();
-            limpiarFormulario();
-        }else{
-            MensajeUtil.mostrarError(logInPanel, "Usuario o contraseña invalidos.");
+        } catch (Exception e) {
+            mostrarError(logInPanel, e.getMessage());
         }
     }
 

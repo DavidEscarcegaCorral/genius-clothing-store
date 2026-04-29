@@ -39,4 +39,8 @@ public class GlobalFrame extends JFrame {
         pack();
         setLocationRelativeTo(null);
     }
+
+    public Header getHeader() {
+        return header;
+    }
 }

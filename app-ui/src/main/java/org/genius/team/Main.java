@@ -10,20 +10,20 @@ import frames.LogInFrame;
 public class Main {
     public static void main(String[] args) {
         LogInFrame logInFrame = new LogInFrame();
+        GlobalFrame globalFrame = new GlobalFrame();
         IAutorizacionService autorizacionService = new AutorizacionService();
         NavegacionControl navegacionControl = new NavegacionControl();
 
         LoginControl loginControl = new LoginControl(
                 logInFrame.getLogInPanel(),
+                globalFrame.getHeader(),
                 autorizacionService,
                 navegacionControl);
 
+        navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);
 
-        logInFrame.setVisible(true);
-
-//        GlobalFrame globalFrame = new GlobalFrame();
-//        globalFrame.setVisible(true);
+        globalFrame.setVisible(true);
 
 
     }

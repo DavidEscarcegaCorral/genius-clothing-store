@@ -17,7 +17,7 @@ public class BotonRedondeado extends JButton {
     public BotonRedondeado(String texto) {
         super(texto);
 
-        setFont(FontLoader.cargarFont(Estilo.FONT_NORMAL, 18));
+        setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 18));
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
@@ -54,9 +54,9 @@ public class BotonRedondeado extends JButton {
         int ancho = getWidth() - grosorBorde;
         int alto = getHeight() - grosorBorde;
 
-        if (isHovered){
+        if (isHovered) {
             g2.setColor(colorHover);
-        }else{
+        } else {
             g2.setColor(colorFondo);
         }
 
