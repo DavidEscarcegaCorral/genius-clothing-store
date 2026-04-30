@@ -6,8 +6,6 @@ import util.RoundBorder;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 
 public class CampoContrseñaGenius extends JPasswordField {
     private String textoPH;
@@ -33,6 +31,7 @@ public class CampoContrseñaGenius extends JPasswordField {
         setPreferredSize(new Dimension(this.ancho, this.alto));
         setOpaque(false);
         setFont(FontLoader.cargarFont(fontName, fontSize));
+        setCaretColor(this.colorTexto);
 
         setBorder(BorderFactory.createCompoundBorder(
                 new RoundBorder(this.cornerRadius, Color.black),
@@ -64,5 +63,10 @@ public class CampoContrseñaGenius extends JPasswordField {
 
         }
         g2.dispose();
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(ancho, alto);
     }
 }
