@@ -14,6 +14,7 @@ public class LogInFrame extends JFrame {
         setTitle("Log In");
         getContentPane().setBackground(Estilo.AMARILLO_GENIUS);
         setMinimumSize(new Dimension(300, 200));
+        setPreferredSize(new Dimension(1200, 800));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panel principal del frame
@@ -25,7 +26,7 @@ public class LogInFrame extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    public LogInPanel getLogInPanel(){
+    public LogInPanel getLogInPanel() {
         return this.logInPanel;
     }
 }

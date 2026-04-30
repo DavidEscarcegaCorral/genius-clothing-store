@@ -20,7 +20,6 @@ public class BotonRedondeado extends JButton {
         setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 18));
         setForeground(Color.BLACK);
         setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
-
         setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
@@ -48,7 +47,7 @@ public class BotonRedondeado extends JButton {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // Definir coordenadas para el borde
-        int grosorBorde = 3;
+        int grosorBorde = 1;
         int x = grosorBorde / 2;
         int y = grosorBorde / 2;
         int ancho = getWidth() - grosorBorde;
