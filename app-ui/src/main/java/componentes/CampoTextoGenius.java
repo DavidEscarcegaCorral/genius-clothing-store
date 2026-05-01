@@ -31,6 +31,7 @@ public class CampoTextoGenius extends JTextField {
         setPreferredSize(new Dimension(this.ancho, this.alto));
         setOpaque(false);
         setFont(FontLoader.cargarFont(fontName, fontSize));
+        setCaretColor(this.colorTexto);
 
         setBorder(BorderFactory.createCompoundBorder(
                 new RoundBorder(this.cornerRadius, Color.black),
@@ -62,5 +63,10 @@ public class CampoTextoGenius extends JTextField {
 
         }
         g2.dispose();
+    }
+
+    @Override
+    public Dimension getMinimumSize() {
+        return new Dimension(ancho, alto);
     }
 }

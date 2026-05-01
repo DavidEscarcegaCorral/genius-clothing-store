@@ -1,6 +1,8 @@
 package componentes;
 
 import dtos.ProductoCardDTO;
+import util.Estilo;
+import util.FontLoader;
 import util.ImageUtil;
 
 import javax.swing.*;
@@ -8,24 +10,54 @@ import java.awt.*;
 
 public class ProductoCard extends JPanel {
     private JLabel imagenLbl;
-    private JLabel precioProdcuto;
-    private JLabel nombreProducto;
-    private JLabel generoProdcuto;
+    private JLabel nombreProductoLbl;
+    private JLabel precioProdcutoLbl;
+    private JLabel generoProdcutoLbl;
+    private ProductoCardDTO producto;
 
-    private final String rutaPrueba = "TenisSL72OG.png";
+    private JPanel panelDatos;
+
+    private final String nombrePrueba = "Tenis SL 72OG";
+    private final String precioPrueba = "1070.00 MXN";
+    private final String generoPrueba = "Hombre";
 
     public ProductoCard(ProductoCardDTO prodcuto) {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setOpaque(false);
         iniciarComponentes();
+
+        this.producto = prodcuto;
 
     }
 
     public void iniciarComponentes() {
-        ImageIcon img = ImageUtil.cargarImagen("/img/" + rutaPrueba, 250, 250);
+        ImageIcon img = ImageUtil.cargarImagen("/img/" + nombrePrueba + ".png", 230, 230);
         imagenLbl = new JLabel(img);
-        add(imagenLbl, BorderLayout.NORTH);
 
+        panelDatos = new JPanel();
+        panelDatos.setLayout(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
+        panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
+        panelDatos.setOpaque(false);
+
+//        nombreProducto = new JLabel(producto.getNombreProdcto());
+//        precioProdcuto = new JLabel(producto.getPrecioProducto());
+//        generoProdcuto = new JLabel(producto.getGeneroProcuto());
+
+        // Pruebas
+        nombreProductoLbl = new JLabel(nombrePrueba);
+        nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 24));
+        precioProdcutoLbl = new JLabel(precioPrueba);
+        precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
+        generoProdcutoLbl = new JLabel(generoPrueba);
+        generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
+
+        panelDatos.add(nombreProductoLbl);
+        panelDatos.add(precioProdcutoLbl);
+        panelDatos.add(generoProdcutoLbl);
+
+        add(imagenLbl, BorderLayout.NORTH);
+        add(panelDatos, BorderLayout.CENTER);
     }
 
 }
