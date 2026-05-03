@@ -1,7 +1,5 @@
 package frames;
 
-import componentes.ProductoCard;
-import dtos.ProductoCardDTO;
 import panels.Header;
 
 import javax.swing.*;
@@ -31,8 +29,9 @@ public class GlobalFrame extends JFrame {
         // PRUEBAS DE COMPONENTES VISUALES
         JPanel panelAuxiliar = new JPanel();
         panelAuxiliar.setOpaque(false);
-        panelAuxiliar.add(new ProductoCard(new ProductoCardDTO()));
+//        panelAuxiliar.add(new ProductoCard(new ProductoCardDTO()));
         panelPrincipal.add(panelAuxiliar, BorderLayout.CENTER);
+        pack();
 
         // Agregar componentes al frame principal
         add(panelPrincipal);

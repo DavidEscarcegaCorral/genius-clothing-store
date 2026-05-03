@@ -9,12 +9,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProductoCard extends JPanel {
+    private ProductoCardDTO productoCardDTO;
     private JLabel imagenLbl;
     private JLabel nombreProductoLbl;
     private JLabel precioProdcutoLbl;
     private JLabel generoProdcutoLbl;
-    private ProductoCardDTO producto;
-
     private JPanel panelDatos;
 
     private final String nombrePrueba = "Tenis SL 72OG";
@@ -27,12 +26,12 @@ public class ProductoCard extends JPanel {
         setOpaque(false);
         iniciarComponentes();
 
-        this.producto = prodcuto;
+        this.productoCardDTO = prodcuto;
 
     }
 
     public void iniciarComponentes() {
-        ImageIcon img = ImageUtil.cargarImagen("/img/" + nombrePrueba + ".png", 230, 230);
+        ImageIcon img = ImageUtil.cargarImagen(productoCardDTO.getRutaImg(), 230, 230);
         imagenLbl = new JLabel(img);
 
         panelDatos = new JPanel();
@@ -40,16 +39,12 @@ public class ProductoCard extends JPanel {
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         panelDatos.setOpaque(false);
 
-//        nombreProducto = new JLabel(producto.getNombreProdcto());
-//        precioProdcuto = new JLabel(producto.getPrecioProducto());
-//        generoProdcuto = new JLabel(producto.getGeneroProcuto());
-
-        // Pruebas
-        nombreProductoLbl = new JLabel(nombrePrueba);
+        // Obtener datos del producto
+        nombreProductoLbl = new JLabel(productoCardDTO.getNombreProdcto());
         nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 24));
-        precioProdcutoLbl = new JLabel(precioPrueba);
+        precioProdcutoLbl = new JLabel(productoCardDTO.getPrecioProducto());
         precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
-        generoProdcutoLbl = new JLabel(generoPrueba);
+        generoProdcutoLbl = new JLabel(productoCardDTO.getGeneroProcuto());
         generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
 
         panelDatos.add(nombreProductoLbl);
