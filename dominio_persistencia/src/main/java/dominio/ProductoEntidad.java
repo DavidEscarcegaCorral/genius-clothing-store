@@ -1,9 +1,5 @@
 package dominio;
 
-import enumeradores.CategoriaProdcuto;
-import enumeradores.EstadoProducto;
-import enumeradores.EtiquetaEstilo;
-import enumeradores.EtiquetaGenero;
 import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
@@ -18,7 +14,7 @@ public class ProductoEntidad {
     private Integer stock;
     private EstadoProducto estado;
     private CategoriaProdcuto categoria;
-    private List<String> tallasDisponibles;
+    private List<TallasCalzado> tallasDisponibles;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
@@ -29,7 +25,7 @@ public class ProductoEntidad {
     public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto,
                            BigDecimal precio, String rutaImagen, Integer stock,
                            EstadoProducto estado, CategoriaProdcuto categoria,
-                           List<String> tallasDisponibles, EtiquetaGenero genero,
+                           List<TallasCalzado> tallasDisponibles, EtiquetaGenero genero,
                            List<EtiquetaEstilo> estilos) {
         this.id = id;
         this.nombre = nombre;
@@ -108,11 +104,11 @@ public class ProductoEntidad {
         this.categoria = categoria;
     }
 
-    public List<String> getTallasDisponibles() {
+    public List<TallasCalzado> getTallasDisponibles() {
         return tallasDisponibles;
     }
 
-    public void setTallasDisponibles(List<String> tallasDisponibles) {
+    public void setTallasDisponibles(List<TallasCalzado> tallasDisponibles) {
         this.tallasDisponibles = tallasDisponibles;
     }
 

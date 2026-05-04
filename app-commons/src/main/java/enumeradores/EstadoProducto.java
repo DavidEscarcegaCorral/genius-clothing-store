@@ -2,7 +2,7 @@ package enumeradores;
 
 public enum EstadoProducto {
     BORRADOR,
-    DISPONIBLE,
+    PUBLICADO,
     AGOTADO,
     PAUSADO
 }

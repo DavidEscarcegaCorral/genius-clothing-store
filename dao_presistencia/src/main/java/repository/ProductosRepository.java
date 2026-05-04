@@ -5,10 +5,6 @@
 package repository;
 
 import dominio.ProductoEntidad;
-import enumeradores.CategoriaProdcuto;
-import enumeradores.EstadoProducto;
-import enumeradores.EtiquetaEstilo;
-import enumeradores.EtiquetaGenero;
 import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
@@ -36,11 +32,13 @@ public class ProductosRepository {
                 "Hoy en día, el exterior de nylon transpirable, los revestimientos de gamuza y los detalles en piel le " +
                 "imprimen un estilo de inspiración retro a tu vida activa.",
                 new BigDecimal("2,2990"), "/img/TenisSL72OG.png", 15,
-                EstadoProducto.DISPONIBLE, CategoriaProdcuto.CALZADO,
-                Arrays.asList("25", "26", "27", "28"), EtiquetaGenero.HOMBRE,
-                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.CLASICO)
+                EstadoProducto.PUBLICADO, CategoriaProdcuto.CALZADO,
+                Arrays.asList(TallasCalzado.TALLA_25,
+                        TallasCalzado.TALLA_25_5,
+                        TallasCalzado.TALLA_26,
+                        TallasCalzado.TALLA_27), EtiquetaGenero.MUJER,
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
         ));
-
     }
 
     public List<ProductoEntidad> obtenerProductos() {
