@@ -16,7 +16,6 @@ import java.util.List;
  * @author Usuario
  */
 public class AdministracionService implements IAdministracionService {
-
     private ProductosRepository repository;
 
     //Cuandos se crea un AdministracionService se crea un ProductoRepository
@@ -43,6 +42,4 @@ public class AdministracionService implements IAdministracionService {
         return dto;
 
     }
-
-
 }

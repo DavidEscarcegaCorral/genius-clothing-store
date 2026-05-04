@@ -5,6 +5,7 @@
 package administracion;
 
 import dtos.ProductoDTO;
+
 import java.util.List;
 
 /**
@@ -12,6 +13,5 @@ import java.util.List;
  * @author Usuario
  */
 public interface IAdministracionService {
-    
     public List<ProductoDTO> obtenerProductos();
 }

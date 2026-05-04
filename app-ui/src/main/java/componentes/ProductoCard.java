@@ -20,9 +20,8 @@ public class ProductoCard extends JPanel {
         setLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
         setOpaque(false);
-        iniciarComponentes();
-
         this.productoCardDTO = prodcuto;
+        iniciarComponentes();
     }
 
     public void iniciarComponentes() {
