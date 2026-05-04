@@ -1,6 +1,6 @@
 package enumeradores;
 
-public enum CategoriaProdcuto {
+public enum CategoriaProducto {
     CALZADO("Calzado"),
     CAMISETA("Camiseta"),
     PANTALON("Pantalón"),
@@ -11,10 +11,10 @@ public enum CategoriaProdcuto {
     FALDA("Falda"),
     VESTIDO("Vestido"),
     ACCESORIOS("Accesorios");
-    
+
     private String descripcion;
 
-    CategoriaProdcuto(String descripcion) {
+    CategoriaProducto(String descripcion) {
         this.descripcion = descripcion;
     }
 

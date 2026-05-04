@@ -30,15 +30,15 @@ public class AdministracionService implements IAdministracionService {
 
         List<ProductoDTO> dto = new ArrayList<>();
         for (ProductoEntidad e : productos) {
-            dto.add(new ProductoDTO(
-                    e.getId().toString(),
-                    e.getNombre(),
-                    e.getDescrpcionProducto(),
-                    e.getPrecio(),
-                    e.getRutaImagen(),
-                    e.getStock(),
-                    e.getEstado()
-            ));
+//            dto.add(new ProductoDTO(
+//            e.getId().toString(),
+//                    e.getNombre(),
+//                    e.getDescrpcionProducto(),
+//                    e.getPrecio(),
+//                    e.getRutaImagen(),
+//                    e.getStock(),
+//                    e.getEstado()
+//            ));
         }
         return dto;
 
