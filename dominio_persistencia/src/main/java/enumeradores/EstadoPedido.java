@@ -1,10 +1,12 @@
 package enumeradores;
 
 public enum EstadoPedido {
-    PENDIENTE_PAGO,
+    PENDIENTE,
     PAGADO,
     EN_PREPARACION,
     ENVIADO,
     ENTREGADO,
-    CANCELADO
+    CANCELADO,
+    EN_REEMBOLSO,
+    REEMBOLSADO
 }
