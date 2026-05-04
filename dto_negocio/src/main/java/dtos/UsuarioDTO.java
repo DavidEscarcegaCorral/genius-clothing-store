@@ -1,17 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
 
 import enumeradores.RolUsuario;
 
-/**
- *
- * @author Usuario
- */
 public class UsuarioDTO {
-    
+
     private Integer idUsuarioDTO;
     private String nombreUsuario;
     private String nombre;
@@ -30,8 +22,8 @@ public class UsuarioDTO {
         this.correo = correo;
         this.contraseña = contraseña;
         this.rol = rol;
-    } 
-    
+    }
+
     public UsuarioDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, RolUsuario rol) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
@@ -117,7 +109,6 @@ public class UsuarioDTO {
     public void setIdUsuarioDTO(Integer idUsuario) {
         this.idUsuarioDTO = idUsuario;
     }
-    
-    
-    
+
+
 }

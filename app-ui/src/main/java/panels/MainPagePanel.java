@@ -4,6 +4,7 @@ import util.Estilo;
 import util.FontLoader;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainPagePanel extends JPanel {
     // Categorias MainPage
@@ -18,6 +19,7 @@ public class MainPagePanel extends JPanel {
     public MainPagePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);
+        setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
         cargarSecciones();
 
     }
@@ -25,7 +27,8 @@ public class MainPagePanel extends JPanel {
     public void cargarSecciones() {
         // Novedades
         novedadesLbl = new JLabel("Novedades");
-        novedadesLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 65));
+        novedadesLbl.setForeground(Color.BLACK);
+        novedadesLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 45));
         add(novedadesLbl);
     }
 }

@@ -1,6 +1,5 @@
 package dominio;
 
-import enumeradores.*;
 import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
@@ -14,7 +13,7 @@ public class ProductoEntidad {
     private String rutaImagen;
     private Integer stock;
     private EstadoProducto estado;
-    private CategoriaProducto categoria;
+    private CategoriaProdcuto categoria;
     private List<TallasCalzado> tallasDisponibles;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
@@ -25,7 +24,7 @@ public class ProductoEntidad {
 
     public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto,
                            BigDecimal precio, String rutaImagen, Integer stock,
-                           EstadoProducto estado, CategoriaProducto categoria,
+                           EstadoProducto estado, CategoriaProdcuto categoria,
                            List<TallasCalzado> tallasDisponibles, EtiquetaGenero genero,
                            List<EtiquetaEstilo> estilos) {
         this.id = id;
@@ -97,11 +96,11 @@ public class ProductoEntidad {
         this.estado = estado;
     }
 
-    public CategoriaProducto getCategoria() {
+    public CategoriaProdcuto getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(CategoriaProducto categoria) {
+    public void setCategoria(CategoriaProdcuto categoria) {
         this.categoria = categoria;
     }
 

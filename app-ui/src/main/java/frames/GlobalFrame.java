@@ -1,12 +1,14 @@
 package frames;
 
 import panels.Header;
+import panels.MainPagePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GlobalFrame extends JFrame {
     private JPanel panelPrincipal;
+    private MainPagePanel mainPage;
     private Header header;
 
     public GlobalFrame() {
@@ -26,11 +28,10 @@ public class GlobalFrame extends JFrame {
         // Agregar componentes al panel principal
         panelPrincipal.add(header, BorderLayout.NORTH);
 
-        // PRUEBAS DE COMPONENTES VISUALES
-        JPanel panelAuxiliar = new JPanel();
-        panelAuxiliar.setOpaque(false);
-//        panelAuxiliar.add(new ProductoCard(new ProductoCardDTO()));
-        panelPrincipal.add(panelAuxiliar, BorderLayout.CENTER);
+        // Main page panel que se carga con el frame
+        mainPage = new MainPagePanel();
+
+        panelPrincipal.add(mainPage, BorderLayout.CENTER);
         pack();
 
         // Agregar componentes al frame principal
