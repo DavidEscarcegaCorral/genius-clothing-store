@@ -10,12 +10,6 @@ import java.awt.*;
 import java.util.List;
 
 public class MainPagePanel extends JPanel {
-    // Categorias MainPage
-    private JLabel novedadesLbl;
-    private JLabel ofertasLbl;
-    private JLabel paraHombreLbl;
-    private JLabel paraMujerLbl;
-
     private JPanel panelNovedades;
     private JPanel panelOfertas;
 

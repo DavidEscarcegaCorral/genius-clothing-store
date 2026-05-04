@@ -1,11 +1,11 @@
 package control;
 
 import autorizacion.IAutorizacionService;
+import autorizacion.SesionService;
 import dtos.CredencialesDTO;
 import objetosnegocio.UsuarioBO;
 import panels.Header;
 import panels.LogInPanel;
-import util.SesionService;
 import util.ValidadorFormato;
 
 import static util.MensajeUtil.mostrarError;
