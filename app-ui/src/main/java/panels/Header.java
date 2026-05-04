@@ -1,9 +1,9 @@
 package panels;
 
+import autorizacion.SesionService;
 import componentes.BotonIcono;
 import componentes.LogoGenius;
 import util.Estilo;
-import util.SesionService;
 
 import javax.swing.*;
 import java.awt.*;

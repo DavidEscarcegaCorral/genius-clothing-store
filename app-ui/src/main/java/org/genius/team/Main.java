@@ -2,6 +2,9 @@ package org.genius.team;
 
 import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
+import catralago.CatalagoService;
+import catralago.ICatalagoService;
+import control.CatalagoControl;
 import control.LoginControl;
 import control.NavegacionControl;
 import frames.GlobalFrame;
@@ -12,6 +15,7 @@ public class Main {
         LogInFrame logInFrame = new LogInFrame();
         GlobalFrame globalFrame = new GlobalFrame();
         IAutorizacionService autorizacionService = new AutorizacionService();
+        ICatalagoService catalagoService = new CatalagoService();
         NavegacionControl navegacionControl = new NavegacionControl();
 
         LoginControl loginControl = new LoginControl(
@@ -19,6 +23,12 @@ public class Main {
                 globalFrame.getHeader(),
                 autorizacionService,
                 navegacionControl);
+
+        CatalagoControl catalagoControl = new CatalagoControl(
+                globalFrame.getMainPage(),
+                catalagoService,
+                navegacionControl
+        );
 
         navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);

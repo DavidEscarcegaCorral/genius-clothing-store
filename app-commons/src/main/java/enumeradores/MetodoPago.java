@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package administracion;
-
-import dtos.ProductoDTO;
-
-import java.util.List;
+package enumeradores;
 
 /**
  *
  * @author Usuario
+ * Enumerador para el metodo de pago
  */
-public interface IAdministracionService {
-    public List<ProductoDTO> obtenerProductos();
+public enum MetodoPago {
+    TARJETA,
+    PAYPAL;
 }

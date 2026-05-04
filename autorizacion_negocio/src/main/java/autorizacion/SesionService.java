@@ -1,4 +1,4 @@
-package util;
+package autorizacion;
 
 import objetosnegocio.UsuarioBO;
 

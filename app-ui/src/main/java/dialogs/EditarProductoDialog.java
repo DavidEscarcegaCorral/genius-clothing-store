@@ -2,16 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package administracion;
+package dialogs;
 
-import dtos.ProductoDTO;
-
-import java.util.List;
+import javax.swing.JDialog;
 
 /**
  *
  * @author Usuario
  */
-public interface IAdministracionService {
-    public List<ProductoDTO> obtenerProductos();
+public class EditarProductoDialog extends JDialog{
+    
 }

@@ -1,11 +1,11 @@
 package control;
 
 import autorizacion.IAutorizacionService;
+import autorizacion.SesionService;
 import dtos.CredencialesDTO;
 import objetosnegocio.UsuarioBO;
 import panels.Header;
 import panels.LogInPanel;
-import util.SesionService;
 import util.ValidadorFormato;
 
 import static util.MensajeUtil.mostrarError;
@@ -16,7 +16,10 @@ public class LoginControl {
     private final IAutorizacionService autorizacionService;
     private final NavegacionControl navegacionControl;
 
-    public LoginControl(LogInPanel logInPanel, Header header, IAutorizacionService autorizacionService, NavegacionControl navegacionControl) {
+    public LoginControl(LogInPanel logInPanel,
+                        Header header,
+                        IAutorizacionService autorizacionService,
+                        NavegacionControl navegacionControl) {
         this.logInPanel = logInPanel;
         this.header = header;
         this.autorizacionService = autorizacionService;

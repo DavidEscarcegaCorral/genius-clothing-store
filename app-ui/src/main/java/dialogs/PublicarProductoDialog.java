@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package enumeradores;
+package dialogs;
+
+import javax.swing.JDialog;
 
 /**
  *
  * @author Usuario
- * Enumerador para el metodo de pago
  */
-public enum MetodoPago {
-    PAYPAL
+public class PublicarProductoDialog extends JDialog{
+    
 }

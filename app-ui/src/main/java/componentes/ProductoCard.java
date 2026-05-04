@@ -9,30 +9,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ProductoCard extends JPanel {
+    private ProductoCardDTO productoCardDTO;
     private JLabel imagenLbl;
     private JLabel nombreProductoLbl;
     private JLabel precioProdcutoLbl;
     private JLabel generoProdcutoLbl;
-    private ProductoCardDTO producto;
-
     private JPanel panelDatos;
-
-    private final String nombrePrueba = "Tenis SL 72OG";
-    private final String precioPrueba = "1070.00 MXN";
-    private final String generoPrueba = "Hombre";
 
     public ProductoCard(ProductoCardDTO prodcuto) {
         setLayout(new BorderLayout());
-        setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
         setOpaque(false);
+        this.productoCardDTO = prodcuto;
         iniciarComponentes();
-
-        this.producto = prodcuto;
-
     }
 
     public void iniciarComponentes() {
-        ImageIcon img = ImageUtil.cargarImagen("/img/" + nombrePrueba + ".png", 230, 230);
+        ImageIcon img = ImageUtil.cargarImagen(productoCardDTO.getRutaImg(), 230, 230);
         imagenLbl = new JLabel(img);
 
         panelDatos = new JPanel();
@@ -40,17 +33,13 @@ public class ProductoCard extends JPanel {
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
         panelDatos.setOpaque(false);
 
-//        nombreProducto = new JLabel(producto.getNombreProdcto());
-//        precioProdcuto = new JLabel(producto.getPrecioProducto());
-//        generoProdcuto = new JLabel(producto.getGeneroProcuto());
-
-        // Pruebas
-        nombreProductoLbl = new JLabel(nombrePrueba);
-        nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 24));
-        precioProdcutoLbl = new JLabel(precioPrueba);
-        precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
-        generoProdcutoLbl = new JLabel(generoPrueba);
-        generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 22));
+        // Obtener datos del producto
+        nombreProductoLbl = new JLabel(productoCardDTO.getNombreProdcto());
+        nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 18));
+        precioProdcutoLbl = new JLabel(productoCardDTO.getPrecioFormateado());
+        precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
+        generoProdcutoLbl = new JLabel(productoCardDTO.getGeneroProcuto().getValor());
+        generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
 
         panelDatos.add(nombreProductoLbl);
         panelDatos.add(precioProdcutoLbl);
@@ -58,6 +47,10 @@ public class ProductoCard extends JPanel {
 
         add(imagenLbl, BorderLayout.NORTH);
         add(panelDatos, BorderLayout.CENTER);
+    }
+
+    public String getProductoId() {
+        return productoCardDTO.getProdcutoId();
     }
 
 }

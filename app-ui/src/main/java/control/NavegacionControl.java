@@ -39,5 +39,7 @@ public class NavegacionControl {
         globalFrame.getHeader().actualizarUsuario();
     }
 
+    public void irADetallePedido(String idProdcuto) {
 
+    }
 }
