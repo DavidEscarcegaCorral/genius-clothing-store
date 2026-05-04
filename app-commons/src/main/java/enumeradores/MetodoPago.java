@@ -10,5 +10,6 @@ package enumeradores;
  * Enumerador para el metodo de pago
  */
 public enum MetodoPago {
-    PAYPAL
+    TARJETA,
+    PAYPAL;
 }
