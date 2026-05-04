@@ -49,7 +49,7 @@ public class ProductoCard extends JPanel {
 
         panelDatos.add(nombreProductoLbl);
         panelDatos.add(precioProdcutoLbl);
-        panelDatos.add(generoProdcutoLbl);R
+        panelDatos.add(generoProdcutoLbl);
 
         add(imagenLbl, BorderLayout.NORTH);
         add(panelDatos, BorderLayout.CENTER);
