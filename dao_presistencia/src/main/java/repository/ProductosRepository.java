@@ -59,5 +59,16 @@ public class ProductosRepository {
         return productosMock;
     }
 
+    public ProductoEntidad busarPorId(ObjectId id) {
+        if (id == null) {
+            return null;
+        }
+
+        return productosMock.stream()
+                .filter(productoEntidad -> productoEntidad.getId().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
 
 }

@@ -4,7 +4,7 @@ import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
 import catralago.CatalagoService;
 import catralago.ICatalagoService;
-import control.AlmacenControl;
+import control.CatalagoControl;
 import control.LoginControl;
 import control.NavegacionControl;
 import frames.GlobalFrame;
@@ -24,7 +24,7 @@ public class Main {
                 autorizacionService,
                 navegacionControl);
 
-        AlmacenControl almacenControl = new AlmacenControl(
+        CatalagoControl catalagoControl = new CatalagoControl(
                 globalFrame.getMainPage(),
                 catalagoService,
                 navegacionControl

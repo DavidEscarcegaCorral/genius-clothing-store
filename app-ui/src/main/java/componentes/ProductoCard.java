@@ -36,7 +36,7 @@ public class ProductoCard extends JPanel {
         // Obtener datos del producto
         nombreProductoLbl = new JLabel(productoCardDTO.getNombreProdcto());
         nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 18));
-        precioProdcutoLbl = new JLabel(productoCardDTO.getPrecioProducto().toString());
+        precioProdcutoLbl = new JLabel(productoCardDTO.getPrecioFormateado());
         precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
         generoProdcutoLbl = new JLabel(productoCardDTO.getGeneroProcuto().getValor());
         generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
@@ -47,6 +47,10 @@ public class ProductoCard extends JPanel {
 
         add(imagenLbl, BorderLayout.NORTH);
         add(panelDatos, BorderLayout.CENTER);
+    }
+
+    public String getProductoId() {
+        return productoCardDTO.getProdcutoId();
     }
 
 }

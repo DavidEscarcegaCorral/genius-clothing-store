@@ -2,14 +2,21 @@ package frames;
 
 import panels.Header;
 import panels.MainPagePanel;
+import panels.ProductoDetallePanel;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class GlobalFrame extends JFrame {
     private JPanel panelPrincipal;
-    private MainPagePanel mainPage;
+    private JPanel panelContenido;
+    private CardLayout cardLayout;
+
     private Header header;
+
+    // Paneles
+    private MainPagePanel mainPage;
+    private ProductoDetallePanel productoDetallePanel;
 
     public GlobalFrame() {
         // Configuraciones del frame
@@ -25,13 +32,22 @@ public class GlobalFrame extends JFrame {
         panelPrincipal.setOpaque(false);
         header = new Header();
 
+        // CardLayout del frame
+        cardLayout = new CardLayout();
+
         // Agregar componentes al panel principal
         panelPrincipal.add(header, BorderLayout.NORTH);
 
-        // Main page panel que se carga con el frame
+        // Panel Cards
         mainPage = new MainPagePanel();
+        productoDetallePanel = new ProductoDetallePanel();
 
-        panelPrincipal.add(mainPage, BorderLayout.CENTER);
+        // Panel para el contenido
+        panelContenido = new JPanel(cardLayout);
+        panelContenido.add(mainPage, "MAIN_PAGE");
+        panelContenido.add(productoDetallePanel, "DETALLE_PRODCUTO");
+
+        panelPrincipal.add(panelContenido, BorderLayout.CENTER);
         pack();
 
         // Agregar componentes al frame principal
@@ -48,5 +64,9 @@ public class GlobalFrame extends JFrame {
 
     public MainPagePanel getMainPage() {
         return mainPage;
+    }
+
+    public ProductoDetallePanel getProductoDetallePanel() {
+        return productoDetallePanel;
     }
 }
