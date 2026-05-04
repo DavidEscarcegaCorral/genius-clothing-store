@@ -32,7 +32,7 @@ public class ProductosRepository {
                 "adidas SL72 OG tienen una estructura liviana que revolucionó el running. " +
                 "Hoy en día, el exterior de nylon transpirable, los revestimientos de gamuza y los detalles en piel le " +
                 "imprimen un estilo de inspiración retro a tu vida activa.",
-                new BigDecimal("2,2990"), "/img/TenisSL72OG.png", 15,
+                new BigDecimal("2990"), "/img/TenisSL72OG.png", 15,
                 EstadoProducto.PUBLICADO, CategoriaProducto.CALZADO,
                 Arrays.asList(TallasCalzado.TALLA_25,
                         TallasCalzado.TALLA_25_5,
@@ -40,9 +40,12 @@ public class ProductosRepository {
                         TallasCalzado.TALLA_27), EtiquetaGenero.MUJER,
                 Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
         ));
+        
     }
 
     public List<ProductoEntidad> obtenerProductos() {
         return productosMock;
     }
+
+
 }

@@ -19,6 +19,7 @@
         <module>objetosnegocio_negocio</module>
         <module>almacen_negocio</module>
         <module>app-commons</module>
+        <module>mappers_negocio</module>
     </modules>
 
 

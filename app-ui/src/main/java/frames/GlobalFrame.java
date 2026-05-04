@@ -45,4 +45,8 @@ public class GlobalFrame extends JFrame {
     public Header getHeader() {
         return header;
     }
+
+    public MainPagePanel getMainPage() {
+        return mainPage;
+    }
 }

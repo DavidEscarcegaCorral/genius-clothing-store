@@ -16,7 +16,10 @@ public class LoginControl {
     private final IAutorizacionService autorizacionService;
     private final NavegacionControl navegacionControl;
 
-    public LoginControl(LogInPanel logInPanel, Header header, IAutorizacionService autorizacionService, NavegacionControl navegacionControl) {
+    public LoginControl(LogInPanel logInPanel,
+                        Header header,
+                        IAutorizacionService autorizacionService,
+                        NavegacionControl navegacionControl) {
         this.logInPanel = logInPanel;
         this.header = header;
         this.autorizacionService = autorizacionService;
