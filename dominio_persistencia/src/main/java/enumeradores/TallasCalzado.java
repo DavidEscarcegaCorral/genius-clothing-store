@@ -18,7 +18,7 @@ public enum TallasCalzado {
 
     private final String valor;
 
-    TallaCalzadoMX(String valor) {
+    TallasCalzado(String valor) {
         this.valor = valor;
     }
 
