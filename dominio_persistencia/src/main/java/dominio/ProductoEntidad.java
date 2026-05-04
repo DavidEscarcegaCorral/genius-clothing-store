@@ -1,42 +1,33 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dominio;
 
-import enumeradores.EstadoProducto;
-import java.math.BigDecimal;
+import enumeradores.*;
 import org.bson.types.ObjectId;
 
-/**
- *
- * @author Usuario
- */
+import java.math.BigDecimal;
+import java.util.List;
+
 public class ProductoEntidad {
-    
     private ObjectId id;
     private String nombre;
     private String descrpcionProducto;
-    //Posible enum de Tallas
     private BigDecimal precio;
     private String rutaImagen;
     private Integer stock;
     private EstadoProducto estado;
+    private CategoriaProducto categoria;
+    private List<TallasCalzado> tallasDisponibles;
+    private EtiquetaGenero genero;
+    private List<EtiquetaEstilo> estilos;
 
-    public ProductoEntidad(){
+    public ProductoEntidad() {
 
     }
 
-    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, EstadoProducto estado) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descrpcionProducto = descrpcionProducto;
-        this.precio = precio;
-        this.rutaImagen = rutaImagen;
-        this.estado = estado;
-    }
-
-    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto, BigDecimal precio, String rutaImagen, Integer stock, EstadoProducto estado) {
+    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto,
+                           BigDecimal precio, String rutaImagen, Integer stock,
+                           EstadoProducto estado, CategoriaProducto categoria,
+                           List<TallasCalzado> tallasDisponibles, EtiquetaGenero genero,
+                           List<EtiquetaEstilo> estilos) {
         this.id = id;
         this.nombre = nombre;
         this.descrpcionProducto = descrpcionProducto;
@@ -44,13 +35,10 @@ public class ProductoEntidad {
         this.rutaImagen = rutaImagen;
         this.stock = stock;
         this.estado = estado;
-    }
-    public EstadoProducto getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoProducto estado) {
-        this.estado = estado;
+        this.categoria = categoria;
+        this.tallasDisponibles = tallasDisponibles;
+        this.genero = genero;
+        this.estilos = estilos;
     }
 
     public ObjectId getId() {
@@ -60,15 +48,6 @@ public class ProductoEntidad {
     public void setId(ObjectId id) {
         this.id = id;
     }
-
-    public Integer getStock() {
-        return stock;
-    }
-
-    public void setStock(Integer stock) {
-        this.stock = stock;
-    }
-
 
     public String getNombre() {
         return nombre;
@@ -100,6 +79,54 @@ public class ProductoEntidad {
 
     public void setRutaImagen(String rutaImagen) {
         this.rutaImagen = rutaImagen;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
+
+    public EstadoProducto getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoProducto estado) {
+        this.estado = estado;
+    }
+
+    public CategoriaProducto getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(CategoriaProducto categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<TallasCalzado> getTallasDisponibles() {
+        return tallasDisponibles;
+    }
+
+    public void setTallasDisponibles(List<TallasCalzado> tallasDisponibles) {
+        this.tallasDisponibles = tallasDisponibles;
+    }
+
+    public EtiquetaGenero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(EtiquetaGenero genero) {
+        this.genero = genero;
+    }
+
+    public List<EtiquetaEstilo> getEstilos() {
+        return estilos;
+    }
+
+    public void setEstilos(List<EtiquetaEstilo> estilos) {
+        this.estilos = estilos;
     }
 }
 
