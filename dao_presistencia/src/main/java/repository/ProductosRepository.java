@@ -5,8 +5,12 @@
 package repository;
 
 import dominio.ProductoEntidad;
-import enumeradores.*;
+import enumeradores.CategoriaProducto;
+import enumeradores.EstadoProducto;
+import enumeradores.EtiquetaEstilo;
+import enumeradores.EtiquetaGenero;
 import org.bson.types.ObjectId;
+import util.TallaUtil;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -34,13 +38,21 @@ public class ProductosRepository {
                 "imprimen un estilo de inspiración retro a tu vida activa.",
                 new BigDecimal("2990"), "/img/TenisSL72OG.png", 15,
                 EstadoProducto.PUBLICADO, CategoriaProducto.CALZADO,
-                Arrays.asList(TallasCalzado.TALLA_25,
-                        TallasCalzado.TALLA_25_5,
-                        TallasCalzado.TALLA_26,
-                        TallasCalzado.TALLA_27), EtiquetaGenero.MUJER,
+                TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CALZADO), EtiquetaGenero.MUJER,
                 Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
         ));
-        
+
+        productosMock.add(new ProductoEntidad(
+                new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
+                "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
+                "clásico y facilita el movimiento para uso diario.",
+                new BigDecimal("1899"), "/img/PlayeraPoloNikeSportswear.jpg", 25,
+                EstadoProducto.PUBLICADO, CategoriaProducto.CAMISETA,
+                TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CAMISETA), EtiquetaGenero.MUJER,
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
+        ));
+
     }
 
     public List<ProductoEntidad> obtenerProductos() {

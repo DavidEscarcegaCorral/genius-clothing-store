@@ -1,6 +1,9 @@
 package dtos;
 
-import enumeradores.*;
+import enumeradores.CategoriaProducto;
+import enumeradores.EstadoProducto;
+import enumeradores.EtiquetaEstilo;
+import enumeradores.EtiquetaGenero;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,7 +17,7 @@ public class ProductoDTO {
     private Integer stock;
     private EstadoProducto estado;
     private CategoriaProducto categoria;
-    private List<TallasCalzado> tallas;
+    private List<String> tallas;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
@@ -29,7 +32,7 @@ public class ProductoDTO {
                        Integer stock,
                        EstadoProducto estado,
                        CategoriaProducto categoria,
-                       List<TallasCalzado> tallas,
+                       List<String> tallas,
                        EtiquetaGenero genero,
                        List<EtiquetaEstilo> estilos) {
         this.id = id;
@@ -109,11 +112,11 @@ public class ProductoDTO {
         this.categoria = categoria;
     }
 
-    public List<TallasCalzado> getTallas() {
+    public List<String> getTallas() {
         return tallas;
     }
 
-    public void setTallas(List<TallasCalzado> tallas) {
+    public void setTallas(List<String> tallas) {
         this.tallas = tallas;
     }
 
