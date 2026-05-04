@@ -10,12 +10,6 @@ import java.awt.*;
 import java.util.List;
 
 public class MainPagePanel extends JPanel {
-    // Categorias MainPage
-    private JLabel novedadesLbl;
-    private JLabel ofertasLbl;
-    private JLabel paraHombreLbl;
-    private JLabel paraMujerLbl;
-
     private JPanel panelNovedades;
     private JPanel panelOfertas;
 
@@ -28,10 +22,11 @@ public class MainPagePanel extends JPanel {
     }
 
     public void cargarSecciones() {
+        add(Box.createRigidArea(new Dimension(0, 15)));
         add(crearEtiquetaSeccion("Novedades"));
-
+        add(Box.createRigidArea(new Dimension(0, 15)));
         // Primera seccion
-        panelNovedades = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 15));
+        panelNovedades = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 15));
         add(panelNovedades);
 
         add(Box.createRigidArea(new Dimension(0, 30)));
