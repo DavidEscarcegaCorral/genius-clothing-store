@@ -1,15 +1,19 @@
 package dtos;
 
+import enumeradores.EtiquetaGenero;
+
+import java.math.BigDecimal;
+
 public class ProductoCardDTO {
     private String nombreProdcto;
-    private String precioProducto;
-    private String generoProcuto;
+    private BigDecimal precioProducto;
+    private EtiquetaGenero generoProcuto;
     private String rutaImg;
 
     public ProductoCardDTO() {
     }
 
-    public ProductoCardDTO(String nombreProdcto, String precioProducto, String generoProcuto, String rutaImg) {
+    public ProductoCardDTO(String nombreProdcto, BigDecimal precioProducto, EtiquetaGenero generoProcuto, String rutaImg) {
         this.nombreProdcto = nombreProdcto;
         this.precioProducto = precioProducto;
         this.generoProcuto = generoProcuto;
@@ -24,19 +28,19 @@ public class ProductoCardDTO {
         this.nombreProdcto = nombreProdcto;
     }
 
-    public String getPrecioProducto() {
+    public BigDecimal getPrecioProducto() {
         return precioProducto;
     }
 
-    public void setPrecioProducto(String precioProducto) {
+    public void setPrecioProducto(BigDecimal precioProducto) {
         this.precioProducto = precioProducto;
     }
 
-    public String getGeneroProcuto() {
+    public EtiquetaGenero getGeneroProcuto() {
         return generoProcuto;
     }
 
-    public void setGeneroProcuto(String generoProcuto) {
+    public void setGeneroProcuto(EtiquetaGenero generoProcuto) {
         this.generoProcuto = generoProcuto;
     }
 
