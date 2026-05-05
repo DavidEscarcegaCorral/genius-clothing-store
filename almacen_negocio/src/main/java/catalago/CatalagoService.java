@@ -1,4 +1,4 @@
-package catralago;
+package catalago;
 
 import dominio.ProductoEntidad;
 import dtos.ProductoCardDTO;

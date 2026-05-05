@@ -26,6 +26,7 @@ public class GlobalFrame extends JFrame {
         setMinimumSize(new Dimension(300, 200));
         setPreferredSize(new Dimension(1200, 800));
 
+
         // Panel principal del frame
         panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new BorderLayout());
@@ -68,5 +69,15 @@ public class GlobalFrame extends JFrame {
 
     public ProductoDetallePanel getProductoDetallePanel() {
         return productoDetallePanel;
+    }
+
+    public void cambiarPantallaDetalle(ProductoDetallePanel nuevoPanel) {
+        panelContenido.add(nuevoPanel, "DETALLE_PRODCUTO");
+        panelContenido.revalidate();
+        panelContenido.repaint();
+    }
+
+    public void mostrarPantalla(String nombrePantalla) {
+        cardLayout.show(panelContenido, nombrePantalla);
     }
 }

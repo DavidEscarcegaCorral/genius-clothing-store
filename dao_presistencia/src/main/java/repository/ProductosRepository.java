@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author Usuario
  */
 public class ProductosRepository {
@@ -42,6 +41,38 @@ public class ProductosRepository {
                 Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
         ));
 
+        productosMock.add(new ProductoEntidad(
+                new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
+                "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
+                "clásico y facilita el movimiento para uso diario.",
+                new BigDecimal("1899"), "/img/PlayeraPoloNikeSportswear.jpg", 25,
+                EstadoProducto.PUBLICADO, CategoriaProducto.CAMISETA,
+                TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CAMISETA), EtiquetaGenero.MUJER,
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
+        ));
+
+        productosMock.add(new ProductoEntidad(
+                new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
+                "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
+                "clásico y facilita el movimiento para uso diario.",
+                new BigDecimal("1899"), "/img/PlayeraPoloNikeSportswear.jpg", 25,
+                EstadoProducto.PUBLICADO, CategoriaProducto.CAMISETA,
+                TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CAMISETA), EtiquetaGenero.MUJER,
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
+        ));
+
+        productosMock.add(new ProductoEntidad(
+                new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
+                "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
+                "clásico y facilita el movimiento para uso diario.",
+                new BigDecimal("1899"), "/img/PlayeraPoloNikeSportswear.jpg", 25,
+                EstadoProducto.PUBLICADO, CategoriaProducto.CAMISETA,
+                TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CAMISETA), EtiquetaGenero.MUJER,
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
+        ));
         productosMock.add(new ProductoEntidad(
                 new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
                 " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +

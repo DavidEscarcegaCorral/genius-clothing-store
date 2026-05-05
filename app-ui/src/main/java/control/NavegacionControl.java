@@ -2,6 +2,7 @@ package control;
 
 import frames.GlobalFrame;
 import frames.LogInFrame;
+import panels.ProductoDetallePanel;
 
 public class NavegacionControl {
     private LogInFrame logInFrame;
@@ -10,10 +11,14 @@ public class NavegacionControl {
     public NavegacionControl() {
         this.logInFrame = null;
         this.globalFrame = null;
+
     }
 
     public void setGlobalFrame(GlobalFrame globalFrame) {
         this.globalFrame = globalFrame;
+        if (this.globalFrame != null) {
+            this.globalFrame.getHeader().setHomeAction(e -> irAHome());
+        }
     }
 
     public void setLogInFrame(LogInFrame logInFrame) {
@@ -27,6 +32,7 @@ public class NavegacionControl {
 
         globalFrame.getHeader().actualizarUsuario();
         globalFrame.setVisible(true);
+
     }
 
     public void abrirLoginFrame() {
@@ -34,12 +40,14 @@ public class NavegacionControl {
         logInFrame.setVisible(true);
     }
 
-    public void cerrarLoginFrame() {
-        logInFrame.dispose();
-        globalFrame.getHeader().actualizarUsuario();
+    public void mostrarDetalleProducto(ProductoDetallePanel detallePanel) {
+        if (globalFrame != null) {
+            globalFrame.cambiarPantallaDetalle(detallePanel);
+            globalFrame.mostrarPantalla("DETALLE_PRODCUTO");
+        }
     }
 
-    public void irADetallePedido(String idProdcuto) {
-
+    public void irAHome() {
+        globalFrame.mostrarPantalla("MAIN_PAGE");
     }
 }

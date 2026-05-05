@@ -7,11 +7,13 @@ import util.FontLoader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainPagePanel extends JPanel {
     private JPanel panelNovedades;
     private JPanel panelOfertas;
+    private List<ProductoCard> cardsActuales = new ArrayList<>();
 
     public MainPagePanel() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -39,16 +41,24 @@ public class MainPagePanel extends JPanel {
     }
 
     public void setNovedadesSeccion(List<ProductoCardDTO> productos) {
+        cardsActuales.clear();
         llenarPanel(panelNovedades, productos);
     }
 
     public void llenarPanel(JPanel panel, List<ProductoCardDTO> productos) {
         panel.removeAll();
         for (ProductoCardDTO productoCardDTO : productos) {
-            panel.add(new ProductoCard(productoCardDTO));
+            ProductoCard card = new ProductoCard(productoCardDTO);
+
+            cardsActuales.add(card);
+            panel.add(card);
         }
         panel.revalidate();
         panel.repaint();
+    }
+
+    public List<ProductoCard> getCardsActuales() {
+        return cardsActuales;
     }
 }
 

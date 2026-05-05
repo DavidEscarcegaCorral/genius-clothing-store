@@ -1,9 +1,11 @@
 package control;
 
-import catralago.ICatalagoService;
+import catalago.ICatalagoService;
 import componentes.ProductoCard;
 import dtos.ProductoCardDTO;
+import dtos.ProductoDTO;
 import panels.MainPagePanel;
+import panels.ProductoDetallePanel;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -23,7 +25,6 @@ public class CatalagoControl {
         this.navegacionControl = navegacionControl;
 
         cargarCatalago();
-
     }
 
     public void cargarCatalago() {
@@ -33,17 +34,30 @@ public class CatalagoControl {
                 .collect(Collectors.toList());
 
         mainPagePanel.setNovedadesSeccion(novedades);
+        List<ProductoCard> cards = mainPagePanel.getCardsActuales();
+        inicializarListeners(cards);
+
     }
 
-    public void iniciarlizarListeners(List<ProductoCard> cards) {
+    public void inicializarListeners(List<ProductoCard> cards) {
         for (ProductoCard card : cards) {
-            card.addAncestorListener(new MouseAdapter() {
+            card.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    String id = card.getProductoId();
-                    navegacionControl.irADetalleProducto(id);
+                    abrirDetalle(card.getProductoId());
                 }
             });
+        }
+    }
+
+    private void abrirDetalle(String id) {
+        ProductoDTO dto = catalagoService.obtenerProductoPorId(id);
+
+        if (dto != null) {
+            ProductoDetallePanel panelDetalle = new ProductoDetallePanel();
+            panelDetalle.cargarDatosProducto(dto);
+
+            navegacionControl.mostrarDetalleProducto(panelDetalle);
         }
     }
 }

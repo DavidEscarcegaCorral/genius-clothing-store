@@ -1,4 +1,4 @@
-package catralago;
+package catalago;
 
 import dtos.ProductoCardDTO;
 import dtos.ProductoDTO;

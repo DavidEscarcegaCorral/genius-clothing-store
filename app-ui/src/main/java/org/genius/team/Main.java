@@ -2,8 +2,8 @@ package org.genius.team;
 
 import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
-import catralago.CatalagoService;
-import catralago.ICatalagoService;
+import catalago.CatalagoService;
+import catalago.ICatalagoService;
 import control.CatalagoControl;
 import control.LoginControl;
 import control.NavegacionControl;
