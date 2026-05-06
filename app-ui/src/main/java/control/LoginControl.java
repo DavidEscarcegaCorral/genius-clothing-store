@@ -53,7 +53,7 @@ public class LoginControl {
         try {
             UsuarioBO userLogeado = autorizacionService.verificarLogin(credencialesDTO);
             SesionService.iniciarSesion(userLogeado);
-            navegacionControl.abrirAdministracionProductosFrame();
+            navegacionControl.abrirGlobalFrame();
         } catch (Exception e) {
             mostrarError(logInPanel, e.getMessage());
         }

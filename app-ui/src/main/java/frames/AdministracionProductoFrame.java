@@ -46,7 +46,8 @@ public class AdministracionProductoFrame extends JFrame {
         this.observer = observer;
     }
     
-      @Override
+    //Si es true carga la tabla
+    @Override
     public void setVisible(boolean visible) {
         if (visible && observer != null) {
             observer.cargar();
