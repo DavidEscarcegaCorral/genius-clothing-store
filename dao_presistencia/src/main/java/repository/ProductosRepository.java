@@ -31,7 +31,7 @@ public class ProductosRepository {
         productosMock = new ArrayList<>();
 
         productosMock.add(new ProductoEntidad(
-                new ObjectId(), "Tenis SL72 OG", "Lanzados por primera vez en 1972, los tenis " +
+                "dadsdas", "Tenis SL72 OG", "Lanzados por primera vez en 1972, los tenis " +
                 "adidas SL72 OG tienen una estructura liviana que revolucionó el running. " +
                 "Hoy en día, el exterior de nylon transpirable, los revestimientos de gamuza y los detalles en piel le " +
                 "imprimen un estilo de inspiración retro a tu vida activa.",
@@ -42,7 +42,7 @@ public class ProductosRepository {
         ));
 
         productosMock.add(new ProductoEntidad(
-                new ObjectId(), "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                "fdsfsffds", "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
                 " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
                 "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
                 "clásico y facilita el movimiento para uso diario.",

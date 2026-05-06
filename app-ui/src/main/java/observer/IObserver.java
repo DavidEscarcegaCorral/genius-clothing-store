@@ -7,6 +7,8 @@ package observer;
 /**
  *
  * @author Usuario
+ * Use este patron por que el metodo de cargar tabla se ejecutaba antes del que el frame fuera visible
+ * entonces los productos no se mostraban
  */
 public interface IObserver {
     

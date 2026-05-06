@@ -7,7 +7,7 @@ import dtos.ProductoDTO;
 public class ProductoMapper {
     public static ProductoCardDTO entidadADTO(ProductoEntidad entidad) {
         return new ProductoCardDTO(
-                entidad.getId().toHexString(),
+                entidad.getId(),
                 entidad.getNombre(),
                 entidad.getPrecio(),
                 entidad.getGenero(),
@@ -17,7 +17,7 @@ public class ProductoMapper {
 
     public static ProductoDTO entidadADtoCompleto(ProductoEntidad entidad) {
         return new ProductoDTO(
-                entidad.getId().toHexString(),
+                entidad.getId(),
                 entidad.getNombre(),
                 entidad.getDescrpcionProducto(),
                 entidad.getPrecio(),

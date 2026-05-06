@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductoEntidad {
-    private ObjectId id;
+    private String id;
     private String nombre;
     private String descrpcionProducto;
     private BigDecimal precio;
@@ -26,7 +26,7 @@ public class ProductoEntidad {
 
     }
 
-    public ProductoEntidad(ObjectId id, String nombre, String descrpcionProducto,
+    public ProductoEntidad(String id, String nombre, String descrpcionProducto,
                            BigDecimal precio, String rutaImagen, Integer stock,
                            EstadoProducto estado, CategoriaProducto categoria,
                            List<String> tallasDisponibles, EtiquetaGenero genero,
@@ -44,11 +44,11 @@ public class ProductoEntidad {
         this.estilos = estilos;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
