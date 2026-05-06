@@ -9,5 +9,4 @@ public interface ICatalagoService {
     List<ProductoCardDTO> obtenerCatalagoMainPage();
 
     ProductoDTO obtenerProductoPorId(String id);
-
 }

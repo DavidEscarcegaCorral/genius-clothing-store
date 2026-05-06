@@ -2,7 +2,8 @@ package control;
 
 import panels.ProductoDetallePanel;
 
-public interface Navegador {
+public interface INavegador {
     void navegarADetalle(ProductoDetallePanel panelDetalle);
+
     void irAHome();
 }

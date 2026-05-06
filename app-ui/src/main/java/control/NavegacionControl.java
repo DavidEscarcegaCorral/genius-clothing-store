@@ -1,12 +1,14 @@
 package control;
 
+import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
 import panels.ProductoDetallePanel;
 
-public class NavegacionControl implements Navegador {
+public class NavegacionControl implements INavegador {
     private LogInFrame logInFrame;
     private GlobalFrame globalFrame;
+    private AdministracionProductoFrame administracionProductoFrame;
 
     public static final String SCREEN_MAIN_PAGE = "MAIN_PAGE";
     public static final String SCREEN_DETALLE_PRODUCTO = "DETALLE_PRODCUTO";
@@ -86,11 +88,10 @@ public class NavegacionControl implements Navegador {
         this.administracionProductoFrame = administracionProductoFrame;
     }
 
-    public void abrirAdministracionProductosFrame(){
+    public void abrirAdministracionProductosFrame() {
         globalFrame.dispose();
         administracionProductoFrame.setVisible(true);
     }
-
 
 
     private void validarLogInFrame() {

@@ -15,14 +15,14 @@ import java.util.stream.Collectors;
 public class CatalagoControl {
     private MainPagePanel mainPagePanel;
     private ICatalagoService catalagoService;
-    private Navegador navegador;
+    private INavegador INavegador;
 
     public CatalagoControl(MainPagePanel mainPagePanel,
                            ICatalagoService catalagoService,
-                           Navegador navegador) {
+                           INavegador INavegador) {
         this.mainPagePanel = mainPagePanel;
         this.catalagoService = catalagoService;
-        this.navegador = navegador;
+        this.INavegador = INavegador;
 
         cargarCatalago();
     }
@@ -57,7 +57,7 @@ public class CatalagoControl {
             ProductoDetallePanel panelDetalle = new ProductoDetallePanel();
             panelDetalle.cargarDatosProducto(dto);
 
-            navegador.navegarADetalle(panelDetalle);
+            INavegador.navegarADetalle(panelDetalle);
         }
     }
 }
