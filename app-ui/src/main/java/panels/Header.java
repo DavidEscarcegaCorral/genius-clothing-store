@@ -58,8 +58,17 @@ public class Header extends JPanel {
         gbc.gridx = 3;
         gbc.weightx = 0.1;
         gbc.anchor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.insets = new Insets(0, 15, 0, 0);
         add(usuarioBtn, gbc);
+
+        carritoBtn = new BotonIcono("Carrito");
+        carritoBtn.setFont(Estilo.FONT_OPNS_COND_REGULAR, 20);
+        carritoBtn.setForeground(Color.white);
+        gbc.gridx = 4;
+        gbc.weightx = 0.05;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0, 15, 0, 25);
+        add(carritoBtn, gbc);
     }
 
     public void setAtrasVisible(boolean visible) {
@@ -114,5 +123,9 @@ public class Header extends JPanel {
 
     public void setHomeAction(ActionListener action) {
         this.homeButton.addActionListener(action);
+    }
+
+    public void setCarritoAction(ActionListener action) {
+        this.carritoBtn.addActionListener(action);
     }
 }

@@ -73,6 +73,7 @@ public class AppCoordinator {
         navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);
         navegacionControl.setAdministracionProductoFrame(adminFrame);
+        globalFrame.getHeader().setCarritoAction(e -> navegacionControl.navegarACarrito());
     }
 
     private void mostrarHome() {
