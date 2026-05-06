@@ -9,7 +9,7 @@ public class NavegacionControl {
     private GlobalFrame globalFrame;
 
     public static final String SCREEN_MAIN_PAGE = "MAIN_PAGE";
-    public static final String SCREEN_DETALLE_PRODUCTO = "DETALLE_PRODUCTO";
+    public static final String SCREEN_DETALLE_PRODUCTO = "DETALLE_PRODCUTO";
     public static final String SCREEN_LOGIN = "LOGIN";
 
     private String pantallaActual;
