@@ -5,10 +5,14 @@
 package panels;
 
 import componentes.BotonRedondeado;
+import dtos.ProductoDTO;
 import java.awt.BorderLayout;
+import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import util.Estilo;
 
 /**
  *
@@ -17,16 +21,15 @@ import javax.swing.JTable;
 public class AdministracionProductosPanel extends JPanel{
     
     private BotonRedondeado agregarProducto;
-    private BotonRedondeado eliminarProducto;
     private BotonRedondeado publicarProducto;
-    private BotonRedondeado verProductos;
     private BotonRedondeado modificarProducto;
-    private Header header;
     JTable tabla = new JTable();
     public AdministracionProductosPanel() {
         setLayout(new BorderLayout());
-        setOpaque(false);
+        setOpaque(true);
+        setBackground(Estilo.AMARILLO_GENIUS);
         iniciarComponentes();
+        
     }
     
     private void iniciarComponentes(){
@@ -34,65 +37,56 @@ public class AdministracionProductosPanel extends JPanel{
         JPanel panelBotones = new JPanel();
         
         agregarProducto = new BotonRedondeado("Agregar Producto");
-        panelBotones.add(agregarProducto,BorderLayout.SOUTH);
-        eliminarProducto = new BotonRedondeado("Eliminar Producto");
-        panelBotones.add(eliminarProducto,BorderLayout.SOUTH);
+        panelBotones.add(agregarProducto);
         publicarProducto = new BotonRedondeado("Publicar Producto");
-        panelBotones.add(publicarProducto,BorderLayout.SOUTH);
-        verProductos = new BotonRedondeado("Ver Productos");
-        panelBotones.add(verProductos,BorderLayout.SOUTH);
+        panelBotones.add(publicarProducto);
         modificarProducto = new BotonRedondeado("Modificar Producto");
-        panelBotones.add(modificarProducto,BorderLayout.SOUTH);
-        
+        panelBotones.add(modificarProducto);
+        panelBotones.setOpaque(false);
+        add(panelBotones,BorderLayout.SOUTH);
         tabla = new JTable();
-        JScrollPane scroll = new JScrollPane();
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
         add(scroll,BorderLayout.CENTER);
-        add(header,BorderLayout.NORTH);
     }
 
     public BotonRedondeado getAgregarProducto() {
         return agregarProducto;
     }
 
-    public void setAgregarProducto(BotonRedondeado agregarProducto) {
-        this.agregarProducto = agregarProducto;
-    }
-
-    public BotonRedondeado getEliminarProducto() {
-        return eliminarProducto;
-    }
-
-    public void setEliminarProducto(BotonRedondeado eliminarProducto) {
-        this.eliminarProducto = eliminarProducto;
-    }
-
     public BotonRedondeado getPublicarProducto() {
         return publicarProducto;
-    }
-
-    public void setPublicarProducto(BotonRedondeado publicarProducto) {
-        this.publicarProducto = publicarProducto;
-    }
-
-    public BotonRedondeado getVerProductos() {
-        return verProductos;
-    }
-
-    public void setVerProductos(BotonRedondeado verProductos) {
-        this.verProductos = verProductos;
     }
 
     public BotonRedondeado getModificarProducto() {
         return modificarProducto;
     }
 
-    public void setModificarProducto(BotonRedondeado modificarProducto) {
-        this.modificarProducto = modificarProducto;
-    }
-
+    
     public JTable getTabla() {
         return tabla;
     }
     
-    
+    public void cargarTabla(List<ProductoDTO> productos) {
+    //Definimos las columnas que queremos mostrar en las tablas
+    String[] columnas = {"ID", "Nombre", "Precio", "Stock", "Estado"};
+    //Creamos una tabla con las columnas
+    DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+
+    //Le damos a cada columna lo que va a mostrar
+    for (ProductoDTO p : productos) {
+        Object[] fila = {
+            p.getId(),
+            p.getNombre(),
+            p.getPrecio(),
+            p.getStock(),
+            p.getEstado()
+        };
+        //Agregamos la fila a la tabla
+        modelo.addRow(fila);
+    }
+    //Se lo asignamos al JTable
+    tabla.setModel(modelo);
+    }
 }

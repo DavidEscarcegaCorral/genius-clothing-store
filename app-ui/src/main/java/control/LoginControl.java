@@ -50,7 +50,7 @@ public class LoginControl {
         // Crear el DTO
         CredencialesDTO credencialesDTO = new CredencialesDTO(usuario, contraseña);
 
-        // Mejorar el manejo de excepciones*
+        // mejorar el manejo de excepciones
         try {
             UsuarioBO userLogeado = autorizacionService.verificarLogin(credencialesDTO);
             SesionService.iniciarSesion(userLogeado);

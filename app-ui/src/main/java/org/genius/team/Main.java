@@ -2,12 +2,11 @@ package org.genius.team;
 
 import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
-import catalago.CatalagoService;
-import catalago.ICatalagoService;
-import control.CatalagoControl;
+import catralago.CatalagoService;
+import catralago.ICatalagoService;
+import control.AlmacenControl;
 import control.LoginControl;
 import control.NavegacionControl;
-import control.Navegador;
 import frames.GlobalFrame;
 import frames.LogInFrame;
 
@@ -18,6 +17,11 @@ public class Main {
         IAutorizacionService autorizacionService = new AutorizacionService();
         ICatalagoService catalagoService = new CatalagoService();
         NavegacionControl navegacionControl = new NavegacionControl();
+        AdministracionProductoFrame adminFrame = new AdministracionProductoFrame();
+        IAdministracionService adminService = new AdministracionService();
+        AgregarProductoDialog agregarDialog = new AgregarProductoDialog();
+        EditarProductoDialog editarDialog = new EditarProductoDialog();
+        PublicarProductoDialog publicarDialog = new PublicarProductoDialog();
 
         LoginControl loginControl = new LoginControl(
                 logInFrame.getLogInPanel(),
@@ -33,7 +37,19 @@ public class Main {
 
         navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);
+        navegacionControl.setAdministracionProductoFrame(adminFrame);
 
+            AdministracionProductosControl adminControl =
+            new AdministracionProductosControl(
+                    adminFrame.getAdministracionProductosPanel(),
+                    globalFrame.getHeader(),
+                    adminService,
+                    navegacionControl,
+                    agregarDialog,
+                    editarDialog,
+                    publicarDialog
+            );
+        adminFrame.setObserver(adminControl);
         globalFrame.setVisible(true);
 
 

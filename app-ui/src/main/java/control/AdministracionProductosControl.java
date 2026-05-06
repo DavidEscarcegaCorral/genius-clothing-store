@@ -8,6 +8,9 @@ import administracion.IAdministracionService;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;
+import dtos.ProductoDTO;
+import java.util.List;
+import observer.IObserver;
 import panels.AdministracionProductosPanel;
 import panels.Header;
 
@@ -15,8 +18,9 @@ import panels.Header;
  *
  * @author Usuario
  */
-public class AdministracionProductosControl {
+public class AdministracionProductosControl implements IObserver{
 
+    
     private final AdministracionProductosPanel administracionProductosPanel;
     private final Header header;
     private final IAdministracionService service;
@@ -35,7 +39,18 @@ public class AdministracionProductosControl {
         this.publicarProductoDialog = publicarProductoDialog;
     }
 
-   
+   public List<ProductoDTO> obtenerProductos(){
+       return service.obtenerProductos();
+   }
     
-    
+   //Esto es para llenar la tabla del panel
+   public void cargarTabla() {
+    List<ProductoDTO> productos = service.obtenerProductos();
+    administracionProductosPanel.cargarTabla(productos);
+} 
+
+    @Override
+    public void cargar() {
+        cargarTabla();
+}
 }

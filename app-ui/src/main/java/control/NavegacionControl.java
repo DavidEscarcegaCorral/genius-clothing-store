@@ -82,6 +82,17 @@ public class NavegacionControl implements Navegador {
         }
     }
 
+    public void setAdministracionProductoFrame(AdministracionProductoFrame administracionProductoFrame) {
+        this.administracionProductoFrame = administracionProductoFrame;
+    }
+
+    public void abrirAdministracionProductosFrame(){
+        globalFrame.dispose();
+        administracionProductoFrame.setVisible(true);
+    }
+
+
+
     private void validarLogInFrame() {
         if (logInFrame == null) {
             throw new IllegalStateException("LogInFrame no ha sido inicializado");

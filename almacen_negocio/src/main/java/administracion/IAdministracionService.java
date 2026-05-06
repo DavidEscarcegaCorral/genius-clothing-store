@@ -5,6 +5,7 @@
 package administracion;
 
 import dtos.ProductoDTO;
+import enumeradores.EstadoProducto;
 
 import java.util.List;
 
@@ -14,4 +15,7 @@ import java.util.List;
  */
 public interface IAdministracionService {
     public List<ProductoDTO> obtenerProductos();
+    public ProductoDTO agregarProducto(ProductoDTO producto);
+    public ProductoDTO publicarProducto(String id);
+    public ProductoDTO actualizarProducto(String id,EstadoProducto estado);
 }
