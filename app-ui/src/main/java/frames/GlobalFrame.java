@@ -4,16 +4,14 @@ import panels.CarritoPanel;
 import panels.Header;
 import panels.MainPagePanel;
 import panels.ProductoDetallePanel;
+import util.Constants;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class GlobalFrame extends JFrame {
+import static util.Constants.Pantallas.*;
 
-    // Constantes de las pantallas
-    public static final String SCREEN_MAIN_PAGE = "MAIN_PAGE";
-    public static final String SCREEN_DETALLE_PRODUCTO = "DETALLE_PRODUCTO";
-    public static final String SCREEN_CARRITO = "CARRITO";
+public class GlobalFrame extends JFrame {
 
     private JPanel panelPrincipal;
     private JPanel panelContenido;
@@ -21,7 +19,6 @@ public class GlobalFrame extends JFrame {
 
     private Header header;
 
-    // Paneles
     private MainPagePanel mainPagePanel;
     private ProductoDetallePanel productoDetallePanel;
     private CarritoPanel carritoPanel;
@@ -42,7 +39,6 @@ public class GlobalFrame extends JFrame {
         header = new Header();
         panelPrincipal.add(header, BorderLayout.NORTH);
 
-        // Inicializar CardLayout y paneles
         cardLayout = new CardLayout();
         panelContenido = new JPanel(cardLayout);
 
@@ -60,15 +56,15 @@ public class GlobalFrame extends JFrame {
         productoDetallePanel = new ProductoDetallePanel();
         carritoPanel = new CarritoPanel();
 
-        panelContenido.add(mainPagePanel, SCREEN_MAIN_PAGE);
-        panelContenido.add(productoDetallePanel, SCREEN_DETALLE_PRODUCTO);
-        panelContenido.add(carritoPanel, SCREEN_CARRITO);
+        panelContenido.add(mainPagePanel, MAIN_PAGE);
+        panelContenido.add(productoDetallePanel, DETALLE_PRODUCTO);
+        panelContenido.add(carritoPanel, CARRITO);
 
-        pantallActual = SCREEN_MAIN_PAGE;
+        pantallActual = MAIN_PAGE;
     }
 
     public void cambiarPantallaDetalle(ProductoDetallePanel nuevoPanel) {
-        panelContenido.add(nuevoPanel, "DETALLE_PRODCUTO");
+        panelContenido.add(nuevoPanel, DETALLE_PRODUCTO);
         panelContenido.revalidate();
         panelContenido.repaint();
     }
@@ -79,6 +75,10 @@ public class GlobalFrame extends JFrame {
 
     public String getPantallaActual() {
         return pantallActual;
+    }
+
+    public void setPantallaActual(String pantallaActual) {
+        this.pantallActual = pantallaActual;
     }
 
     public Header getHeader() {

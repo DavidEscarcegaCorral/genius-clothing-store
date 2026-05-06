@@ -57,7 +57,7 @@ public class CatalagoControl {
             ProductoDetallePanel panelDetalle = new ProductoDetallePanel();
             panelDetalle.cargarDatosProducto(dto);
 
-            INavegador.navegarADetalle(panelDetalle);
+            INavegador.navegarADetalleProdcuto(panelDetalle);
         }
     }
 }
