@@ -1,11 +1,13 @@
 package control;
 
+import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
 
 public class NavegacionControl {
     private LogInFrame logInFrame;
     private GlobalFrame globalFrame;
+    private AdministracionProductoFrame administracionProductoFrame;
 
     public NavegacionControl() {
         this.logInFrame = null;
@@ -39,5 +41,15 @@ public class NavegacionControl {
         globalFrame.getHeader().actualizarUsuario();
     }
 
+    public void setAdministracionProductoFrame(AdministracionProductoFrame administracionProductoFrame) {
+        this.administracionProductoFrame = administracionProductoFrame;
+    }
+
+    public void abrirAdministracionProductosFrame(){
+        globalFrame.dispose();
+        administracionProductoFrame.setVisible(true);  
+    }
+    
+    
 
 }

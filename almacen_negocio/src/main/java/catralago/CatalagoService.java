@@ -2,6 +2,7 @@ package catralago;
 
 import dominio.ProductoEntidad;
 import dtos.ProductoCardDTO;
+import enumeradores.EstadoProducto;
 import mappers.ProductoMapper;
 import repository.ProductosRepository;
 
@@ -19,7 +20,7 @@ public class CatalagoService implements ICatalagoService {
     public List<ProductoCardDTO> obtenerCatalagoMainPage() {
         List<ProductoEntidad> entidades = repository.obtenerProductos();
 
-        return entidades.stream()
+        return entidades.stream().filter(e -> e.getEstado() == EstadoProducto.PUBLICADO) 
                 .map(ProductoMapper::entidadADTO)
                 .collect(Collectors.toList());
     }

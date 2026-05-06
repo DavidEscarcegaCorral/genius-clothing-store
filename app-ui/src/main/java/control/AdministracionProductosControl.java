@@ -8,6 +8,8 @@ import administracion.IAdministracionService;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;
+import dtos.ProductoDTO;
+import java.util.List;
 import panels.AdministracionProductosPanel;
 import panels.Header;
 
@@ -33,9 +35,16 @@ public class AdministracionProductosControl {
         this.agregarProductoDialog = agregarProductoDialog;
         this.editarProductoDialog = editarProductoDialog;
         this.publicarProductoDialog = publicarProductoDialog;
+        cargarTabla();
     }
 
-   
+   public List<ProductoDTO> obtenerProductos(){
+       return service.obtenerProductos();
+   }
     
-    
+   //Esto es para llenar la tabla del panel
+   public void cargarTabla() {
+    List<ProductoDTO> productos = service.obtenerProductos();
+    administracionProductosPanel.cargarTabla(productos);
+}
 }
