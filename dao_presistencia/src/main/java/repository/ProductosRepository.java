@@ -31,7 +31,7 @@ public class ProductosRepository {
         productosMock = new ArrayList<>();
 
         productosMock.add(new ProductoEntidad(
-                "dadsdas", "Tenis SL72 OG", "Lanzados por primera vez en 1972, los tenis " +
+                "507f1f77bcf86cd799439011", "Tenis SL72 OG", "Lanzados por primera vez en 1972, los tenis " +
                 "adidas SL72 OG tienen una estructura liviana que revolucionó el running. " +
                 "Hoy en día, el exterior de nylon transpirable, los revestimientos de gamuza y los detalles en piel le " +
                 "imprimen un estilo de inspiración retro a tu vida activa.",
@@ -42,7 +42,7 @@ public class ProductosRepository {
         ));
 
         productosMock.add(new ProductoEntidad(
-                "fdsfsffds", "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
+                "507f1f77bcf86cd799439012", "Playera polo nike sportswear", "Renueva tu estilo con la Playera Polo Nike Sportswear" +
                 " que redefine el look deportivo con un acabado más sofisticado. El diseño convierte los logos Swoosh en un patrón de encaje " +
                 "que eleva el outfit sin perder la vibra urbana. Su ajuste cuadrado mantiene la sensación de jersey " +
                 "clásico y facilita el movimiento para uso diario.",
@@ -58,15 +58,20 @@ public class ProductosRepository {
         return productosMock;
     }
 
-    public ProductoEntidad busarPorId(ObjectId id) {
-        if (id == null) {
+    public ProductoEntidad buscarPorId(String id) {
+        if (id == null || id.isEmpty()) {
             return null;
         }
 
-        return productosMock.stream()
-                .filter(productoEntidad -> productoEntidad.getId().equals(id))
-                .findFirst()
-                .orElse(null);
+        try {
+            ObjectId objectId = new ObjectId(id);
+            return productosMock.stream()
+                    .filter(productoEntidad -> productoEntidad.getId().equals(objectId.toString()))
+                    .findFirst()
+                    .orElse(null);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
     }
 
 

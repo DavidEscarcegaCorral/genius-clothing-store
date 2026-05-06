@@ -4,7 +4,6 @@ import dominio.ProductoEntidad;
 import dtos.ProductoCardDTO;
 import dtos.ProductoDTO;
 import mappers.ProductoMapper;
-import org.bson.types.ObjectId;
 import repository.ProductosRepository;
 
 import java.util.List;
@@ -29,15 +28,11 @@ public class CatalagoService implements ICatalagoService {
     @Override
     public ProductoDTO obtenerProductoPorId(String id) {
         try {
-            ObjectId objectId = new ObjectId(id);
-
-            ProductoEntidad entidad = repository.busarPorId(objectId);
+            ProductoEntidad entidad = repository.buscarPorId(id);
 
             if (entidad != null) {
                 return ProductoMapper.entidadADtoCompleto(entidad);
             }
-        } catch (IllegalArgumentException e) {
-            System.err.println("Formato de ID inválido: " + id);
         } catch (Exception e) {
             System.err.println("Error al obtener el detalle del producto: " + e.getMessage());
         }
