@@ -7,6 +7,7 @@ import util.Estilo;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class Header extends JPanel {
     private LogoGenius homeButton;
@@ -95,5 +96,9 @@ public class Header extends JPanel {
 
     public void setCarritoBtn(BotonIcono carritoBtn) {
         this.carritoBtn = carritoBtn;
+    }
+
+    public void setHomeAction(ActionListener action) {
+        this.homeButton.addActionListener(action);
     }
 }

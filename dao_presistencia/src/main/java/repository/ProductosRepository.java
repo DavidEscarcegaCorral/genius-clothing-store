@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
  * @author Usuario
  */
 public class ProductosRepository {
@@ -57,6 +56,17 @@ public class ProductosRepository {
 
     public List<ProductoEntidad> obtenerProductos() {
         return productosMock;
+    }
+
+    public ProductoEntidad busarPorId(ObjectId id) {
+        if (id == null) {
+            return null;
+        }
+
+        return productosMock.stream()
+                .filter(productoEntidad -> productoEntidad.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
 
