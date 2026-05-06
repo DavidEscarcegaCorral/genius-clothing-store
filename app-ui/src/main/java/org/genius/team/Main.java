@@ -7,6 +7,7 @@ import catalago.ICatalagoService;
 import control.CatalagoControl;
 import control.LoginControl;
 import control.NavegacionControl;
+import control.Navegador;
 import frames.GlobalFrame;
 import frames.LogInFrame;
 
@@ -25,9 +26,9 @@ public class Main {
                 navegacionControl);
 
         CatalagoControl catalagoControl = new CatalagoControl(
-                globalFrame.getMainPage(),
+                globalFrame.getMainPagePanel(),
                 catalagoService,
-                navegacionControl
+                (Navegador) navegacionControl
         );
 
         navegacionControl.setGlobalFrame(globalFrame);

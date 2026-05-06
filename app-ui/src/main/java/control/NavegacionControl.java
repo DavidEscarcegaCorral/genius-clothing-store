@@ -4,7 +4,7 @@ import frames.GlobalFrame;
 import frames.LogInFrame;
 import panels.ProductoDetallePanel;
 
-public class NavegacionControl {
+public class NavegacionControl implements Navegador {
     private LogInFrame logInFrame;
     private GlobalFrame globalFrame;
 
@@ -18,6 +18,24 @@ public class NavegacionControl {
         this.logInFrame = null;
         this.globalFrame = null;
         this.pantallaActual = null;
+    }
+
+    @Override
+    public void irAHome() {
+        validarGlobalFrame();
+        globalFrame.mostrarPantalla(SCREEN_MAIN_PAGE);
+        pantallaActual = SCREEN_MAIN_PAGE;
+    }
+
+    @Override
+    public void navegarADetalle(ProductoDetallePanel detallePanel) {
+        validarGlobalFrame();
+        if (detallePanel == null) {
+            throw new IllegalArgumentException("ProductoDetallePanel no puede ser null");
+        }
+        globalFrame.cambiarPantallaDetalle(detallePanel);
+        globalFrame.mostrarPantalla(SCREEN_DETALLE_PRODUCTO);
+        pantallaActual = SCREEN_DETALLE_PRODUCTO;
     }
 
     public void setGlobalFrame(GlobalFrame globalFrame) {
@@ -56,24 +74,6 @@ public class NavegacionControl {
 
         logInFrame.setVisible(true);
         pantallaActual = SCREEN_LOGIN;
-    }
-
-    public void mostrarDetalleProducto(ProductoDetallePanel detallePanel) {
-        validarGlobalFrame();
-
-        if (detallePanel == null) {
-            throw new IllegalArgumentException("ProductoDetallePanel no puede ser null");
-        }
-
-        globalFrame.cambiarPantallaDetalle(detallePanel);
-        globalFrame.mostrarPantalla(SCREEN_DETALLE_PRODUCTO);
-        pantallaActual = SCREEN_DETALLE_PRODUCTO;
-    }
-
-    public void irAHome() {
-        validarGlobalFrame();
-        globalFrame.mostrarPantalla(SCREEN_MAIN_PAGE);
-        pantallaActual = SCREEN_MAIN_PAGE;
     }
 
     private void validarGlobalFrame() {

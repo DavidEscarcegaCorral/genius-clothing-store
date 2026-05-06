@@ -20,7 +20,7 @@ public class BotonPlano extends JButton {
 
         setFont(FontLoader.cargarFont(Estilo.FONT_PROGRAMME_NORMAL, 20));
         setForeground(Color.BLACK);
-        setBorder(BorderFactory.createEmptyBorder(14, 19 + offsetSombra, 18, 19));
+        setBorder(BorderFactory.createEmptyBorder(4, 19, 18, 19 + offsetSombra));
         setContentAreaFilled(false);
         setFocusPainted(false);
         setBorderPainted(false);
@@ -46,29 +46,29 @@ public class BotonPlano extends JButton {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int w = getWidth();
-        int h = getHeight();
+        int ancho = getWidth();
+        int alto = getHeight();
 
+        // Sombra
         g2.setColor(Color.BLACK);
-        g2.fillRect(offsetSombra, offsetSombra, w - offsetSombra, h - offsetSombra);
+        g2.fillRect(0, offsetSombra, ancho - offsetSombra, alto);
 
+        // Cuerpo del botón
         if (getModel().isPressed()) {
-            g2.translate(2, 2);
+            g2.translate(-2, 2);
         }
 
         g2.setColor(colorFondo);
-        g2.fillRect(0, 0, w - offsetSombra, h - offsetSombra);
+        g2.fillRect(offsetSombra, 0, ancho - offsetSombra, alto - offsetSombra);
 
+        // Texto
         g2.setColor(Color.BLACK);
         FontMetrics fm = g2.getFontMetrics();
         Rectangle2D r = fm.getStringBounds(getText(), g2);
 
-        int xTexto = 15;
-        int yTexto = (h - offsetSombra + fm.getAscent()) / 2 - 2;
+        int xTexto = 15 + offsetSombra;
+        int yTexto = (alto - offsetSombra + fm.getAscent()) / 2 - 2;
         g2.drawString(getText(), xTexto, yTexto);
-
-        g2.setFont(new Font("Monospaced", Font.BOLD, 22));
-        g2.drawString(">", w - offsetSombra - 30, yTexto);
 
         g2.dispose();
     }
