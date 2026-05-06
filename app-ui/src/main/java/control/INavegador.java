@@ -3,7 +3,7 @@ package control;
 import panels.ProductoDetallePanel;
 
 public interface INavegador {
-    void navegarADetalle(ProductoDetallePanel panelDetalle);
+    void navegarADetalleProdcuto(ProductoDetallePanel panelDetalle);
 
     void irAHome();
 }

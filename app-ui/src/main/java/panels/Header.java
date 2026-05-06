@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 
 public class Header extends JPanel {
     private LogoGenius homeButton;
+    private BotonIcono atrasBtn;
     private BuscadorGenius buscadorGenius;
     private BotonIcono usuarioBtn;
     private BotonIcono carritoBtn;
@@ -19,41 +20,54 @@ public class Header extends JPanel {
         setBackground(Color.BLACK);
         iniciarComponentes();
 
-        // Borde amarillo
         setBorder(BorderFactory.createMatteBorder(0, 0, 5, 0, Estilo.AMARILLO_GENIUS));
     }
 
     private void iniciarComponentes() {
-        // Layout
         setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
 
-        // Primera seccion
-        homeButton = new LogoGenius();
+        atrasBtn = new BotonIcono("<");
+        atrasBtn.setFont(Estilo.FONT_OPNS_COND_REGULAR, 25);
+        atrasBtn.setForeground(Color.white);
+        atrasBtn.setVisible(false);
         gbc.gridx = 0;
         gbc.gridy = 0;
+        gbc.weightx = 0.05;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.insets = new Insets(5, 10, 5, 0);
+        add(atrasBtn, gbc);
+
+        homeButton = new LogoGenius();
+        gbc.gridx = 1;
         gbc.weightx = 0.1;
         gbc.anchor = GridBagConstraints.WEST;
-        gbc.insets = new Insets(5, 25, 5, 0);
+        gbc.insets = new Insets(5, 5, 5, 0);
         add(homeButton, gbc);
 
-        // Segunda seccion
         buscadorGenius = new BuscadorGenius();
-        gbc.gridx = 1;
-        gbc.weightx = 0.9;
+        gbc.gridx = 2;
+        gbc.weightx = 0.8;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
         add(buscadorGenius, gbc);
 
-        // Boton Usuario
         usuarioBtn = new BotonIcono("Iniciar Sesion");
         usuarioBtn.setFont(Estilo.FONT_OPNS_COND_REGULAR, 20);
         usuarioBtn.setForeground(Color.white);
-        gbc.gridx = 2;
+        gbc.gridx = 3;
         gbc.weightx = 0.1;
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.insets = new Insets(0, 0, 0, 0);
         add(usuarioBtn, gbc);
+    }
+
+    public void setAtrasVisible(boolean visible) {
+        atrasBtn.setVisible(visible);
+    }
+
+    public BotonIcono getAtrasBtn() {
+        return atrasBtn;
     }
 
     public void actualizarUsuario() {

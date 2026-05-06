@@ -5,39 +5,105 @@ import frames.GlobalFrame;
 import frames.LogInFrame;
 import panels.ProductoDetallePanel;
 
+import java.util.Stack;
+
+import static util.Constants.Pantallas.*;
+
 public class NavegacionControl implements INavegador {
     private LogInFrame logInFrame;
     private GlobalFrame globalFrame;
     private AdministracionProductoFrame administracionProductoFrame;
 
-    public static final String SCREEN_MAIN_PAGE = "MAIN_PAGE";
-    public static final String SCREEN_DETALLE_PRODUCTO = "DETALLE_PRODCUTO";
-    public static final String SCREEN_LOGIN = "LOGIN";
-
     private String pantallaActual;
+    private final Stack<Pantalla> historial;
 
     public NavegacionControl() {
         this.logInFrame = null;
         this.globalFrame = null;
         this.pantallaActual = null;
+        this.historial = new Stack<>();
+    }
+
+    private static class Pantalla {
+        final String nombre;
+        final ProductoDetallePanel detallePanel;
+
+        Pantalla(String nombre) {
+            this(nombre, null);
+        }
+
+        Pantalla(String nombre, ProductoDetallePanel detallePanel) {
+            this.nombre = nombre;
+            this.detallePanel = detallePanel;
+        }
+    }
+
+    public boolean tieneHistorial() {
+        return !historial.isEmpty();
+    }
+
+    public void irAtras() {
+        if (historial.isEmpty()) {
+            return;
+        }
+
+        Pantalla pantallaAnterior = historial.pop();
+
+        if (pantallaAnterior.detallePanel != null) {
+            globalFrame.cambiarPantallaDetalle(pantallaAnterior.detallePanel);
+        }
+
+        globalFrame.mostrarPantalla(pantallaAnterior.nombre);
+        pantallaActual = pantallaAnterior.nombre;
+        globalFrame.setPantallaActual(pantallaActual);
+        actualizarVisibilidadAtras();
+    }
+
+    private void pushHistorial(String nombre) {
+        historial.push(new Pantalla(nombre));
+    }
+
+    private boolean esPantallaActual(String pantalla) {
+        return pantallaActual != null && pantallaActual.equals(pantalla);
     }
 
     @Override
     public void irAHome() {
         validarGlobalFrame();
-        globalFrame.mostrarPantalla(SCREEN_MAIN_PAGE);
-        pantallaActual = SCREEN_MAIN_PAGE;
+        if (!esPantallaActual(MAIN_PAGE)) {
+            pushHistorial(pantallaActual);
+            globalFrame.mostrarPantalla(MAIN_PAGE);
+            pantallaActual = MAIN_PAGE;
+            globalFrame.setPantallaActual(pantallaActual);
+            actualizarVisibilidadAtras();
+        }
     }
 
     @Override
-    public void navegarADetalle(ProductoDetallePanel detallePanel) {
+    public void navegarADetalleProdcuto(ProductoDetallePanel detallePanel) {
         validarGlobalFrame();
         if (detallePanel == null) {
             throw new IllegalArgumentException("ProductoDetallePanel no puede ser null");
         }
-        globalFrame.cambiarPantallaDetalle(detallePanel);
-        globalFrame.mostrarPantalla(SCREEN_DETALLE_PRODUCTO);
-        pantallaActual = SCREEN_DETALLE_PRODUCTO;
+        if (!esPantallaActual(DETALLE_PRODUCTO)) {
+            pushHistorial(pantallaActual);
+            globalFrame.cambiarPantallaDetalle(detallePanel);
+            globalFrame.mostrarPantalla(DETALLE_PRODUCTO);
+            pantallaActual = DETALLE_PRODUCTO;
+            globalFrame.setPantallaActual(pantallaActual);
+            actualizarVisibilidadAtras();
+        }
+    }
+
+    public void navegarACarrito() {
+        validarGlobalFrame();
+        if (!esPantallaActual(CARRITO)) {
+            pushHistorial(pantallaActual);
+            globalFrame.mostrarPantalla(CARRITO);
+            pantallaActual = CARRITO;
+            globalFrame.setPantallaActual(pantallaActual);
+            actualizarVisibilidadAtras();
+        }
     }
 
     public void setGlobalFrame(GlobalFrame globalFrame) {
@@ -46,6 +112,13 @@ public class NavegacionControl implements INavegador {
         }
         this.globalFrame = globalFrame;
         this.globalFrame.getHeader().setHomeAction(e -> irAHome());
+        this.globalFrame.getHeader().getAtrasBtn().addActionListener(e -> irAtras());
+    }
+
+    public void actualizarVisibilidadAtras() {
+        if (globalFrame != null) {
+            globalFrame.getHeader().setAtrasVisible(!historial.isEmpty());
+        }
     }
 
     public void setLogInFrame(LogInFrame logInFrame) {
@@ -62,9 +135,13 @@ public class NavegacionControl implements INavegador {
             logInFrame.dispose();
         }
 
+        historial.clear();
+
         globalFrame.getHeader().actualizarUsuario();
         globalFrame.setVisible(true);
-        pantallaActual = SCREEN_MAIN_PAGE;
+        pantallaActual = MAIN_PAGE;
+        globalFrame.setPantallaActual(pantallaActual);
+        actualizarVisibilidadAtras();
     }
 
     public void abrirLoginFrame() {
@@ -75,7 +152,7 @@ public class NavegacionControl implements INavegador {
         }
 
         logInFrame.setVisible(true);
-        pantallaActual = SCREEN_LOGIN;
+        pantallaActual = LOGIN;
     }
 
     private void validarGlobalFrame() {
@@ -92,7 +169,6 @@ public class NavegacionControl implements INavegador {
         globalFrame.dispose();
         administracionProductoFrame.setVisible(true);
     }
-
 
     private void validarLogInFrame() {
         if (logInFrame == null) {
