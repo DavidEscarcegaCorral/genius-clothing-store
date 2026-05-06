@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import util.Estilo;
 
 /**
  *
@@ -22,12 +23,13 @@ public class AdministracionProductosPanel extends JPanel{
     private BotonRedondeado agregarProducto;
     private BotonRedondeado publicarProducto;
     private BotonRedondeado modificarProducto;
-    private Header header;
     JTable tabla = new JTable();
     public AdministracionProductosPanel() {
         setLayout(new BorderLayout());
-        setOpaque(false);
+        setOpaque(true);
+        setBackground(Estilo.AMARILLO_GENIUS);
         iniciarComponentes();
+        
     }
     
     private void iniciarComponentes(){
@@ -35,16 +37,18 @@ public class AdministracionProductosPanel extends JPanel{
         JPanel panelBotones = new JPanel();
         
         agregarProducto = new BotonRedondeado("Agregar Producto");
-        panelBotones.add(agregarProducto,BorderLayout.SOUTH);
+        panelBotones.add(agregarProducto);
         publicarProducto = new BotonRedondeado("Publicar Producto");
-        panelBotones.add(publicarProducto,BorderLayout.SOUTH);
+        panelBotones.add(publicarProducto);
         modificarProducto = new BotonRedondeado("Modificar Producto");
-        panelBotones.add(modificarProducto,BorderLayout.SOUTH);
-        
+        panelBotones.add(modificarProducto);
+        panelBotones.setOpaque(false);
+        add(panelBotones,BorderLayout.SOUTH);
         tabla = new JTable();
-        JScrollPane scroll = new JScrollPane();
+        JScrollPane scroll = new JScrollPane(tabla);
+        scroll.setOpaque(false);
+        scroll.getViewport().setOpaque(false);
         add(scroll,BorderLayout.CENTER);
-        add(header,BorderLayout.NORTH);
     }
 
     public BotonRedondeado getAgregarProducto() {

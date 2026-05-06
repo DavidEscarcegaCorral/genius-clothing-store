@@ -49,12 +49,11 @@ public class LoginControl {
 
         // Crear el DTO
         CredencialesDTO credencialesDTO = new CredencialesDTO(usuario, contraseña);
-
         // mejorar el manejo de excepciones
         try {
             UsuarioBO userLogeado = autorizacionService.verificarLogin(credencialesDTO);
             SesionService.iniciarSesion(userLogeado);
-            navegacionControl.abrirGlobalFrame();
+            navegacionControl.abrirAdministracionProductosFrame();
         } catch (Exception e) {
             mostrarError(logInPanel, e.getMessage());
         }

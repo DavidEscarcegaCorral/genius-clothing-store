@@ -32,7 +32,7 @@ public class AdministracionService implements IAdministracionService {
     public List<ProductoDTO> obtenerProductos() {;
       List<ProductoEntidad> entidades = repository.obtenerProductos();
 
-        return entidades.stream().filter(e -> e.getEstado() == EstadoProducto.PUBLICADO) 
+        return entidades.stream() 
                 .map(ProductoMapper::entidadADtoCompleto)
                 .collect(Collectors.toList());
     }

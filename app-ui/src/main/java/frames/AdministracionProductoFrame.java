@@ -9,6 +9,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import observer.IObserver;
 import panels.AdministracionProductosPanel;
 import panels.Header;
 
@@ -19,7 +20,8 @@ import panels.Header;
 public class AdministracionProductoFrame extends JFrame {
    
     public AdministracionProductosPanel administracionProductosPanel;
-
+    private IObserver observer;
+    
     public AdministracionProductoFrame() {
         
         setTitle("Menu de productos");
@@ -39,7 +41,16 @@ public class AdministracionProductoFrame extends JFrame {
     public AdministracionProductosPanel getAdministracionProductosPanel() {
         return administracionProductosPanel;
     }
+
+    public void setObserver(IObserver observer) {
+        this.observer = observer;
+    }
     
-    
-    
+      @Override
+    public void setVisible(boolean visible) {
+        if (visible && observer != null) {
+            observer.cargar();
+        }
+        super.setVisible(visible);
+    }
 }
