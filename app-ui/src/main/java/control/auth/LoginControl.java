@@ -1,7 +1,8 @@
-package control;
+package control.auth;
 
 import autorizacion.IAutorizacionService;
 import autorizacion.SesionService;
+import control.navegacion.NavegacionControl;
 import dtos.CredencialesDTO;
 import objetosnegocio.UsuarioBO;
 import panels.Header;

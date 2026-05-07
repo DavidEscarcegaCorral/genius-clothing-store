@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package control;
+package control.gestor;
 
 import administracion.IAdministracionFacade;
+import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;

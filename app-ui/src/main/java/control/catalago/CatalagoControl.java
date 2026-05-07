@@ -1,7 +1,8 @@
-package control;
+package control.catalago;
 
 import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
+import control.navegacion.INavegador;
 import dtos.ProductoCardDTO;
 import dtos.ProductoDTO;
 import panels.MainPagePanel;

@@ -1,4 +1,4 @@
-package control;
+package control.carrito;
 
 import catalago.ICatalagoFacade;
 import componentes.ProductoCarritoCard;

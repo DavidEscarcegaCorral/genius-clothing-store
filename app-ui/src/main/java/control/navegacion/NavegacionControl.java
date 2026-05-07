@@ -1,4 +1,4 @@
-package control;
+package control.navegacion;
 
 import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
