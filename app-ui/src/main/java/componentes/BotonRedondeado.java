@@ -55,6 +55,10 @@ public class BotonRedondeado extends JButton {
         g2.setColor(Color.BLACK);
         g2.fillRoundRect(x - offsetSombra, y + offsetSombra, ancho, alto, radio, radio);
 
+        if (getModel().isPressed()) {
+            g2.translate(-2, 2);
+        }
+
         g2.setColor(isHovered ? colorHover : colorFondo);
         g2.fillRoundRect(x, y, ancho, alto, radio, radio);
 

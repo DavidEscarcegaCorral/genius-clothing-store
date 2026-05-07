@@ -1,54 +1,41 @@
 package componentes;
 
 import dtos.ProductoCardDTO;
-import util.Estilo;
+import panels.ProductoPanelBase;
 import util.FontLoader;
-import util.ImageUtil;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ProductoCard extends JPanel {
+public class ProductoCard extends ProductoPanelBase {
     private ProductoCardDTO productoCardDTO;
-    private JLabel imagenLbl;
-    private JLabel nombreProductoLbl;
-    private JLabel precioProdcutoLbl;
-    private JLabel generoProdcutoLbl;
-    private JPanel panelDatos;
+    private JLabel generoLbl;
 
-    public ProductoCard(ProductoCardDTO prodcuto) {
-        setLayout(new BorderLayout());
+    public ProductoCard(ProductoCardDTO producto) {
+        configurarLayout(new BorderLayout());
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
-        setOpaque(false);
 
-        this.productoCardDTO = prodcuto;
-
+        this.productoCardDTO = producto;
         iniciarComponentes();
     }
 
-    public void iniciarComponentes() {
-        ImageIcon img = ImageUtil.cargarImagen(productoCardDTO.getRutaImg(), 230, 230);
-        imagenLbl = new JLabel(img);
+    private void iniciarComponentes() {
+        cargarImagen(productoCardDTO.getRutaImg(), 230, 230);
+        imagenLbl.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
-        panelDatos = new JPanel();
-        panelDatos.setLayout(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
+        configurarPanelDatos(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
-        panelDatos.setOpaque(false);
 
-        // Obtener datos del producto
-        nombreProductoLbl = new JLabel(productoCardDTO.getNombreProdcto());
-        nombreProductoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_BLOD, 18));
-        precioProdcutoLbl = new JLabel(productoCardDTO.getPrecioFormateado());
-        precioProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
-        generoProdcutoLbl = new JLabel(productoCardDTO.getGeneroProcuto().getValor());
-        generoProdcutoLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 20));
+        crearNombreLabel(productoCardDTO.getNombreProdcto(), FONT_BOLD, 18);
+        crearPrecioLabel(productoCardDTO.getPrecioFormateado(), FONT_REGULAR, 20);
 
-        panelDatos.add(nombreProductoLbl);
-        panelDatos.add(precioProdcutoLbl);
-        panelDatos.add(generoProdcutoLbl);
+        generoLbl = new JLabel(productoCardDTO.getGeneroProcuto().getValor());
+        generoLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 20));
 
-        add(imagenLbl, BorderLayout.NORTH);
-        add(panelDatos, BorderLayout.CENTER);
+        agregarDatosAlPanel(nombreLbl, precioLbl, generoLbl);
+
+        agregarComponente(imagenLbl, BorderLayout.NORTH);
+        agregarComponente(panelDatos, BorderLayout.CENTER);
     }
 
     public String getProductoId() {
