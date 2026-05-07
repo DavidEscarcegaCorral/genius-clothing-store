@@ -27,6 +27,7 @@ public class MainPagePanel extends JPanel {
         add(Box.createRigidArea(new Dimension(0, 15)));
         add(crearEtiquetaSeccion("Novedades"));
         add(Box.createRigidArea(new Dimension(0, 15)));
+
         // Primera seccion
         panelNovedades = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 15));
         add(panelNovedades);

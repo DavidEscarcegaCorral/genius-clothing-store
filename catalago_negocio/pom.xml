@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>app-ui</artifactId>
+    <artifactId>catalago_negocio</artifactId>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -19,18 +19,25 @@
     <dependencies>
         <dependency>
             <groupId>org.genius.team</groupId>
-            <artifactId>autorizacion_negocio</artifactId>
+            <artifactId>dto_negocio</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>almacen_negocio</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.genius.team</groupId>
+            <artifactId>dominio_persistencia</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.genius.team</groupId>
-            <artifactId>catalago_negocio</artifactId>
+            <artifactId>dao_presistencia</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.genius.team</groupId>
+            <artifactId>mappers_negocio</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

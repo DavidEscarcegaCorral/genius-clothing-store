@@ -1,6 +1,6 @@
 package control;
 
-import catalago.ICatalagoService;
+import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
 import dtos.ProductoCardDTO;
 import dtos.ProductoDTO;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 
 public class CatalagoControl {
     private MainPagePanel mainPagePanel;
-    private ICatalagoService catalagoService;
+    private ICatalagoFacade catalagoService;
     private INavegador INavegador;
 
     public CatalagoControl(MainPagePanel mainPagePanel,
-                           ICatalagoService catalagoService,
+                           ICatalagoFacade catalagoService,
                            INavegador INavegador) {
         this.mainPagePanel = mainPagePanel;
         this.catalagoService = catalagoService;

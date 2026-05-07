@@ -20,6 +20,7 @@
         <module>almacen_negocio</module>
         <module>app-commons</module>
         <module>mappers_negocio</module>
+        <module>catalago_negocio</module>
     </modules>
 
 

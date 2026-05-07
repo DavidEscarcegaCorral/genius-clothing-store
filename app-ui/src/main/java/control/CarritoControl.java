@@ -1,6 +1,6 @@
 package control;
 
-import catalago.ICatalagoService;
+import catalago.ICatalagoFacade;
 import componentes.ProductoCarritoCard;
 import dtos.ProductoCardDTO;
 import panels.CarritoPanel;
@@ -10,10 +10,10 @@ import java.util.List;
 
 public class CarritoControl {
     private CarritoPanel carritoPanel;
-    private ICatalagoService catalagoService;
+    private ICatalagoFacade catalagoService;
     private List<ProductoCarritoCard> productosEnCarrito;
 
-    public CarritoControl(CarritoPanel carritoPanel, ICatalagoService catalagoService) {
+    public CarritoControl(CarritoPanel carritoPanel, ICatalagoFacade catalagoService) {
         this.carritoPanel = carritoPanel;
         this.catalagoService = catalagoService;
         this.productosEnCarrito = new ArrayList<>();
