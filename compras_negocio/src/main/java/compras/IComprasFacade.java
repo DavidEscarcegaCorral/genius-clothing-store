@@ -10,7 +10,7 @@ public interface IComprasFacade {
 
     CarritoDTO eliminarProducto(String usuarioId, String productoId);
 
-    void        vaciarCarrito(String usuarioId);
+    void vaciarCarrito(String usuarioId);
 
     // Agregar mas metodos del proceso de compra
 }

@@ -1,10 +1,10 @@
 package frames;
 
+import componentes.scroll.ScrollPaneCustom;
 import panels.CarritoPanel;
 import panels.Header;
 import panels.MainPagePanel;
 import panels.ProductoDetallePanel;
-import util.Constants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,10 +12,10 @@ import java.awt.*;
 import static util.Constants.Pantallas.*;
 
 public class GlobalFrame extends JFrame {
-
     private JPanel panelPrincipal;
     private JPanel panelContenido;
     private CardLayout cardLayout;
+    private JScrollPane scrollPane;
 
     private Header header;
 
@@ -41,10 +41,12 @@ public class GlobalFrame extends JFrame {
 
         cardLayout = new CardLayout();
         panelContenido = new JPanel(cardLayout);
+        
+        scrollPane = new ScrollPaneCustom(panelContenido);
 
         inicializarPantallas();
 
-        panelPrincipal.add(panelContenido, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPane, BorderLayout.CENTER);
         add(panelPrincipal);
 
         pack();
@@ -91,5 +93,9 @@ public class GlobalFrame extends JFrame {
 
     public ProductoDetallePanel getProductoDetallePanel() {
         return productoDetallePanel;
+    }
+
+    public CarritoPanel getCarritoPanel() {
+        return carritoPanel;
     }
 }

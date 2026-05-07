@@ -25,6 +25,7 @@ public class AppCoordinator {
     private final NavegacionControl navegacionControl;
     private LoginControl loginControl;
     private CatalagoControl catalagoControl;
+    private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
 
     public AppCoordinator() {
@@ -56,6 +57,10 @@ public class AppCoordinator {
                 globalFrame.getMainPagePanel(),
                 catalagoService,
                 navegacionControl);
+
+        carritoControl = new CarritoControl(
+                globalFrame.getCarritoPanel(),
+                catalagoService);
 
         adminControl = new AdministracionProductosControl(
                 adminFrame.getAdministracionProductosPanel(),
