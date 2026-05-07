@@ -1,25 +1,26 @@
 package panels;
 
-import componentes.LabelTitulo;
 import componentes.ProductoCarritoCard;
 
 import javax.swing.*;
 
-public class CarritoPanel extends JPanel {
-    private LabelTitulo tituloEstilo;
+public class CarritoPanel extends PantallaBase {
+    private JPanel panelContenedor;
     private JPanel contenedorProductosPanel;
     private OpcionesCarritoPanel opcionesCarritoPanel;
 
     private final String TITULO_CARRITO = "Tu Carrito";
 
     public CarritoPanel() {
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        super("Tu Carrito", 70);
         iniciarComponentes();
-        iniciarTitulo();
         agregarComponentes();
     }
 
     private void iniciarComponentes() {
+        panelContenedor = new JPanel();
+        panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.X_AXIS));
+
         contenedorProductosPanel = new JPanel();
         contenedorProductosPanel.setOpaque(false);
         contenedorProductosPanel.setLayout(new BoxLayout(contenedorProductosPanel, BoxLayout.Y_AXIS));
@@ -27,14 +28,10 @@ public class CarritoPanel extends JPanel {
         opcionesCarritoPanel = new OpcionesCarritoPanel();
     }
 
-    public void iniciarTitulo() {
-        tituloEstilo = new LabelTitulo(TITULO_CARRITO);
-    }
-
     public void agregarComponentes() {
-        add(tituloEstilo);
-        add(contenedorProductosPanel);
-        add(opcionesCarritoPanel);
+        panelContenedor.add(contenedorProductosPanel);
+        panelContenedor.add(opcionesCarritoPanel);
+        add(panelContenedor);
     }
 
     public void agregarProducto(ProductoCarritoCard card) {
