@@ -1,11 +1,16 @@
 package control;
 
-import administracion.AdministracionService;
-import administracion.IAdministracionService;
+import administracion.AdministracionFacade;
+import administracion.IAdministracionFacade;
 import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
-import catalago.CatalagoService;
-import catalago.ICatalagoService;
+import catalago.CatalagoFacade;
+import catalago.ICatalagoFacade;
+import control.auth.LoginControl;
+import control.carrito.CarritoControl;
+import control.catalago.CatalagoControl;
+import control.gestor.AdministracionProductosControl;
+import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;
@@ -17,25 +22,26 @@ public class AppCoordinator {
     private final LogInFrame logInFrame;
     private final GlobalFrame globalFrame;
     private final AdministracionProductoFrame adminFrame;
-    
+
     private final IAutorizacionService autorizacionService;
-    private final ICatalagoService catalagoService;
-    private final IAdministracionService administracionService;
-    
+    private final ICatalagoFacade catalagoFacade;
+    private final IAdministracionFacade administracionService;
+
     private final NavegacionControl navegacionControl;
     private LoginControl loginControl;
     private CatalagoControl catalagoControl;
+    private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
 
     public AppCoordinator() {
         this.logInFrame = new LogInFrame();
         this.globalFrame = new GlobalFrame();
         this.adminFrame = new AdministracionProductoFrame();
-        
+
         this.autorizacionService = new AutorizacionService();
-        this.catalagoService = new CatalagoService();
-        this.administracionService = new AdministracionService();
-        
+        this.catalagoFacade = new CatalagoFacade();
+        this.administracionService = new AdministracionFacade();
+
         this.navegacionControl = new NavegacionControl();
     }
 
@@ -54,8 +60,12 @@ public class AppCoordinator {
 
         catalagoControl = new CatalagoControl(
                 globalFrame.getMainPagePanel(),
-                catalagoService,
+                catalagoFacade,
                 navegacionControl);
+
+        carritoControl = new CarritoControl(
+                globalFrame.getCarritoPanel(),
+                catalagoFacade);
 
         adminControl = new AdministracionProductosControl(
                 adminFrame.getAdministracionProductosPanel(),

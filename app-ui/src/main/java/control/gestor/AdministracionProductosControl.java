@@ -2,34 +2,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package control;
+package control.gestor;
 
-import administracion.IAdministracionService;
+import administracion.IAdministracionFacade;
+import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;
 import dtos.ProductoDTO;
-import java.util.List;
 import observer.IObserver;
 import panels.AdministracionProductosPanel;
 import panels.Header;
+
+import java.util.List;
 
 /**
  *
  * @author Usuario
  */
-public class AdministracionProductosControl implements IObserver{
+public class AdministracionProductosControl implements IObserver {
 
-    
+
     private final AdministracionProductosPanel administracionProductosPanel;
     private final Header header;
-    private final IAdministracionService service;
+    private final IAdministracionFacade service;
     private final NavegacionControl navegacion;
     private final AgregarProductoDialog agregarProductoDialog;
     private final EditarProductoDialog editarProductoDialog;
     private final PublicarProductoDialog publicarProductoDialog;
 
-    public AdministracionProductosControl(AdministracionProductosPanel administracionProductosPanel, Header header, IAdministracionService service, NavegacionControl navegacion, AgregarProductoDialog agregarProductoDialog, EditarProductoDialog editarProductoDialog, PublicarProductoDialog publicarProductoDialog) {
+    public AdministracionProductosControl(AdministracionProductosPanel administracionProductosPanel, Header header, IAdministracionFacade service, NavegacionControl navegacion, AgregarProductoDialog agregarProductoDialog, EditarProductoDialog editarProductoDialog, PublicarProductoDialog publicarProductoDialog) {
         this.administracionProductosPanel = administracionProductosPanel;
         this.header = header;
         this.service = service;
@@ -58,18 +60,18 @@ public class AdministracionProductosControl implements IObserver{
         navegacion.abrirPublicarProductoDialog();
     }
 
-   public List<ProductoDTO> obtenerProductos(){
-       return service.obtenerProductos();
-   }
-    
-   //Esto es para llenar la tabla del panel
-   public void cargarTabla() {
-    List<ProductoDTO> productos = service.obtenerProductos();
-    administracionProductosPanel.cargarTabla(productos);
-} 
+    public List<ProductoDTO> obtenerProductos() {
+        return service.obtenerProductos();
+    }
+
+    //Esto es para llenar la tabla del panel
+    public void cargarTabla() {
+        List<ProductoDTO> productos = service.obtenerProductos();
+        administracionProductosPanel.cargarTabla(productos);
+    }
 
     @Override
     public void cargar() {
         cargarTabla();
-}
+    }
 }

@@ -13,9 +13,12 @@ import java.util.List;
  *
  * @author Usuario
  */
-public interface IAdministracionService {
+public interface IAdministracionFacade {
     public List<ProductoDTO> obtenerProductos();
+
     public ProductoDTO agregarProducto(ProductoDTO producto);
+
     public ProductoDTO publicarProducto(String id);
-    public ProductoDTO actualizarProducto(String id,EstadoProducto estado);
+
+    public ProductoDTO actualizarProducto(String id, EstadoProducto estado);
 }

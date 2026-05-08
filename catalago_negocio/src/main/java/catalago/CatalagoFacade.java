@@ -9,10 +9,10 @@ import repository.ProductosRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CatalagoService implements ICatalagoService {
+public class CatalagoFacade implements ICatalagoFacade {
     private ProductosRepository repository;
 
-    public CatalagoService() {
+    public CatalagoFacade() {
         repository = new ProductosRepository();
     }
 
