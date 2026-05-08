@@ -1,5 +1,8 @@
 package control.navegacion;
 
+import dialogs.AgregarProductoDialog;
+import dialogs.EditarProductoDialog;
+import dialogs.PublicarProductoDialog;
 import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
@@ -13,6 +16,9 @@ public class NavegacionControl implements INavegador {
     private LogInFrame logInFrame;
     private GlobalFrame globalFrame;
     private AdministracionProductoFrame administracionProductoFrame;
+    private AgregarProductoDialog dialogAgregarProducto;
+    private EditarProductoDialog dialogEditarProducto;
+    private PublicarProductoDialog dialogPublicarProducto;
 
     private String pantallaActual;
     private final Stack<Pantalla> historial;
@@ -166,8 +172,26 @@ public class NavegacionControl implements INavegador {
     }
 
     public void abrirAdministracionProductosFrame() {
-        globalFrame.dispose();
+        logInFrame.dispose();
         administracionProductoFrame.setVisible(true);
+    }
+    
+    public void abrirAgregarProductoDialog(){
+        dialogPublicarProducto.dispose();
+        dialogEditarProducto.dispose();
+        dialogAgregarProducto.setVisible(true);
+    }
+    
+    public void abrirEditarProductoDialog(){
+        dialogAgregarProducto.dispose();
+        dialogPublicarProducto.dispose();
+        dialogEditarProducto.setVisible(true);
+    }
+    
+    public void abrirPublicarProductoDialog(){
+        dialogAgregarProducto.dispose();
+        dialogEditarProducto.dispose();
+        dialogPublicarProducto.setVisible(true);
     }
 
     private void validarLogInFrame() {

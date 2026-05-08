@@ -4,15 +4,17 @@
  */
 package administracion;
 
-import BO.ProductoBO;
+import objetosnegocio.ProductoBO;
 import dominio.ProductoEntidad;
 import dtos.ProductoDTO;
 import enumeradores.EstadoProducto;
 import mappers.ProductoMapper;
 import repository.ProductosRepository;
+import java.util.ArrayList;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import mappers.ProductoMapper;
 
 /**
  *

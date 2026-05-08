@@ -40,6 +40,25 @@ public class AdministracionProductosControl implements IObserver {
         this.editarProductoDialog = editarProductoDialog;
         this.publicarProductoDialog = publicarProductoDialog;
     }
+    
+    public void inicializarListeners(){
+        administracionProductosPanel.getAgregarProducto().addActionListener(e -> abrirDialogAgregarProducto());
+        administracionProductosPanel.getModificarProducto().addActionListener(e -> abrirDialogEditarProducto());
+        administracionProductosPanel.getPublicarProducto().addActionListener(e -> abrirPublicarProductoDialog());
+    }
+    
+    
+    public void abrirDialogAgregarProducto(){
+        navegacion.abrirAgregarProductoDialog();
+    }
+    
+    public void abrirDialogEditarProducto(){
+        navegacion.abrirEditarProductoDialog();
+    }
+    
+    public void abrirPublicarProductoDialog(){
+        navegacion.abrirPublicarProductoDialog();
+    }
 
     public List<ProductoDTO> obtenerProductos() {
         return service.obtenerProductos();
