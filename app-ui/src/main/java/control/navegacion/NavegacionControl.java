@@ -3,7 +3,7 @@ package control.navegacion;
 import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
-import panels.ProductoDetallePanel;
+import panels.ProductoPantalla;
 
 import java.util.Stack;
 
@@ -26,13 +26,13 @@ public class NavegacionControl implements INavegador {
 
     private static class Pantalla {
         final String nombre;
-        final ProductoDetallePanel detallePanel;
+        final ProductoPantalla detallePanel;
 
         Pantalla(String nombre) {
             this(nombre, null);
         }
 
-        Pantalla(String nombre, ProductoDetallePanel detallePanel) {
+        Pantalla(String nombre, ProductoPantalla detallePanel) {
             this.nombre = nombre;
             this.detallePanel = detallePanel;
         }
@@ -80,7 +80,7 @@ public class NavegacionControl implements INavegador {
     }
 
     @Override
-    public void navegarADetalleProdcuto(ProductoDetallePanel detallePanel) {
+    public void navegarADetalleProdcuto(ProductoPantalla detallePanel) {
         validarGlobalFrame();
         if (detallePanel == null) {
             throw new IllegalArgumentException("ProductoDetallePanel no puede ser null");

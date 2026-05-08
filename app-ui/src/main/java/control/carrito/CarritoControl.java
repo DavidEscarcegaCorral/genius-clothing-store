@@ -3,18 +3,18 @@ package control.carrito;
 import catalago.ICatalagoFacade;
 import componentes.ProductoCarritoCard;
 import dtos.ProductoCardDTO;
-import panels.CarritoPanel;
+import panels.CarritoPantalla;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarritoControl {
-    private CarritoPanel carritoPanel;
+    private CarritoPantalla carritoPantalla;
     private ICatalagoFacade catalagoService;
     private List<ProductoCarritoCard> productosEnCarrito;
 
-    public CarritoControl(CarritoPanel carritoPanel, ICatalagoFacade catalagoService) {
-        this.carritoPanel = carritoPanel;
+    public CarritoControl(CarritoPantalla carritoPantalla, ICatalagoFacade catalagoService) {
+        this.carritoPantalla = carritoPantalla;
         this.catalagoService = catalagoService;
         this.productosEnCarrito = new ArrayList<>();
 
@@ -35,7 +35,7 @@ public class CarritoControl {
         card.iniciarComponentes();
 
         productosEnCarrito.add(card);
-        carritoPanel.agregarProducto(card);
+        carritoPantalla.agregarProducto(card);
     }
 
     public void eliminarProducto(String productoId) {

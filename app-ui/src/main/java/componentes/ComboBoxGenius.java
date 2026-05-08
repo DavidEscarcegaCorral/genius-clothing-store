@@ -2,5 +2,8 @@ package componentes;
 
 import javax.swing.*;
 
-public class ComboBoxGenius extends JComboBox {
+public class ComboBoxGenius<E> extends JComboBox<E> {
+    public ComboBoxGenius() {
+
+    }
 }

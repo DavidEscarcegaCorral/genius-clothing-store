@@ -10,12 +10,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainPagePanel extends JPanel {
+public class MainPagePantalla extends JPanel {
     private JPanel panelNovedades;
     private JPanel panelOfertas;
     private List<ProductoCard> cardsActuales = new ArrayList<>();
 
-    public MainPagePanel() {
+    public MainPagePantalla() {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(true);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));

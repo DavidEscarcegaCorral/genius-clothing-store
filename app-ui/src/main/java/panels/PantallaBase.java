@@ -1,12 +1,12 @@
 package panels;
 
-import componentes.LabelTitulo;
+import componentes.TituloPantalla;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PantallaBase extends JPanel {
-    protected LabelTitulo tituloPantalla;
+    protected TituloPantalla tituloPantalla;
     private final String TITULO;
 
     public PantallaBase(String titulo) {
@@ -21,7 +21,7 @@ public class PantallaBase extends JPanel {
     }
 
     public void iniciarTitulo(int tamañoFuente) {
-        tituloPantalla = new LabelTitulo(TITULO);
+        tituloPantalla = new TituloPantalla(TITULO);
         tituloPantalla.setAlignmentX(Component.RIGHT_ALIGNMENT);
         add(tituloPantalla);
     }

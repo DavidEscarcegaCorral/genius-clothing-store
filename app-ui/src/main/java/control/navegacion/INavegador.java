@@ -1,9 +1,11 @@
 package control.navegacion;
 
-import panels.ProductoDetallePanel;
+import panels.ProductoPantalla;
 
 public interface INavegador {
-    void navegarADetalleProdcuto(ProductoDetallePanel panelDetalle);
+    void navegarADetalleProdcuto(ProductoPantalla panelDetalle);
+
     void navegarACarrito();
+
     void irAHome();
 }

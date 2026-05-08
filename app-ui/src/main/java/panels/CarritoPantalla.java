@@ -4,14 +4,14 @@ import componentes.ProductoCarritoCard;
 
 import javax.swing.*;
 
-public class CarritoPanel extends PantallaBase {
+public class CarritoPantalla extends PantallaBase {
     private JPanel panelContenedor;
     private JPanel contenedorProductosPanel;
     private OpcionesCarritoPanel opcionesCarritoPanel;
 
     private final String TITULO_CARRITO = "Tu Carrito";
 
-    public CarritoPanel() {
+    public CarritoPantalla() {
         super("Tu Carrito", 70);
         iniciarComponentes();
         agregarComponentes();
