@@ -1,13 +1,13 @@
 package frames;
 
-import panels.LogInPanel;
+import panels.LogInPantalla;
 import util.Estilo;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class LogInFrame extends JFrame {
-    public LogInPanel logInPanel;
+    public LogInPantalla logInPantalla;
 
     public LogInFrame() {
         // Configuracion del frame
@@ -18,15 +18,15 @@ public class LogInFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Panel principal del frame
-        logInPanel = new LogInPanel();
-        add(logInPanel);
+        logInPantalla = new LogInPantalla();
+        add(logInPantalla);
 
         // Emapquetado del frame
         pack();
         setLocationRelativeTo(null);
     }
 
-    public LogInPanel getLogInPanel() {
-        return this.logInPanel;
+    public LogInPantalla getLogInPanel() {
+        return this.logInPantalla;
     }
 }

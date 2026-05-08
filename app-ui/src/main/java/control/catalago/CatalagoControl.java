@@ -1,11 +1,12 @@
-package control;
+package control.catalago;
 
-import catalago.ICatalagoService;
+import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
+import control.navegacion.INavegador;
 import dtos.ProductoCardDTO;
 import dtos.ProductoDTO;
-import panels.MainPagePanel;
-import panels.ProductoDetallePanel;
+import panels.MainPagePantalla;
+import panels.ProductoPantalla;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -13,14 +14,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CatalagoControl {
-    private MainPagePanel mainPagePanel;
-    private ICatalagoService catalagoService;
+    private MainPagePantalla mainPagePantalla;
+    private ICatalagoFacade catalagoService;
     private INavegador INavegador;
 
-    public CatalagoControl(MainPagePanel mainPagePanel,
-                           ICatalagoService catalagoService,
+    public CatalagoControl(MainPagePantalla mainPagePantalla,
+                           ICatalagoFacade catalagoService,
                            INavegador INavegador) {
-        this.mainPagePanel = mainPagePanel;
+        this.mainPagePantalla = mainPagePantalla;
         this.catalagoService = catalagoService;
         this.INavegador = INavegador;
 
@@ -33,8 +34,8 @@ public class CatalagoControl {
                 .limit(5)
                 .collect(Collectors.toList());
 
-        mainPagePanel.setNovedadesSeccion(novedades);
-        List<ProductoCard> cards = mainPagePanel.getCardsActuales();
+        mainPagePantalla.setNovedadesSeccion(novedades);
+        List<ProductoCard> cards = mainPagePantalla.getCardsActuales();
         inicializarListeners(cards);
 
     }
@@ -54,7 +55,7 @@ public class CatalagoControl {
         ProductoDTO dto = catalagoService.obtenerProductoPorId(id);
 
         if (dto != null) {
-            ProductoDetallePanel panelDetalle = new ProductoDetallePanel();
+            ProductoPantalla panelDetalle = new ProductoPantalla();
             panelDetalle.cargarDatosProducto(dto);
 
             INavegador.navegarADetalleProdcuto(panelDetalle);

@@ -10,7 +10,7 @@ import util.FontLoader;
 import javax.swing.*;
 import java.awt.*;
 
-public class LogInPanel extends JPanel {
+public class LogInPantalla extends JPanel {
     private GridBagConstraints gbc;
     private JLabel iniciarSesionLbl;
     private JLabel usuarioLbl;
@@ -23,7 +23,7 @@ public class LogInPanel extends JPanel {
 
     private final JLabel errorLbl = new JLabel("El usuario o la contraseña no coinciden");
 
-    public LogInPanel() {
+    public LogInPantalla() {
         setOpaque(false);
         setLayout(new GridBagLayout());
         gbc = new GridBagConstraints();

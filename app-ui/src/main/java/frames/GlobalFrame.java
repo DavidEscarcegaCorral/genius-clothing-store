@@ -1,10 +1,10 @@
 package frames;
 
-import panels.CarritoPanel;
+import componentes.scroll.ScrollPaneCustom;
+import panels.CarritoPantalla;
 import panels.Header;
-import panels.MainPagePanel;
-import panels.ProductoDetallePanel;
-import util.Constants;
+import panels.MainPagePantalla;
+import panels.ProductoPantalla;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,16 +12,16 @@ import java.awt.*;
 import static util.Constants.Pantallas.*;
 
 public class GlobalFrame extends JFrame {
-
     private JPanel panelPrincipal;
     private JPanel panelContenido;
     private CardLayout cardLayout;
+    private JScrollPane scrollPane;
 
     private Header header;
 
-    private MainPagePanel mainPagePanel;
-    private ProductoDetallePanel productoDetallePanel;
-    private CarritoPanel carritoPanel;
+    private MainPagePantalla mainPagePantalla;
+    private ProductoPantalla productoPantalla;
+    private CarritoPantalla carritoPantalla;
 
     private String pantallActual;
 
@@ -42,9 +42,11 @@ public class GlobalFrame extends JFrame {
         cardLayout = new CardLayout();
         panelContenido = new JPanel(cardLayout);
 
+        scrollPane = new ScrollPaneCustom(panelContenido);
+
         inicializarPantallas();
 
-        panelPrincipal.add(panelContenido, BorderLayout.CENTER);
+        panelPrincipal.add(scrollPane, BorderLayout.CENTER);
         add(panelPrincipal);
 
         pack();
@@ -52,18 +54,18 @@ public class GlobalFrame extends JFrame {
     }
 
     private void inicializarPantallas() {
-        mainPagePanel = new MainPagePanel();
-        productoDetallePanel = new ProductoDetallePanel();
-        carritoPanel = new CarritoPanel();
+        mainPagePantalla = new MainPagePantalla();
+        productoPantalla = new ProductoPantalla();
+        carritoPantalla = new CarritoPantalla();
 
-        panelContenido.add(mainPagePanel, MAIN_PAGE);
-        panelContenido.add(productoDetallePanel, DETALLE_PRODUCTO);
-        panelContenido.add(carritoPanel, CARRITO);
+        panelContenido.add(mainPagePantalla, MAIN_PAGE);
+        panelContenido.add(productoPantalla, DETALLE_PRODUCTO);
+        panelContenido.add(carritoPantalla, CARRITO);
 
         pantallActual = MAIN_PAGE;
     }
 
-    public void cambiarPantallaDetalle(ProductoDetallePanel nuevoPanel) {
+    public void cambiarPantallaDetalle(ProductoPantalla nuevoPanel) {
         panelContenido.add(nuevoPanel, DETALLE_PRODUCTO);
         panelContenido.revalidate();
         panelContenido.repaint();
@@ -85,11 +87,15 @@ public class GlobalFrame extends JFrame {
         return header;
     }
 
-    public MainPagePanel getMainPagePanel() {
-        return mainPagePanel;
+    public MainPagePantalla getMainPagePanel() {
+        return mainPagePantalla;
     }
 
-    public ProductoDetallePanel getProductoDetallePanel() {
-        return productoDetallePanel;
+    public ProductoPantalla getProductoDetallePanel() {
+        return productoPantalla;
+    }
+
+    public CarritoPantalla getCarritoPanel() {
+        return carritoPantalla;
     }
 }
