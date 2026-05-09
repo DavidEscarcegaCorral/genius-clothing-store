@@ -14,12 +14,15 @@ public class ProductoCarritoCard extends ProductoPanelBase {
     private BotonIcono eliminarBtn;
     private JPanel panelBotones;
 
-    private static final int ANCHO = 800;
-    private static final int ALTO = 200;
+    private static final int ANCHO = 450;
+    private static final int ALTO = 180;
 
     public ProductoCarritoCard(ProductoCardDTO producto) {
         configurarLayoutHorizontal();
-        setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(Color.BLACK, 3),
+                BorderFactory.createEmptyBorder(0, 0, 0, 0)
+        ));
         setPreferredSize(new Dimension(ANCHO, ALTO));
         setMaximumSize(new Dimension(ANCHO, ALTO));
         setMinimumSize(new Dimension(ANCHO, ALTO));
@@ -28,7 +31,7 @@ public class ProductoCarritoCard extends ProductoPanelBase {
     }
 
     public void iniciarComponentes() {
-        cargarImagen(productoCardDTO.getRutaImg(), 190, 190);
+        cargarImagen(productoCardDTO.getRutaImg(), 170, 170);
 
         configurarPanelDatos(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));

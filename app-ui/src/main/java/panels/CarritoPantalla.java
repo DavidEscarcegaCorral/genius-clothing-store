@@ -3,6 +3,7 @@ package panels;
 import componentes.ProductoCarritoCard;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class CarritoPantalla extends PantallaBase {
     private JPanel panelContenedor;
@@ -18,8 +19,7 @@ public class CarritoPantalla extends PantallaBase {
     }
 
     private void iniciarComponentes() {
-        panelContenedor = new JPanel();
-        panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.X_AXIS));
+        panelContenedor = new JPanel(new FlowLayout(FlowLayout.LEFT, 100, 15));
 
         contenedorProductosPanel = new JPanel();
         contenedorProductosPanel.setOpaque(false);
@@ -36,6 +36,12 @@ public class CarritoPantalla extends PantallaBase {
 
     public void agregarProducto(ProductoCarritoCard card) {
         contenedorProductosPanel.add(card);
+        contenedorProductosPanel.revalidate();
+        contenedorProductosPanel.repaint();
+    }
+
+    public void agregarEspacioVertical(int pixels) {
+        contenedorProductosPanel.add(Box.createVerticalStrut(pixels));
         contenedorProductosPanel.revalidate();
         contenedorProductosPanel.repaint();
     }

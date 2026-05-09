@@ -51,8 +51,6 @@ public class ProductosRepository {
                 TallaUtil.obtenerTallasPorCategoria(CategoriaProducto.CAMISETA), EtiquetaGenero.MUJER,
                 Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
         ));
-        
-
     }
 
     public List<ProductoEntidad> obtenerProductos() {

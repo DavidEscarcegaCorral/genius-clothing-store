@@ -13,6 +13,8 @@ public class CarritoControl {
     private ICatalagoFacade catalagoService;
     private List<ProductoCarritoCard> productosEnCarrito;
 
+    private static final int ESPACIADO_VERTICAL = 15;
+
     public CarritoControl(CarritoPantalla carritoPantalla, ICatalagoFacade catalagoService) {
         this.carritoPantalla = carritoPantalla;
         this.catalagoService = catalagoService;
@@ -36,6 +38,8 @@ public class CarritoControl {
 
         productosEnCarrito.add(card);
         carritoPantalla.agregarProducto(card);
+
+        carritoPantalla.agregarEspacioVertical(ESPACIADO_VERTICAL);
     }
 
     public void eliminarProducto(String productoId) {
