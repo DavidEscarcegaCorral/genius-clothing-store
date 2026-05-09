@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
-
-import dtos.ProductoDTO;
+import dominio.ProductoEntidad;
 import enumeradores.EstadoProducto;
+import excepciones.PersistenciaException;
 import java.util.List;
 
 /**
@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface IProductoDAO {
     
-    public ProductoDTO agregarProducto(ProductoDTO producto);
-    public ProductoDTO cambiarEstado(String id,EstadoProducto estado);
-    public ProductoDTO publicarProducto(String id);
-    public ProductoDTO buscarPorId(String id);
-    public List<ProductoDTO> obtenerProductos();
+    public ProductoEntidad agregarProducto(ProductoEntidad producto)throws PersistenciaException ;
+    public ProductoEntidad cambiarEstado(String id,EstadoProducto estado)throws PersistenciaException ;
+    public ProductoEntidad publicarProducto(String id)throws PersistenciaException ;
+    public ProductoEntidad buscarPorId(String id)throws PersistenciaException ;
+    public List<ProductoEntidad> obtenerProductos()throws PersistenciaException ;
 }
