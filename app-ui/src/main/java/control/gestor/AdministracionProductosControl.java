@@ -9,7 +9,8 @@ import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dialogs.PublicarProductoDialog;
-import dtos.ProductoDTO;
+import dtos.salida.ProductoSalidaDTO;
+import excepcion.NegocioException;
 import observer.IObserver;
 import panels.AdministracionProductosPanel;
 import panels.Header;
@@ -60,14 +61,24 @@ public class AdministracionProductosControl implements IObserver {
         navegacion.abrirPublicarProductoDialog();
     }
 
-    public List<ProductoDTO> obtenerProductos() {
+    public List<ProductoSalidaDTO> obtenerProductos() {
+    try {
         return service.obtenerProductos();
+    } catch (NegocioException e) {
+        System.out.println("Error al ver los productos"+e.getMessage());
+        //regresamos una lista vacia para evitar que truene
+        return List.of();
+      }
     }
 
     //Esto es para llenar la tabla del panel
     public void cargarTabla() {
-        List<ProductoDTO> productos = service.obtenerProductos();
+    try {
+        List<ProductoSalidaDTO> productos =service.obtenerProductos();
         administracionProductosPanel.cargarTabla(productos);
+    } catch (NegocioException e) {
+        System.out.println("Error al cargar los productos "+e.getMessage());
+     }
     }
 
     @Override

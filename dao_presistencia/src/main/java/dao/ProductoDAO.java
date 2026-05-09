@@ -47,6 +47,7 @@ public class ProductoDAO implements IProductoDAO {
             if (mongoProducto.getId() == null) {
                 mongoProducto.setId(new ObjectId());
             }
+            mongoProducto.setEstado(EstadoProducto.BORRADOR);
             coleccionProductos.insertOne(mongoProducto);
             return productoAdapter.convertirADominio(mongoProducto);
 
@@ -116,6 +117,17 @@ public class ProductoDAO implements IProductoDAO {
         } catch (MongoException e) {
             throw new PersistenciaException("Error al ver todos los productos");
         }
+    }
+
+    @Override
+    public List<ProductoEntidad> obtenerProductosPublicados() throws PersistenciaException {
+        try {
+            //Todos los resultados los convierte a una lista
+            List<ProductoMongoEntidad> mongoProductoLista = coleccionProductos.find(eq("estado",EstadoProducto.PUBLICADO)).into(new ArrayList<>());
+            return productoAdapter.convertirListaADominio(mongoProductoLista);
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al ver todos los productos");
+        }   
     }
 
 }

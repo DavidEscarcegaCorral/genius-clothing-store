@@ -4,8 +4,10 @@
  */
 package administracion;
 
-import dtos.ProductoDTO;
+import dtos.entrada.ProductoEntradaDTO;
+import dtos.salida.ProductoSalidaDTO;
 import enumeradores.EstadoProducto;
+import excepcion.NegocioException;
 
 import java.util.List;
 
@@ -14,11 +16,11 @@ import java.util.List;
  * @author Usuario
  */
 public interface IAdministracionFacade {
-    public List<ProductoDTO> obtenerProductos();
+    public List<ProductoSalidaDTO> obtenerProductos() throws NegocioException;
 
-    public ProductoDTO agregarProducto(ProductoDTO producto);
+    public ProductoSalidaDTO agregarProducto(ProductoEntradaDTO producto) throws NegocioException;
 
-    public ProductoDTO publicarProducto(String id);
+    public ProductoSalidaDTO publicarProducto(String id) throws NegocioException;
 
-    public ProductoDTO actualizarProducto(String id, EstadoProducto estado);
+    public ProductoSalidaDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException;
 }

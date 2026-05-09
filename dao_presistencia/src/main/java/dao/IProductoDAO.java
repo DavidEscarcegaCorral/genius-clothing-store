@@ -14,9 +14,10 @@ import java.util.List;
  */
 public interface IProductoDAO {
     
-    public ProductoEntidad agregarProducto(ProductoEntidad producto)throws PersistenciaException ;
-    public ProductoEntidad cambiarEstado(String id,EstadoProducto estado)throws PersistenciaException ;
-    public ProductoEntidad publicarProducto(String id)throws PersistenciaException ;
-    public ProductoEntidad buscarPorId(String id)throws PersistenciaException ;
-    public List<ProductoEntidad> obtenerProductos()throws PersistenciaException ;
+    public ProductoEntidad agregarProducto(ProductoEntidad producto)throws PersistenciaException;
+    public ProductoEntidad cambiarEstado(String id,EstadoProducto estado)throws PersistenciaException;
+    public ProductoEntidad publicarProducto(String id)throws PersistenciaException;
+    public ProductoEntidad buscarPorId(String id)throws PersistenciaException;
+    public List<ProductoEntidad> obtenerProductos()throws PersistenciaException;
+     public List<ProductoEntidad> obtenerProductosPublicados()throws PersistenciaException ;
 }

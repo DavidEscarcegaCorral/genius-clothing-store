@@ -1,13 +1,13 @@
 package panels;
 
 import componentes.BotonRedondeado;
-import dtos.ProductoDTO;
+import dtos.salida.ProductoSalidaDTO;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ProductoPantalla extends ProductoPanelBase {
-    private ProductoDTO producto;
+    private ProductoSalidaDTO producto;
     private BotonRedondeado agregarAlCarritoBtn;
     private JPanel panelMedio;
 
@@ -41,7 +41,7 @@ public class ProductoPantalla extends ProductoPanelBase {
         agregarComponente(panelMedio);
     }
 
-    public void cargarDatosProducto(ProductoDTO productoDTO) {
+    public void cargarDatosProducto(ProductoSalidaDTO productoDTO) {
         this.producto = productoDTO;
         iniciarComponentes();
     }

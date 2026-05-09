@@ -4,6 +4,8 @@
  */
 package dtos;
 
+import dtos.salida.ProductoSalidaDTO;
+
 /**
  *
  * @author Usuario
@@ -11,16 +13,16 @@ package dtos;
 public class CarritoDTO {
     
     private Integer idCarritoDTO;
-    private ProductoDTO producto;
+    private ProductoSalidaDTO producto;
     private Integer cantidad;
 
-    public CarritoDTO(Integer idCarritoDTO, ProductoDTO producto, Integer cantidad) {
+    public CarritoDTO(Integer idCarritoDTO, ProductoSalidaDTO producto, Integer cantidad) {
         this.idCarritoDTO = idCarritoDTO;
         this.producto = producto;
         this.cantidad = cantidad;
     }
     
-    public CarritoDTO(ProductoDTO producto, Integer cantidad) {
+    public CarritoDTO(ProductoSalidaDTO producto, Integer cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -28,11 +30,11 @@ public class CarritoDTO {
     public CarritoDTO() {
     }
 
-    public ProductoDTO getProducto() {
+    public ProductoSalidaDTO getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoDTO producto) {
+    public void setProducto(ProductoSalidaDTO producto) {
         this.producto = producto;
     }
 

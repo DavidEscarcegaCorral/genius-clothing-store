@@ -5,7 +5,7 @@
 package panels;
 
 import componentes.BotonRedondeado;
-import dtos.ProductoDTO;
+import dtos.salida.ProductoSalidaDTO;
 import java.awt.BorderLayout;
 import java.util.List;
 import javax.swing.JPanel;
@@ -68,14 +68,14 @@ public class AdministracionProductosPanel extends JPanel{
         return tabla;
     }
     
-    public void cargarTabla(List<ProductoDTO> productos) {
+    public void cargarTabla(List<ProductoSalidaDTO> productos) {
     //Definimos las columnas que queremos mostrar en las tablas
     String[] columnas = {"ID", "Nombre", "Precio", "Stock", "Estado"};
     //Creamos una tabla con las columnas
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
     //Le damos a cada columna lo que va a mostrar
-    for (ProductoDTO p : productos) {
+    for (ProductoSalidaDTO p : productos) {
         Object[] fila = {
             p.getId(),
             p.getNombre(),

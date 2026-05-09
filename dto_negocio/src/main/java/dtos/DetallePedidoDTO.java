@@ -4,6 +4,8 @@
  */
 package dtos;
 
+import dtos.salida.ProductoSalidaDTO;
+
 /**
  *
  * @author Usuario
@@ -11,13 +13,13 @@ package dtos;
 public class DetallePedidoDTO {
     
     private Integer idDetallePedidoDTO;
-    private ProductoDTO producto;
+    private ProductoSalidaDTO producto;
     private Integer cantidad;
     private Double precioUnitario;
     private Double subtotal;
     private Double descuento;
 
-    public DetallePedidoDTO(Integer idDetallePedidoDTO, ProductoDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+    public DetallePedidoDTO(Integer idDetallePedidoDTO, ProductoSalidaDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.idDetallePedidoDTO = idDetallePedidoDTO;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -26,7 +28,7 @@ public class DetallePedidoDTO {
         this.descuento = descuento;
     }
 
-    public DetallePedidoDTO(ProductoDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+    public DetallePedidoDTO(ProductoSalidaDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
@@ -42,11 +44,11 @@ public class DetallePedidoDTO {
         this.idDetallePedidoDTO = idDetallePedidoDTO;
     }
 
-    public ProductoDTO getProducto() {
+    public ProductoSalidaDTO getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoDTO producto) {
+    public void setProducto(ProductoSalidaDTO producto) {
         this.producto = producto;
     }
 
