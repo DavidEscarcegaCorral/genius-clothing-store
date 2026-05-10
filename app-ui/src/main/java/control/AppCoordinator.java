@@ -6,6 +6,7 @@ import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
 import catalago.CatalagoFacade;
 import catalago.ICatalagoFacade;
+import conexion.DatabaseSeeder;
 import control.auth.LoginControl;
 import control.carrito.CarritoControl;
 import control.catalago.CatalagoControl;
@@ -46,9 +47,14 @@ public class AppCoordinator {
     }
 
     public void iniciar() {
+        inicializarBaseDeDatos();
         inicializarControles();
         configurarNavegacion();
         mostrarHome();
+    }
+
+    private void inicializarBaseDeDatos() {
+        DatabaseSeeder.inicializarProductosSiEstaVacio();
     }
 
     private void inicializarControles() {
