@@ -12,5 +12,10 @@ public interface IComprasFacade {
 
     void vaciarCarrito(String usuarioId);
 
+    /**
+     * Valida si el usuario está activo/logeado
+     */
+    boolean validarUsuarioActivo(String usuarioId);
+
     // Agregar mas metodos del proceso de compra
 }

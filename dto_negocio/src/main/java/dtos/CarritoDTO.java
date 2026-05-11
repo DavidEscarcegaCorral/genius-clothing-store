@@ -8,12 +8,12 @@ import dto_response.ProductoResponseDTO;
  */
 public class CarritoDTO {
 
-    private Integer idCarritoDTO;
+    private Integer idCarrito;
     private ProductoResponseDTO producto;
     private Integer cantidad;
 
-    public CarritoDTO(Integer idCarritoDTO, ProductoResponseDTO producto, Integer cantidad) {
-        this.idCarritoDTO = idCarritoDTO;
+    public CarritoDTO(Integer idCarrito, ProductoResponseDTO producto, Integer cantidad) {
+        this.idCarrito = idCarrito;
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -42,12 +42,12 @@ public class CarritoDTO {
         this.cantidad = cantidad;
     }
 
-    public Integer getIdCarritoDTO() {
-        return idCarritoDTO;
+    public Integer getIdCarrito() {
+        return idCarrito;
     }
 
-    public void setIdCarritoDTO(Integer idCarrito) {
-        this.idCarritoDTO = idCarrito;
+    public void setIdCarrito(Integer idCarrito) {
+        this.idCarrito = idCarrito;
     }
 
 

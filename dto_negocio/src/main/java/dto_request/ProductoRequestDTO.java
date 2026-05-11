@@ -121,10 +121,6 @@ public class ProductoRequestDTO {
     public void setEstilos(List<EtiquetaEstilo> estilos) {
         this.estilos = estilos;
     }
-
-    public String getPrecioFormateado() {
-        return "$" + precio.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
-    }
 }
 
 

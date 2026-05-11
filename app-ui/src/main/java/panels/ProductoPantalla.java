@@ -4,12 +4,14 @@ import componentes.BotonRedondeado;
 import componentes.ComboBoxGenius;
 import componentes.ProductoTagsLabel;
 import dto_response.ProductoResponseDTO;
+import dtos.ProductoCardDTO;
 import util.Estilo;
 import util.FontLoader;
 import util.ImageUtil;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class ProductoPantalla extends JPanel {
     private ProductoResponseDTO producto;
@@ -36,7 +38,7 @@ public class ProductoPantalla extends JPanel {
         nombreLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 45));
         nombreLbl.setForeground(Color.BLACK);
 
-        precioLbl = new JLabel(producto.getPrecioFormateado());
+        precioLbl = new JLabel("$" + producto.getPrecio());
         precioLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 45));
         precioLbl.setForeground(Color.BLACK);
 
@@ -72,5 +74,31 @@ public class ProductoPantalla extends JPanel {
     public void cargarDatosProducto(ProductoResponseDTO productoDTO) {
         this.producto = productoDTO;
         iniciarComponentes();
+    }
+
+    public void setAgregarAlCarritoListener(ActionListener listener) {
+        agregarAlCarritoBtn.addActionListener(listener);
+    }
+
+    public ProductoCardDTO getProductoParaCarrito() {
+        if (producto == null) {
+            return null;
+        }
+
+        ProductoCardDTO cardDTO = new ProductoCardDTO();
+        cardDTO.setProductoId(producto.getId());
+        cardDTO.setNombreProducto(producto.getNombre());
+        cardDTO.setPrecio(producto.getPrecio());
+        cardDTO.setGenero(producto.getGenero());
+        cardDTO.setRutaImagen(producto.getRutaImagen());
+
+        return cardDTO;
+    }
+
+    public String getTallaSeleccionada() {
+        if (comboTallas != null && comboTallas.getSelectedItem() != null) {
+            return (String) comboTallas.getSelectedItem();
+        }
+        return "Única";
     }
 }

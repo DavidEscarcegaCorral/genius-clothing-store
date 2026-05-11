@@ -6,6 +6,8 @@ import autorizacion.AutorizacionService;
 import autorizacion.IAutorizacionService;
 import catalago.CatalagoFacade;
 import catalago.ICatalagoFacade;
+import compras.ComprasFacade;
+import compras.IComprasFacade;
 import conexion.DatabaseSeeder;
 import control.auth.LoginControl;
 import control.carrito.CarritoControl;
@@ -26,6 +28,7 @@ public class AppCoordinator {
     private final IAutorizacionService autorizacionService;
     private final ICatalagoFacade catalagoFacade;
     private final IAdministracionFacade administracionService;
+    private final IComprasFacade comprasFacade;
 
     private final NavegacionControl navegacionControl;
     private LoginControl loginControl;
@@ -41,6 +44,7 @@ public class AppCoordinator {
         this.autorizacionService = new AutorizacionService();
         this.catalagoFacade = new CatalagoFacade();
         this.administracionService = new AdministracionFacade();
+        this.comprasFacade = new ComprasFacade();
 
         this.navegacionControl = new NavegacionControl();
     }
@@ -56,21 +60,23 @@ public class AppCoordinator {
         DatabaseSeeder.inicializarProductosSiEstaVacio();
     }
 
-    private void inicializarControles() {
+private void inicializarControles() {
         loginControl = new LoginControl(
                 logInFrame.getLogInPanel(),
                 globalFrame.getHeader(),
                 autorizacionService,
                 navegacionControl);
 
+        carritoControl = new CarritoControl(
+                globalFrame.getCarritoPanel(),
+                catalagoFacade,
+                comprasFacade);
+
         catalagoControl = new CatalagoControl(
                 globalFrame.getMainPagePanel(),
                 catalagoFacade,
-                navegacionControl);
-
-        carritoControl = new CarritoControl(
-                globalFrame.getCarritoPanel(),
-                catalagoFacade);
+                navegacionControl,
+                carritoControl);
 
         adminControl = new AdministracionProductosControl(
                 adminFrame.getAdministracionProductosPanel(),

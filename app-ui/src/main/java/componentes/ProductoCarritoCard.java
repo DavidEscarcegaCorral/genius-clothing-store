@@ -30,22 +30,18 @@ public class ProductoCarritoCard extends ProductoCardBase {
         this.productoCardDTO = producto;
     }
 
-    public void iniciarComponentes() {
-        cargarImagen(productoCardDTO.getRutaImg(), 170, 170);
+public void iniciarComponentes() {
+        cargarImagen(productoCardDTO.getRutaImagen(), 170, 170);
 
         configurarPanelDatos(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
-        crearNombreLabel(productoCardDTO.getNombreProdcto(), FONT_BOLD, 16);
-        crearPrecioLabel(productoCardDTO.getPrecioFormateado(), FONT_REGULAR, 18);
+        crearNombreLabel(productoCardDTO.getNombreProducto(), FONT_BOLD, 16);
+        crearPrecioLabel("$" + productoCardDTO.getPrecio(), FONT_REGULAR, 18);
 
-        // Datos de pruebaq
         tallaLbl = new JLabel("Talla: M");
-        tallaLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 14));
         cantidadLbl = new JLabel("Cantidad: 1");
-        cantidadLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 14));
         eliminarBtn = new BotonIcono("X");
-        eliminarBtn.setForeground(Color.BLACK);
         agregarDatosAlPanel(nombreLbl, precioLbl, tallaLbl, cantidadLbl);
 
         agregarComponente(imagenLbl);
@@ -53,8 +49,8 @@ public class ProductoCarritoCard extends ProductoCardBase {
         agregarComponente(eliminarBtn);
     }
 
-    public String getProductoId() {
-        return productoCardDTO.getProdcutoId();
+public String getProductoId() {
+        return productoCardDTO.getProductoId();
     }
 
 }

@@ -1,10 +1,9 @@
-package dominio;
+package entidadesmongo;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
-public class ItemCarrito {
-    private String instanciaId;
+public class ItemCarritoMongoEntidad {
+
     private String productoId;
     private String nombre;
     private BigDecimal precio;
@@ -12,21 +11,11 @@ public class ItemCarrito {
     private Integer cantidad;
     private String rutaImagen;
 
-    public ItemCarrito() {
-        this.instanciaId = UUID.randomUUID().toString();
-        this.cantidad = 1;
+    public ItemCarritoMongoEntidad() {
     }
 
-    public ItemCarrito(String productoId, String nombre, BigDecimal precio, String tallaSeleccionada) {
-        this();
-        this.productoId = productoId;
-        this.nombre = nombre;
-        this.precio = precio;
-        this.tallaSeleccionada = tallaSeleccionada;
-    }
-
-    public ItemCarrito(String productoId, String nombre, BigDecimal precio, String tallaSeleccionada, Integer cantidad, String rutaImagen) {
-        this();
+    public ItemCarritoMongoEntidad(String productoId, String nombre, BigDecimal precio, 
+            String tallaSeleccionada, Integer cantidad, String rutaImagen) {
         this.productoId = productoId;
         this.nombre = nombre;
         this.precio = precio;
@@ -35,6 +24,13 @@ public class ItemCarrito {
         this.rutaImagen = rutaImagen;
     }
 
+    public String getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(String productoId) {
+        this.productoId = productoId;
+    }
 
     public String getNombre() {
         return nombre;
@@ -50,22 +46,6 @@ public class ItemCarrito {
 
     public void setPrecio(BigDecimal precio) {
         this.precio = precio;
-    }
-
-    public String getInstanciaId() {
-        return instanciaId;
-    }
-
-    public void setInstanciaId(String instanciaId) {
-        this.instanciaId = instanciaId;
-    }
-
-    public String getProductoId() {
-        return productoId;
-    }
-
-    public void setProductoId(String productoId) {
-        this.productoId = productoId;
     }
 
     public String getTallaSeleccionada() {

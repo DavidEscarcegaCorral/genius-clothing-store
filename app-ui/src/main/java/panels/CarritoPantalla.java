@@ -45,4 +45,10 @@ public class CarritoPantalla extends PantallaBase {
         contenedorProductosPanel.revalidate();
         contenedorProductosPanel.repaint();
     }
+
+    public void limpiarProductos() {
+        contenedorProductosPanel.removeAll();
+        contenedorProductosPanel.revalidate();
+        contenedorProductosPanel.repaint();
+    }
 }
