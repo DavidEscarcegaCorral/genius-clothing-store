@@ -83,11 +83,6 @@ public class ComboBoxGenius<E> extends JComboBox<E> {
                 return this;
             }
         });
-    }
-    //Para usarlo para las imagemnes
-    public ComboBoxGenius(E[] items) {
-        super(items);
-    }
-    
+    }  
     
 }
