@@ -4,8 +4,8 @@
  */
 package administracion;
 
-import dtos.entrada.ProductoEntradaDTO;
-import dtos.salida.ProductoSalidaDTO;
+import dto_request.ProductoRequestDTO;
+import dto_response.ProductoSalidaDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
 
@@ -18,7 +18,7 @@ import java.util.List;
 public interface IAdministracionFacade {
     public List<ProductoSalidaDTO> obtenerProductos() throws NegocioException;
 
-    public ProductoSalidaDTO agregarProducto(ProductoEntradaDTO producto) throws NegocioException;
+    public ProductoSalidaDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException;
 
     public ProductoSalidaDTO publicarProducto(String id) throws NegocioException;
 

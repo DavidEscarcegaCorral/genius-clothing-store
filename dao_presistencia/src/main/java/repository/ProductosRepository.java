@@ -9,7 +9,6 @@ import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
-import org.bson.types.ObjectId;
 import util.TallaUtil;
 
 import java.math.BigDecimal;
@@ -62,16 +61,9 @@ public class ProductosRepository {
             return null;
         }
 
-        try {
-            ObjectId objectId = new ObjectId(id);
-            return productosMock.stream()
-                    .filter(productoEntidad -> productoEntidad.getId().equals(objectId.toString()))
-                    .findFirst()
-                    .orElse(null);
-        } catch (IllegalArgumentException e) {
-            return null;
-        }
+        return productosMock.stream()
+                .filter(productoEntidad -> productoEntidad.getId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
-
-
 }

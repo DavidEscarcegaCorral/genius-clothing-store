@@ -5,13 +5,13 @@
 package objetosnegocio;
 
 import dominio.ProductoEntidad;
-import dtos.entrada.ProductoEntradaDTO;
-import dtos.salida.ProductoSalidaDTO;
+import dto_request.ProductoRequestDTO;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
 import excepcion.NegocioException;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,8 +20,8 @@ import java.util.List;
  * @author Usuario
  */
 public class ProductoBO {
-    
-        public void validarProducto(ProductoEntradaDTO dto)
+
+    public void validarProducto(ProductoRequestDTO dto)
             throws NegocioException {
         if (dto == null) {
             throw new NegocioException(
@@ -39,7 +39,7 @@ public class ProductoBO {
         validarEstilos(dto.getEstilos());
     }
 
-    public void validarId(String id)throws NegocioException {
+    public void validarId(String id) throws NegocioException {
         if (id == null || id.trim().isEmpty()) {
 
             throw new NegocioException(
@@ -48,7 +48,7 @@ public class ProductoBO {
         }
     }
 
-    public void validarEstado(EstadoProducto estado)throws NegocioException {
+    public void validarEstado(EstadoProducto estado) throws NegocioException {
         if (estado == null) {
             throw new NegocioException(
                     "El estado es obligatorio"
@@ -56,7 +56,7 @@ public class ProductoBO {
         }
     }
 
-    public void validarExistencia(ProductoEntidad entidad)throws NegocioException {
+    public void validarExistencia(ProductoEntidad entidad) throws NegocioException {
         if (entidad == null) {
             throw new NegocioException(
                     "El producto no existe"
@@ -64,7 +64,7 @@ public class ProductoBO {
         }
     }
 
-    public void validarPublicacion(ProductoEntidad entidad)throws NegocioException {
+    public void validarPublicacion(ProductoEntidad entidad) throws NegocioException {
         validarExistencia(entidad);
         if (entidad.getEstado() == EstadoProducto.PUBLICADO) {
             throw new NegocioException(
@@ -73,7 +73,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarNombre(String nombre)throws NegocioException {
+    private void validarNombre(String nombre) throws NegocioException {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new NegocioException(
                     "El nombre es obligatorio"
@@ -90,11 +90,11 @@ public class ProductoBO {
             );
         }
         if (!nombre.matches(".*[a-zA-ZáéíóúÁÉÍÓÚñÑ].*")) {
-        throw new NegocioException("El nombre debe contener al menos una letra");
+            throw new NegocioException("El nombre debe contener al menos una letra");
         }
     }
 
-    private void validarDescripcion(String descripcion)throws NegocioException {
+    private void validarDescripcion(String descripcion) throws NegocioException {
         if (descripcion == null ||
                 descripcion.trim().isEmpty()) {
             throw new NegocioException(
@@ -107,11 +107,11 @@ public class ProductoBO {
             );
         }
         if (!descripcion.matches(".*[a-zA-ZáéíóúÁÉÍÓÚñÑ].*")) {
-        throw new NegocioException("La descripción debe contener al menos una letra");
+            throw new NegocioException("La descripción debe contener al menos una letra");
         }
     }
 
-    private void validarPrecio(BigDecimal precio)throws NegocioException {
+    private void validarPrecio(BigDecimal precio) throws NegocioException {
         if (precio == null) {
             throw new NegocioException(
                     "El precio es obligatorio"
@@ -124,7 +124,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarRutaImagen(String rutaImagen)throws NegocioException {
+    private void validarRutaImagen(String rutaImagen) throws NegocioException {
         if (rutaImagen == null ||
                 rutaImagen.trim().isEmpty()) {
             throw new NegocioException(
@@ -133,7 +133,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarStock(Integer stock)throws NegocioException {
+    private void validarStock(Integer stock) throws NegocioException {
         if (stock == null) {
             throw new NegocioException(
                     "El stock es obligatorio"
@@ -146,7 +146,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarCategoria(CategoriaProducto categoria)throws NegocioException {
+    private void validarCategoria(CategoriaProducto categoria) throws NegocioException {
         if (categoria == null) {
             throw new NegocioException(
                     "La categoría es obligatoria"
@@ -154,7 +154,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarGenero(EtiquetaGenero genero)throws NegocioException {
+    private void validarGenero(EtiquetaGenero genero) throws NegocioException {
         if (genero == null) {
             throw new NegocioException(
                     "El género es obligatorio"
@@ -162,7 +162,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarTallas(List<String> tallas)throws NegocioException {
+    private void validarTallas(List<String> tallas) throws NegocioException {
         if (tallas == null || tallas.isEmpty()) {
             throw new NegocioException(
                     "Debe existir al menos una talla"
@@ -170,7 +170,7 @@ public class ProductoBO {
         }
     }
 
-    private void validarEstilos(List<EtiquetaEstilo> estilos)throws NegocioException {
+    private void validarEstilos(List<EtiquetaEstilo> estilos) throws NegocioException {
         if (estilos == null || estilos.isEmpty()) {
             throw new NegocioException(
                     "Debe existir al menos un estilo"

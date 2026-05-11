@@ -1,8 +1,8 @@
 package catalago;
 
 import dominio.ProductoEntidad;
+import dto_response.ProductoSalidaDTO;
 import dtos.ProductoCardDTO;
-import dtos.salida.ProductoSalidaDTO;
 import mappers.ProductoMapper;
 import repository.ProductosRepository;
 

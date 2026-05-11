@@ -83,6 +83,6 @@ public class ComboBoxGenius<E> extends JComboBox<E> {
                 return this;
             }
         });
-    }  
-    
+
+}
 }

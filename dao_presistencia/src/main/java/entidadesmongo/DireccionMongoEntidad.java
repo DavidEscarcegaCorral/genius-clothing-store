@@ -1,7 +1,13 @@
-package dominio;
+package entidadesmongo;
 
-public class DIreccionEntidad {
-    private String id;
+import org.bson.codecs.pojo.annotations.BsonId;
+import org.bson.types.ObjectId;
+
+public class DireccionMongoEntidad {
+
+    @BsonId
+    private ObjectId id;
+
     private String calle;
     private String numeroExterior;
     private String numeroInterior;
@@ -12,12 +18,12 @@ public class DIreccionEntidad {
     private String pais;
     private String referencias;
 
-    public DIreccionEntidad() {
+    public DireccionMongoEntidad() {
     }
 
-    public DIreccionEntidad(String id, String calle, String numeroExterior, String numeroInterior,
-                           String colonia, String ciudad, String estado, String codigoPostal,
-                           String pais, String referencias) {
+    public DireccionMongoEntidad(ObjectId id, String calle, String numeroExterior, String numeroInterior,
+                                 String colonia, String ciudad, String estado, String codigoPostal,
+                                 String pais, String referencias) {
         this.id = id;
         this.calle = calle;
         this.numeroExterior = numeroExterior;
@@ -30,10 +36,9 @@ public class DIreccionEntidad {
         this.referencias = referencias;
     }
 
-    // Constructor sin ID (para creación)
-    public DIreccionEntidad(String calle, String numeroExterior, String numeroInterior,
-                           String colonia, String ciudad, String estado, String codigoPostal,
-                           String pais, String referencias) {
+    public DireccionMongoEntidad(String calle, String numeroExterior, String numeroInterior,
+                                 String colonia, String ciudad, String estado, String codigoPostal,
+                                 String pais, String referencias) {
         this.calle = calle;
         this.numeroExterior = numeroExterior;
         this.numeroInterior = numeroInterior;
@@ -45,12 +50,16 @@ public class DIreccionEntidad {
         this.referencias = referencias;
     }
 
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
+    }
+
+    public String getIdComoTexto() {
+        return id != null ? id.toHexString() : null;
     }
 
     public String getCalle() {
@@ -125,29 +134,10 @@ public class DIreccionEntidad {
         this.referencias = referencias;
     }
 
-    /**
-     * Retorna la dirección completa formateada
-     */
-    public String getDireccionCompleta() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(calle != null ? calle : "").append(" ");
-        sb.append(numeroExterior != null ? numeroExterior : "");
-        if (numeroInterior != null && !numeroInterior.trim().isEmpty()) {
-            sb.append(", Int. ").append(numeroInterior);
-        }
-        sb.append(", Col. ").append(colonia != null ? colonia : "");
-        sb.append(", ").append(ciudad != null ? ciudad : "");
-        sb.append(", ").append(estado != null ? estado : "");
-        sb.append(", C.P. ").append(codigoPostal != null ? codigoPostal : "");
-        sb.append(", ").append(pais != null ? pais : "");
-
-        return sb.toString().trim();
-    }
-
     @Override
     public String toString() {
-        return "DIreccionEntidad{" +
-                "id='" + id + '\'' +
+        return "DireccionMongoEntidad{" +
+                "id=" + getIdComoTexto() +
                 ", calle='" + calle + '\'' +
                 ", numeroExterior='" + numeroExterior + '\'' +
                 ", numeroInterior='" + numeroInterior + '\'' +
