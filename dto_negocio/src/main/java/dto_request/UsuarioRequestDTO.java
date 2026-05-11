@@ -1,6 +1,6 @@
-package dtos;
+package dto_request;
 
-public class UsuarioRegistroDTO {
+public class UsuarioRequestDTO {
     private String nombreUsuario;
     private String nombre;
     private String apellidoPaterno;
@@ -9,7 +9,7 @@ public class UsuarioRegistroDTO {
     private String contraseña;
     private String contraseñaConfirmacion;
 
-    public UsuarioRegistroDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, String contraseñaConfirmacion) {
+    public UsuarioRequestDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, String contraseñaConfirmacion) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -19,7 +19,7 @@ public class UsuarioRegistroDTO {
         this.contraseñaConfirmacion = contraseñaConfirmacion;
     }
 
-    public UsuarioRegistroDTO(){
+    public UsuarioRequestDTO() {
 
     }
 
@@ -80,7 +80,7 @@ public class UsuarioRegistroDTO {
     }
 
     // Metodo temporal para validar las conseñas, luego lo cambiamos :v
-    public boolean sonContraseñasIguales(){
+    public boolean sonContraseñasIguales() {
         return contraseña != null && contraseña.equals(contraseñaConfirmacion);
     }
 }

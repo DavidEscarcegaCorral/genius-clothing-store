@@ -20,17 +20,8 @@ public class CarritoControl {
         this.catalagoService = catalagoService;
         this.productosEnCarrito = new ArrayList<>();
 
-        cargarProductosDemo();
     }
 
-    // Metodo para porbar como se ve el panel
-    private void cargarProductosDemo() {
-        List<ProductoCardDTO> productos = catalagoService.obtenerCatalagoMainPage();
-
-        for (ProductoCardDTO producto : productos) {
-            agregarProductoAlCarrito(producto);
-        }
-    }
 
     public void agregarProductoAlCarrito(ProductoCardDTO producto) {
         ProductoCarritoCard card = new ProductoCarritoCard(producto);

@@ -69,7 +69,7 @@ public class DatabaseSeeder {
                 25,
                 CategoriaProducto.CAMISETA,
                 EtiquetaGenero.MUJER,
-                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.DEPORTE)
+                Arrays.asList(EtiquetaEstilo.URBANO, EtiquetaEstilo.CASUAL)
         ));
 
         productos.add(crearProducto(

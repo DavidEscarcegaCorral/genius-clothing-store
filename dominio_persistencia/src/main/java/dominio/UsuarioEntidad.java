@@ -1,13 +1,13 @@
 package dominio;
 
 import enumeradores.RolUsuario;
-import org.bson.types.ObjectId;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class UsuarioEntidad {
 
-    private ObjectId id;
+    private String id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -23,7 +23,7 @@ public class UsuarioEntidad {
     public UsuarioEntidad() {
     }
 
-    public UsuarioEntidad(ObjectId id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo, int intentosFallidos, LocalDateTime fechaCreacion, List<DIreccionEntidad> direccionesEnvio) {
+    public UsuarioEntidad(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo, int intentosFallidos, LocalDateTime fechaCreacion, List<DIreccionEntidad> direccionesEnvio) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -46,11 +46,11 @@ public class UsuarioEntidad {
         this.nombreUsuario = nombreUsuario;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 

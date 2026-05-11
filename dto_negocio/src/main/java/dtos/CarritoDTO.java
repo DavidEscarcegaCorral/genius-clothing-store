@@ -4,14 +4,14 @@
  */
 package dtos;
 
-import dtos.salida.ProductoSalidaDTO;
+import dto_response.ProductoSalidaDTO;
 
 /**
  *
  * @author Usuario
  */
 public class CarritoDTO {
-    
+
     private Integer idCarritoDTO;
     private ProductoSalidaDTO producto;
     private Integer cantidad;
@@ -21,7 +21,7 @@ public class CarritoDTO {
         this.producto = producto;
         this.cantidad = cantidad;
     }
-    
+
     public CarritoDTO(ProductoSalidaDTO producto, Integer cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
@@ -53,7 +53,6 @@ public class CarritoDTO {
     public void setIdCarritoDTO(Integer idCarrito) {
         this.idCarritoDTO = idCarrito;
     }
-    
-    
-    
+
+
 }

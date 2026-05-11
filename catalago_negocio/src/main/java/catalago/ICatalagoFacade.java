@@ -1,7 +1,7 @@
 package catalago;
 
+import dto_response.ProductoSalidaDTO;
 import dtos.ProductoCardDTO;
-import dtos.salida.ProductoSalidaDTO;
 
 import java.util.List;
 

@@ -4,14 +4,14 @@
  */
 package dtos;
 
-import dtos.salida.ProductoSalidaDTO;
+import dto_response.ProductoSalidaDTO;
 
 /**
  *
  * @author Usuario
  */
 public class DetallePedidoDTO {
-    
+
     private Integer idDetallePedidoDTO;
     private ProductoSalidaDTO producto;
     private Integer cantidad;
@@ -83,6 +83,6 @@ public class DetallePedidoDTO {
     public void setDescuento(Double descuento) {
         this.descuento = descuento;
     }
-    
-    
+
+
 }
