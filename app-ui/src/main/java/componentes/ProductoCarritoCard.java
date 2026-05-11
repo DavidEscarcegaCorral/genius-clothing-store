@@ -1,13 +1,13 @@
 package componentes;
 
 import dtos.ProductoCardDTO;
-import panels.ProductoPanelBase;
+import panels.ProductoCardBase;
 import util.FontLoader;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ProductoCarritoCard extends ProductoPanelBase {
+public class ProductoCarritoCard extends ProductoCardBase {
     private ProductoCardDTO productoCardDTO;
     private JLabel tallaLbl;
     private JLabel cantidadLbl;

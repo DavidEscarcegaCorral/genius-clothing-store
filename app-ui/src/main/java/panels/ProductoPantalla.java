@@ -1,47 +1,75 @@
 package panels;
 
 import componentes.BotonRedondeado;
-import dtos.salida.ProductoSalidaDTO;
+import componentes.ComboBoxGenius;
+import componentes.ProductoTagsLabel;
+import dtos.ProductoDTO;
+import util.Estilo;
+import util.FontLoader;
+import util.ImageUtil;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class ProductoPantalla extends ProductoPanelBase {
-    private ProductoSalidaDTO producto;
+public class ProductoPantalla extends JPanel {
+    private ProductoDTO producto;
+    private JLabel imagenLbl;
+    private JLabel nombreLbl;
+    private JLabel precioLbl;
+    private ProductoTagsLabel tagsLbl;
+    private ComboBoxGenius<String> comboTallas;
     private BotonRedondeado agregarAlCarritoBtn;
-    private JPanel panelMedio;
+
+    private JPanel panelContenedor;
+    private JPanel panelDetalles;
 
     public ProductoPantalla() {
-        configurarLayoutVertical();
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
     public void iniciarComponentes() {
-        crearNombreLabel(producto.getNombre(), FONT_REGULAR, 45);
-        cargarImagenConBorde(producto.getRutaImagen(), 420, 420, Color.BLACK, 3);
-        crearPrecioLabel(producto.getPrecioFormateado(), FONT_REGULAR, 30);
+        ImageIcon img = ImageUtil.cargarImagen(producto.getRutaImagen(), 425, 425);
+        imagenLbl = new JLabel(img);
+        imagenLbl.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
+
+        nombreLbl = new JLabel(producto.getNombre());
+        nombreLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 45));
+        nombreLbl.setForeground(Color.BLACK);
+
+        precioLbl = new JLabel(producto.getPrecioFormateado());
+        precioLbl.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 45));
+        precioLbl.setForeground(Color.BLACK);
+
+        tagsLbl = new ProductoTagsLabel(producto.getGenero(), producto.getEstilos());
 
         agregarAlCarritoBtn = new BotonRedondeado("Agregar al carrito");
 
-        panelMedio = new JPanel();
-        panelMedio.setLayout(new BoxLayout(panelMedio, BoxLayout.X_AXIS));
-        panelMedio.setOpaque(false);
+        iniciarPanelDetalles();
 
-        JPanel panelDatosDetalle = new JPanel();
-        panelDatosDetalle.setLayout(new BoxLayout(panelDatosDetalle, BoxLayout.Y_AXIS));
-        panelDatosDetalle.setOpaque(false);
-        panelDatosDetalle.add(precioLbl);
-        agregarEspacioVertical(30);
-        panelDatosDetalle.add(agregarAlCarritoBtn);
+        panelContenedor = new JPanel();
+        panelContenedor.setLayout(new BoxLayout(panelContenedor, BoxLayout.X_AXIS));
+        panelContenedor.setOpaque(false);
 
-        panelMedio.add(imagenLbl);
-        panelMedio.add(Box.createRigidArea(new Dimension(50, 0)));
-        panelMedio.add(panelDatosDetalle);
+        panelContenedor.add(imagenLbl);
+        panelContenedor.add(Box.createRigidArea(new Dimension(50, 0)));
+        panelContenedor.add(panelDetalles);
 
-        agregarComponenteConEspacio(nombreLbl, 30);
-        agregarComponente(panelMedio);
+        add(nombreLbl);
+        add(panelContenedor);
+
     }
 
-    public void cargarDatosProducto(ProductoSalidaDTO productoDTO) {
+    private void iniciarPanelDetalles() {
+        panelDetalles = new JPanel();
+        panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
+        panelDetalles.setOpaque(false);
+
+        panelDetalles.add(tagsLbl);
+        panelDetalles.add(precioLbl);
+        panelDetalles.add(agregarAlCarritoBtn);
+    }
+
+    public void cargarDatosProducto(ProductoDTO productoDTO) {
         this.producto = productoDTO;
         iniciarComponentes();
     }
