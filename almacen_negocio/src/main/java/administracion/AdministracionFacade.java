@@ -81,7 +81,7 @@ public class AdministracionFacade implements IAdministracionFacade {
             bo.validarPublicacion(entidad);
             bo.validarExistencia(entidad);
             //Lo mandamos a la dao
-            ProductoEntidad productoPublicado = productoDAO.publicarProducto(id);
+            ProductoEntidad productoPublicado = productoDAO.publicarProducto(id,EstadoProducto.PUBLICADO);
             //Regresamos el producto como dto de salida
             return productoAdapter.convertirEntidadASalida(productoPublicado);
         } catch (PersistenciaException ex) {

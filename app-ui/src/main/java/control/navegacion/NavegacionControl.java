@@ -2,7 +2,6 @@ package control.navegacion;
 
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
-import dialogs.PublicarProductoDialog;
 import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
@@ -18,7 +17,6 @@ public class NavegacionControl implements INavegador {
     private AdministracionProductoFrame administracionProductoFrame;
     private AgregarProductoDialog dialogAgregarProducto;
     private EditarProductoDialog dialogEditarProducto;
-    private PublicarProductoDialog dialogPublicarProducto;
 
     private String pantallaActual;
     private final Stack<Pantalla> historial;
@@ -29,7 +27,7 @@ public class NavegacionControl implements INavegador {
         this.pantallaActual = null;
         this.historial = new Stack<>();
     }
-
+    
     private static class Pantalla {
         final String nombre;
         final ProductoPantalla detallePanel;
@@ -177,23 +175,28 @@ public class NavegacionControl implements INavegador {
     }
     
     public void abrirAgregarProductoDialog(){
-        dialogPublicarProducto.dispose();
-        dialogEditarProducto.dispose();
+        dialogEditarProducto.setVisible(false);
         dialogAgregarProducto.setVisible(true);
     }
     
     public void abrirEditarProductoDialog(){
-        dialogAgregarProducto.dispose();
-        dialogPublicarProducto.dispose();
+        dialogAgregarProducto.setVisible(false);
         dialogEditarProducto.setVisible(true);
     }
     
     public void abrirPublicarProductoDialog(){
-        dialogAgregarProducto.dispose();
-        dialogEditarProducto.dispose();
-        dialogPublicarProducto.setVisible(true);
+        dialogAgregarProducto.setVisible(false);
+        dialogEditarProducto.setVisible(false);
     }
 
+    public void setDialogAgregarProducto(AgregarProductoDialog dialogAgregarProducto) {
+        this.dialogAgregarProducto = dialogAgregarProducto;
+    }
+
+    public void setDialogEditarProducto(EditarProductoDialog dialogEditarProducto) {
+        this.dialogEditarProducto = dialogEditarProducto;
+    }
+    
     private void validarLogInFrame() {
         if (logInFrame == null) {
             throw new IllegalStateException("LogInFrame no ha sido inicializado");

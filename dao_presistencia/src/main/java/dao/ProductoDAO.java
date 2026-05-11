@@ -47,7 +47,6 @@ public class ProductoDAO implements IProductoDAO {
             if (mongoProducto.getId() == null) {
                 mongoProducto.setId(new ObjectId());
             }
-            mongoProducto.setEstado(EstadoProducto.BORRADOR);
             coleccionProductos.insertOne(mongoProducto);
             return productoAdapter.convertirADominio(mongoProducto);
 
@@ -77,13 +76,13 @@ public class ProductoDAO implements IProductoDAO {
     }
 
     @Override
-    public ProductoEntidad publicarProducto(String id) throws PersistenciaException {
+    public ProductoEntidad publicarProducto(String id,EstadoProducto estado) throws PersistenciaException {
         ObjectId idObject = productoAdapter.convertirStringAObjectId(id);
         if (idObject == null) {
             throw new PersistenciaException("El producto con ese id no existe");
         }
         try {
-            UpdateResult resultado = coleccionProductos.updateOne(eq("_id", idObject), set("estado", EstadoProducto.PUBLICADO));
+            UpdateResult resultado = coleccionProductos.updateOne(eq("_id", idObject), set("estado", estado));
             ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("_id", idObject)).first();
             return productoAdapter.convertirADominio(mongoProducto);
         } catch (MongoException e) {

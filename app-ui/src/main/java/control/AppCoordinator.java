@@ -13,7 +13,6 @@ import control.gestor.AdministracionProductosControl;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
-import dialogs.PublicarProductoDialog;
 import frames.AdministracionProductoFrame;
 import frames.GlobalFrame;
 import frames.LogInFrame;
@@ -32,7 +31,7 @@ public class AppCoordinator {
     private CatalagoControl catalagoControl;
     private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
-
+    
     public AppCoordinator() {
         this.logInFrame = new LogInFrame();
         this.globalFrame = new GlobalFrame();
@@ -73,8 +72,7 @@ public class AppCoordinator {
                 administracionService,
                 navegacionControl,
                 new AgregarProductoDialog(),
-                new EditarProductoDialog(),
-                new PublicarProductoDialog());
+                new EditarProductoDialog());
 
         adminFrame.setObserver(adminControl);
     }
@@ -83,6 +81,8 @@ public class AppCoordinator {
         navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);
         navegacionControl.setAdministracionProductoFrame(adminFrame);
+        navegacionControl.setDialogAgregarProducto(adminControl.getAgregarProductoDialog()); 
+        navegacionControl.setDialogEditarProducto(adminControl.getEditarProductoDialog()); 
         globalFrame.getHeader().setCarritoAction(e -> navegacionControl.navegarACarrito());
     }
 

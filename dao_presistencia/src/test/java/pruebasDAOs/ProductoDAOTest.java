@@ -101,7 +101,7 @@ public class ProductoDAOTest {
 //
 //    ProductoEntidad guardado =dao.agregarProducto(producto);
 //
-//    ProductoEntidad publicado =dao.publicarProducto(guardado.getId());
+//    ProductoEntidad publicado =dao.publicarProducto(guardado.getId(),EstadoProducto.PUBLICADO);
 //
 //    assertEquals(EstadoProducto.PUBLICADO,publicado.getEstado());   
 // }
@@ -159,11 +159,11 @@ public class ProductoDAOTest {
 //
 //    assertFalse(productos.isEmpty());
 //   }
-//    
-//    /*
-//    Prueba de fallos
-//    Verificamos que lancen la excepcion
-//    */
+    
+    /*
+    Prueba de fallos
+    Verificamos que lancen la excepcion
+    */
 //    
 //    @Test
 //    public void agregarProductoError() {
@@ -182,7 +182,7 @@ public class ProductoDAOTest {
 //    @Test
 //    public void publicarProducto_dInvalido() {
 //
-//    assertThrows(PersistenciaException.class,() -> {dao.publicarProducto("123");});
+//    assertThrows(PersistenciaException.class,() -> {dao.publicarProducto("123",null);});
 //    
 //    }
 //

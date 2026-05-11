@@ -23,13 +23,11 @@ public class ProductoBO {
     
         public void validarProducto(ProductoEntradaDTO dto)
             throws NegocioException {
-
         if (dto == null) {
             throw new NegocioException(
                     "El producto no puede ser nulo"
             );
         }
-
         validarNombre(dto.getNombre());
         validarDescripcion(dto.getDescripcion());
         validarPrecio(dto.getPrecio());
@@ -91,6 +89,9 @@ public class ProductoBO {
                     "El nombre no puede exceder 100 caracteres"
             );
         }
+        if (!nombre.matches(".*[a-zA-ZáéíóúÁÉÍÓÚñÑ].*")) {
+        throw new NegocioException("El nombre debe contener al menos una letra");
+        }
     }
 
     private void validarDescripcion(String descripcion)throws NegocioException {
@@ -104,6 +105,9 @@ public class ProductoBO {
             throw new NegocioException(
                     "La descripción debe tener mínimo 10 caracteres"
             );
+        }
+        if (!descripcion.matches(".*[a-zA-ZáéíóúÁÉÍÓÚñÑ].*")) {
+        throw new NegocioException("La descripción debe contener al menos una letra");
         }
     }
 

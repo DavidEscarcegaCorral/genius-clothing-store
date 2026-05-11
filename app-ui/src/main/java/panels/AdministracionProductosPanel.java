@@ -5,8 +5,11 @@
 package panels;
 
 import componentes.BotonRedondeado;
+import componentes.LogoGenius;
+import componentes.TituloPantalla;
 import dtos.salida.ProductoSalidaDTO;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,7 +36,13 @@ public class AdministracionProductosPanel extends JPanel{
     }
     
     private void iniciarComponentes(){
-        
+        JPanel panelNorte = new JPanel();
+        LogoGenius logo = new LogoGenius();
+        panelNorte.add(logo);
+        BuscadorGenius buscador = new BuscadorGenius();
+        panelNorte.add(buscador);
+        panelNorte.setBackground(Color.BLACK);
+        add(panelNorte,BorderLayout.NORTH);
         JPanel panelBotones = new JPanel();
         
         agregarProducto = new BotonRedondeado("Agregar Producto");
