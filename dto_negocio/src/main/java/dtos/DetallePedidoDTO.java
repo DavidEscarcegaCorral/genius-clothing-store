@@ -11,6 +11,9 @@ public class DetallePedidoDTO {
     private Double subtotal;
     private Double descuento;
 
+    public DetallePedidoDTO() {
+    }
+
     public DetallePedidoDTO(Integer idDetallePedido, ProductoResponseDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.idDetallePedido = idDetallePedido;
         this.producto = producto;
@@ -28,8 +31,6 @@ public class DetallePedidoDTO {
         this.descuento = descuento;
     }
 
-    public DetallePedidoDTO() {
-    }
 
     public Integer getIdDetallePedido() {
         return idDetallePedido;

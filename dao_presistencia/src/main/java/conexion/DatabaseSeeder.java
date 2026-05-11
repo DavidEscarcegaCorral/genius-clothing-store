@@ -1,11 +1,10 @@
 package conexion;
 
 import com.mongodb.client.MongoCollection;
+import entidadesmongo.CarritoMongoEntidad;
 import entidadesmongo.ProductoMongoEntidad;
-import enumeradores.CategoriaProducto;
-import enumeradores.EstadoProducto;
-import enumeradores.EtiquetaEstilo;
-import enumeradores.EtiquetaGenero;
+import entidadesmongo.UsuarioMongoEntidad;
+import enumeradores.*;
 import org.bson.types.ObjectId;
 import util.TallaUtil;
 
@@ -18,33 +17,95 @@ import java.util.logging.Logger;
 public class DatabaseSeeder {
     private static final Logger LOGGER = Logger.getLogger(DatabaseSeeder.class.getName());
 
-    /**
-     * Inicializa la base de datos con productos si está vacía
-     */
     public static void inicializarProductosSiEstaVacio() {
         try {
             ConexionMongoDB conexion = ConexionMongoDB.getInstance();
-            MongoCollection<ProductoMongoEntidad> coleccion = conexion
-                    .getCollection("productos", ProductoMongoEntidad.class);
 
-            long documentosExistentes = coleccion.countDocuments();
+            inicializarUsuarios(conexion);
+            inicializarCarritos(conexion);
+            inicializarProductos(conexion);
 
-            if (documentosExistentes == 0) {
-                List<ProductoMongoEntidad> productos = obtenerProductosMock();
-                coleccion.insertMany(productos);
-                LOGGER.info("✓ Base de datos inicializada con " + productos.size() + " productos");
-            } else {
-                LOGGER.info("✓ Base de datos ya contiene " + documentosExistentes + " productos");
-            }
         } catch (Exception e) {
             LOGGER.severe("✗ Error al inicializar la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
-    /**
-     * Obtiene una lista de productos para seeding
-     */
+    private static void inicializarUsuarios(ConexionMongoDB conexion) {
+        MongoCollection<UsuarioMongoEntidad> coleccion = conexion
+                .getCollection("usuarios", UsuarioMongoEntidad.class);
+
+        long documentosExistentes = coleccion.countDocuments();
+
+        if (documentosExistentes == 0) {
+            List<UsuarioMongoEntidad> usuarios = new ArrayList<>();
+
+            usuarios.add(new UsuarioMongoEntidad(
+                    "David",
+                    "Escarcega",
+                    "Corral",
+                    "david@genius.com",
+                    "admin",
+                    "1234",
+                    RolUsuario.ADMINISTRADOR,
+                    true
+            ));
+
+            usuarios.add(new UsuarioMongoEntidad(
+                    "Juan",
+                    "Perez",
+                    "Garcia",
+                    "juan.perez@email.com",
+                    "juan",
+                    "1234",
+                    RolUsuario.CLIENTE,
+                    true
+            ));
+
+            coleccion.insertMany(usuarios);
+            LOGGER.info("Base de datos inicializada con " + usuarios.size() + " usuarios");
+        } else {
+            LOGGER.info("Base de datos ya contiene " + documentosExistentes + " usuarios");
+        }
+    }
+
+    private static void inicializarCarritos(ConexionMongoDB conexion) {
+        MongoCollection<CarritoMongoEntidad> coleccion = conexion
+                .getCollection("carritos", CarritoMongoEntidad.class);
+
+        long documentosExistentes = coleccion.countDocuments();
+
+        if (documentosExistentes == 0) {
+            List<CarritoMongoEntidad> carritos = new ArrayList<>();
+
+            String usuarioId = "000000000000000000000001";
+            CarritoMongoEntidad carrito = new CarritoMongoEntidad(usuarioId);
+            carrito.setItems(new ArrayList<>());
+
+            carritos.add(carrito);
+
+            coleccion.insertMany(carritos);
+            LOGGER.info("Base de datos inicializada con " + carritos.size() + " carritos");
+        } else {
+            LOGGER.info("Base de datos ya contiene " + documentosExistentes + " carritos");
+        }
+    }
+
+    private static void inicializarProductos(ConexionMongoDB conexion) {
+        MongoCollection<ProductoMongoEntidad> coleccion = conexion
+                .getCollection("productos", ProductoMongoEntidad.class);
+
+        long documentosExistentes = coleccion.countDocuments();
+
+        if (documentosExistentes == 0) {
+            List<ProductoMongoEntidad> productos = obtenerProductosMock();
+            coleccion.insertMany(productos);
+            LOGGER.info("Base de datos inicializada con " + productos.size() + " productos");
+        } else {
+            LOGGER.info("Base de datos ya contiene " + documentosExistentes + " productos");
+        }
+    }
+
     private static List<ProductoMongoEntidad> obtenerProductosMock() {
         List<ProductoMongoEntidad> productos = new ArrayList<>();
 

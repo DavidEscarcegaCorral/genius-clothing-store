@@ -95,6 +95,7 @@ private void inicializarControles() {
         navegacionControl.setAdministracionProductoFrame(adminFrame);
         navegacionControl.setDialogAgregarProducto(adminControl.getAgregarProductoDialog()); 
         navegacionControl.setDialogEditarProducto(adminControl.getEditarProductoDialog()); 
+        navegacionControl.setCarritoControl(carritoControl);
         globalFrame.getHeader().setCarritoAction(e -> navegacionControl.navegarACarrito());
     }
 

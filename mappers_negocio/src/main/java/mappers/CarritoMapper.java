@@ -32,7 +32,8 @@ public class CarritoMapper {
                 productos.add(productoDTO);
             }
         }
-        dto.setCantidad(productos.size());
+        dto.setProductos(productos);
+        dto.setCantidadTotal(productos.size());
         return dto;
     }
     /**

@@ -40,8 +40,8 @@ public class CarritoControl {
             productosEnCarrito.clear();
             carritoPantalla.limpiarProductos();
 
-            if (carrito != null && carrito.getProducto() != null) {
-                for (dto_response.ProductoResponseDTO prod : carrito.getProducto()) {
+            if (carrito != null && carrito.getProductos() != null) {
+                for (dto_response.ProductoResponseDTO prod : carrito.getProductos()) {
                     dtos.ProductoCardDTO cardDTO = new dtos.ProductoCardDTO();
                     cardDTO.setProductoId(prod.getId());
                     cardDTO.setNombreProducto(prod.getNombre());

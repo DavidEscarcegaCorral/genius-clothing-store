@@ -36,20 +36,18 @@ public class ComprasFacade implements IComprasFacade {
     @Override
     public CarritoDTO agregarProdcuto(String usuarioId, String productoId, int cantidad) {
         try {
-            // ✅ VALIDAR USUARIO
             if (usuarioId == null || usuarioId.isBlank()) {
                 throw new PersistenciaException(
-                    "Debes iniciar sesión para agregar productos al carrito"
+                        "Debes iniciar sesión para agregar productos al carrito"
                 );
             }
 
-            // ✅ VALIDAR CANTIDAD
             if (cantidad <= 0) {
                 throw new PersistenciaException("La cantidad debe ser mayor a 0");
             }
 
             ProductoEntidad producto = productoDAO.buscarPorId(productoId);
-            
+
             if (producto == null) {
                 throw new PersistenciaException("Producto no encontrado: " + productoId);
             }
@@ -115,19 +113,20 @@ public class ComprasFacade implements IComprasFacade {
                 productoDTO.setNombre(item.getNombre());
                 productoDTO.setPrecio(item.getPrecio());
                 productoDTO.setRutaImagen(item.getRutaImagen());
-                
+
                 List<String> tallas = new ArrayList<>();
                 if (item.getTallaSeleccionada() != null) {
                     tallas.add(item.getTallaSeleccionada());
                 }
                 productoDTO.setTallas(tallas);
-                
+
                 productos.add(productoDTO);
             }
         }
 
-        dto.setCantidad(productos.size());
-        
+        dto.setProductos(productos);
+        dto.setCantidadTotal(productos.size());
+
         return dto;
     }
 }

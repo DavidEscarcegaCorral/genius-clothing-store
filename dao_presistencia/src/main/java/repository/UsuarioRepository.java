@@ -22,6 +22,13 @@ public class UsuarioRepository {
                         && u.isActivo());
     }
 
+    public UsuarioEntidad buscarPorUsuario(String usuario) {
+        return usuariosMock.stream()
+                .filter(u -> u.getNombreUsuario().equals(usuario))
+                .findFirst()
+                .orElse(null);
+    }
+
     public void inicialiarUsuariosMock() {
         usuariosMock = new ArrayList<>();
 

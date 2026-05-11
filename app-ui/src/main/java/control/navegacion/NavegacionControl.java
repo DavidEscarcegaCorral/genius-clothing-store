@@ -1,5 +1,6 @@
 package control.navegacion;
 
+import control.carrito.CarritoControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import frames.AdministracionProductoFrame;
@@ -17,6 +18,7 @@ public class NavegacionControl implements INavegador {
     private AdministracionProductoFrame administracionProductoFrame;
     private AgregarProductoDialog dialogAgregarProducto;
     private EditarProductoDialog dialogEditarProducto;
+    private CarritoControl carritoControl;
 
     private String pantallaActual;
     private final Stack<Pantalla> historial;
@@ -107,6 +109,9 @@ public class NavegacionControl implements INavegador {
             pantallaActual = CARRITO;
             globalFrame.setPantallaActual(pantallaActual);
             actualizarVisibilidadAtras();
+            if (carritoControl != null) {
+                carritoControl.cargarCarritoDesdeBD();
+            }
         }
     }
 
@@ -195,6 +200,10 @@ public class NavegacionControl implements INavegador {
 
     public void setDialogEditarProducto(EditarProductoDialog dialogEditarProducto) {
         this.dialogEditarProducto = dialogEditarProducto;
+    }
+
+    public void setCarritoControl(control.carrito.CarritoControl carritoControl) {
+        this.carritoControl = carritoControl;
     }
     
     private void validarLogInFrame() {

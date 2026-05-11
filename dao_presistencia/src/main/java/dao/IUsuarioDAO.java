@@ -1,0 +1,11 @@
+package dao;
+
+import dominio.UsuarioEntidad;
+import excepciones.PersistenciaException;
+
+public interface IUsuarioDAO {
+    UsuarioEntidad buscarPorUsuario(String nombreUsuario) throws PersistenciaException;
+    UsuarioEntidad buscarPorId(String id) throws PersistenciaException;
+    UsuarioEntidad guardar(UsuarioEntidad usuario) throws PersistenciaException;
+    boolean existeUsuario(String nombreUsuario, String password) throws PersistenciaException;
+}

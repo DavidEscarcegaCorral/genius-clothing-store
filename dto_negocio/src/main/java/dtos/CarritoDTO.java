@@ -1,45 +1,44 @@
 package dtos;
 
 import dto_response.ProductoResponseDTO;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Usuario
- */
 public class CarritoDTO {
 
     private Integer idCarrito;
-    private ProductoResponseDTO producto;
-    private Integer cantidad;
+    private List<ProductoResponseDTO> productos;
+    private Integer cantidadTotal;
 
-    public CarritoDTO(Integer idCarrito, ProductoResponseDTO producto, Integer cantidad) {
+    public CarritoDTO(Integer idCarrito, List<ProductoResponseDTO> productos, Integer cantidadTotal) {
         this.idCarrito = idCarrito;
-        this.producto = producto;
-        this.cantidad = cantidad;
+        this.productos = productos;
+        this.cantidadTotal = cantidadTotal;
     }
 
-    public CarritoDTO(ProductoResponseDTO producto, Integer cantidad) {
-        this.producto = producto;
-        this.cantidad = cantidad;
+    public CarritoDTO(List<ProductoResponseDTO> productos, Integer cantidadTotal) {
+        this.productos = productos;
+        this.cantidadTotal = cantidadTotal;
     }
 
     public CarritoDTO() {
+        this.productos = new ArrayList<>();
     }
 
-    public ProductoResponseDTO getProducto() {
-        return producto;
+    public List<ProductoResponseDTO> getProductos() {
+        return productos;
     }
 
-    public void setProducto(ProductoResponseDTO producto) {
-        this.producto = producto;
+    public void setProductos(List<ProductoResponseDTO> productos) {
+        this.productos = productos;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Integer getCantidadTotal() {
+        return cantidadTotal;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadTotal(Integer cantidadTotal) {
+        this.cantidadTotal = cantidadTotal;
     }
 
     public Integer getIdCarrito() {
@@ -50,5 +49,10 @@ public class CarritoDTO {
         this.idCarrito = idCarrito;
     }
 
-
+    public void agregarProducto(ProductoResponseDTO producto) {
+        if (this.productos == null) {
+            this.productos = new ArrayList<>();
+        }
+        this.productos.add(producto);
+    }
 }
