@@ -1,10 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
 
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 
 /**
  *
@@ -13,16 +9,16 @@ import dto_response.ProductoSalidaDTO;
 public class CarritoDTO {
 
     private Integer idCarritoDTO;
-    private ProductoSalidaDTO producto;
+    private ProductoResponseDTO producto;
     private Integer cantidad;
 
-    public CarritoDTO(Integer idCarritoDTO, ProductoSalidaDTO producto, Integer cantidad) {
+    public CarritoDTO(Integer idCarritoDTO, ProductoResponseDTO producto, Integer cantidad) {
         this.idCarritoDTO = idCarritoDTO;
         this.producto = producto;
         this.cantidad = cantidad;
     }
 
-    public CarritoDTO(ProductoSalidaDTO producto, Integer cantidad) {
+    public CarritoDTO(ProductoResponseDTO producto, Integer cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
     }
@@ -30,11 +26,11 @@ public class CarritoDTO {
     public CarritoDTO() {
     }
 
-    public ProductoSalidaDTO getProducto() {
+    public ProductoResponseDTO getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoSalidaDTO producto) {
+    public void setProducto(ProductoResponseDTO producto) {
         this.producto = producto;
     }
 

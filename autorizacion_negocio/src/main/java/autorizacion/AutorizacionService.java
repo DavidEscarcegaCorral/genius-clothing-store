@@ -1,6 +1,6 @@
 package autorizacion;
 
-import dtos.CredencialesDTO;
+import dto_request.CredencialesDTO;
 import excepciones.CredencialesInvalidasException;
 import excepciones.UsuarioBloqueadoException;
 import objetosnegocio.UsuarioBO;

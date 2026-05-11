@@ -1,7 +1,7 @@
 package catalago;
 
 import dominio.ProductoEntidad;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 import dtos.ProductoCardDTO;
 import mappers.ProductoMapper;
 import repository.ProductosRepository;
@@ -26,7 +26,7 @@ public class CatalagoFacade implements ICatalagoFacade {
     }
 
     @Override
-    public ProductoSalidaDTO obtenerProductoPorId(String id) {
+    public ProductoResponseDTO obtenerProductoPorId(String id) {
         try {
             ProductoEntidad entidad = repository.buscarPorId(id);
 

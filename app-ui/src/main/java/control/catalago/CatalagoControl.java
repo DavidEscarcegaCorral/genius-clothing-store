@@ -3,7 +3,7 @@ package control.catalago;
 import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
 import control.navegacion.INavegador;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 import dtos.ProductoCardDTO;
 import panels.MainPagePantalla;
 import panels.ProductoPantalla;
@@ -52,7 +52,7 @@ public class CatalagoControl {
     }
 
     private void abrirDetalle(String id) {
-        ProductoSalidaDTO dto = catalagoService.obtenerProductoPorId(id);
+        ProductoResponseDTO dto = catalagoService.obtenerProductoPorId(id);
 
         if (dto != null) {
             ProductoPantalla panelDetalle = new ProductoPantalla();

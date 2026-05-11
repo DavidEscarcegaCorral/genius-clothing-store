@@ -6,7 +6,7 @@ package adaptadores;
 
 import dominio.ProductoEntidad;
 import dto_request.ProductoRequestDTO;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 
 import java.util.ArrayList;
@@ -50,14 +50,14 @@ public class ProductoNegocioAdapter {
     /**
      * Convierte una entidad a DTO de salida
      */
-    public ProductoSalidaDTO convertirEntidadASalida(
+    public ProductoResponseDTO convertirEntidadASalida(
             ProductoEntidad producto) {
 
         if (producto == null) {
             return null;
         }
 
-        return new ProductoSalidaDTO(
+        return new ProductoResponseDTO(
                 producto.getId(),
                 producto.getNombre(),
                 producto.getDescrpcionProducto(),
@@ -75,10 +75,10 @@ public class ProductoNegocioAdapter {
     /**
      * Convierte lista de entidades a lista de DTOs de salida
      */
-    public List<ProductoSalidaDTO> convertirEntidadesASalidas(
+    public List<ProductoResponseDTO> convertirEntidadesASalidas(
             List<ProductoEntidad> productos) {
 
-        List<ProductoSalidaDTO> productosDTO = new ArrayList<>();
+        List<ProductoResponseDTO> productosDTO = new ArrayList<>();
 
         if (productos == null) {
             return productosDTO;
@@ -86,7 +86,7 @@ public class ProductoNegocioAdapter {
 
         for (ProductoEntidad producto : productos) {
 
-            ProductoSalidaDTO productoDTO =
+            ProductoResponseDTO productoDTO =
                     convertirEntidadASalida(producto);
 
             if (productoDTO != null) {

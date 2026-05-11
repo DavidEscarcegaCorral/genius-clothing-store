@@ -9,7 +9,7 @@ import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dto_request.ProductoRequestDTO;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
@@ -169,7 +169,7 @@ public class AdministracionProductosControl implements IObserver {
         }
     }
 
-    public List<ProductoSalidaDTO> obtenerProductos() {
+    public List<ProductoResponseDTO> obtenerProductos() {
         try {
             return service.obtenerProductos();
         } catch (NegocioException e) {
@@ -182,7 +182,7 @@ public class AdministracionProductosControl implements IObserver {
     //Esto es para llenar la tabla del panel
     public void cargarTabla() {
         try {
-            List<ProductoSalidaDTO> productos = service.obtenerProductos();
+            List<ProductoResponseDTO> productos = service.obtenerProductos();
             administracionProductosPanel.cargarTabla(productos);
         } catch (NegocioException e) {
             System.out.println("Error al cargar los productos " + e.getMessage());

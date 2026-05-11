@@ -8,7 +8,7 @@ import enumeradores.EtiquetaGenero;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductoSalidaDTO {
+public class ProductoResponseDTO {
     private String id;
     private String nombre;
     private String descripcion;
@@ -21,20 +21,20 @@ public class ProductoSalidaDTO {
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
-    public ProductoSalidaDTO() {
+    public ProductoResponseDTO() {
     }
 
-    public ProductoSalidaDTO(String id,
-                             String nombre,
-                             String descripcion,
-                             BigDecimal precio,
-                             String rutaImagen,
-                             Integer stock,
-                             EstadoProducto estado,
-                             CategoriaProducto categoria,
-                             List<String> tallas,
-                             EtiquetaGenero genero,
-                             List<EtiquetaEstilo> estilos) {
+    public ProductoResponseDTO(String id,
+                               String nombre,
+                               String descripcion,
+                               BigDecimal precio,
+                               String rutaImagen,
+                               Integer stock,
+                               EstadoProducto estado,
+                               CategoriaProducto categoria,
+                               List<String> tallas,
+                               EtiquetaGenero genero,
+                               List<EtiquetaEstilo> estilos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
