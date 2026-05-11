@@ -23,14 +23,30 @@ public class DatabaseSeeder {
         try {
             ConexionMongoDB conexion = ConexionMongoDB.getInstance();
 
-            inicializarUsuarios(conexion);
-            inicializarCarritos(conexion);
-            inicializarProductos(conexion);
+            eliminarYCargarDatos(conexion);
 
         } catch (Exception e) {
             LOGGER.severe("Error al inicializar la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
+    }
+
+    private static void eliminarYCargarDatos(ConexionMongoDB conexion) {
+        MongoCollection<UsuarioMongoEntidad> coleccionUsuarios = conexion.getCollection("usuarios", UsuarioMongoEntidad.class);
+        MongoCollection<CarritoMongoEntidad> coleccionCarritos = conexion.getCollection("carritos", CarritoMongoEntidad.class);
+        MongoCollection<ProductoMongoEntidad> coleccionProductos = conexion.getCollection("productos", ProductoMongoEntidad.class);
+
+        LOGGER.info("Eliminando datos existentes de la base de datos...");
+        coleccionUsuarios.deleteMany(new org.bson.Document());
+        coleccionCarritos.deleteMany(new org.bson.Document());
+        coleccionProductos.deleteMany(new org.bson.Document());
+
+        LOGGER.info("Cargando datos del seeder...");
+        inicializarUsuarios(conexion);
+        inicializarCarritos(conexion);
+        inicializarProductos(conexion);
+
+        LOGGER.info("Base de datos reiniciada correctamente");
     }
 
     private static void inicializarUsuarios(ConexionMongoDB conexion) {
