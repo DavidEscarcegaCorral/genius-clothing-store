@@ -48,7 +48,11 @@ public class CarritoControl {
                     cardDTO.setPrecio(prod.getPrecio());
                     cardDTO.setRutaImagen(prod.getRutaImagen());
 
-                    ProductoCarritoCard card = new ProductoCarritoCard(cardDTO);
+                    String talla = (prod.getTallas() != null && !prod.getTallas().isEmpty())
+                            ? prod.getTallas().get(0) : "Única";
+                    int cantidad = prod.getCantidad() != null ? prod.getCantidad() : 1;
+
+                    ProductoCarritoCard card = new ProductoCarritoCard(cardDTO, talla, cantidad);
                     card.iniciarComponentes();
                     productosEnCarrito.add(card);
                     carritoPantalla.agregarProducto(card);
@@ -60,7 +64,7 @@ public class CarritoControl {
         }
     }
 
-    public void agregarProductoAlCarrito(ProductoCardDTO producto) {
+    public void agregarProductoAlCarrito(ProductoCardDTO producto, String talla) {
         try {
             if (SesionService.getUsuarioActual() == null) {
                 mostrarError(carritoPantalla, "Debes iniciar sesión para agregar productos al carrito");
@@ -72,11 +76,13 @@ public class CarritoControl {
             CarritoDTO carritoActualizado = comprasFacade.agregarProdcuto(
                     usuarioId,
                     producto.getProductoId(),
+                    talla,
                     1
             );
 
             if (carritoActualizado != null) {
-                ProductoCarritoCard card = new ProductoCarritoCard(producto);
+                int cantidad = 1;
+                ProductoCarritoCard card = new ProductoCarritoCard(producto, talla, cantidad);
                 card.iniciarComponentes();
                 productosEnCarrito.add(card);
                 carritoPantalla.agregarProducto(card);

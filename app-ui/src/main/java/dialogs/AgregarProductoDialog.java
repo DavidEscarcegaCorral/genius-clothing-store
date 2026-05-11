@@ -7,6 +7,7 @@ package dialogs;
 import componentes.BotonRedondeado;
 import componentes.CampoTextoGenius;
 import componentes.ComboBoxGenius;
+import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaGenero;
@@ -14,6 +15,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.swing.BorderFactory;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -24,6 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import panels.BuscadorGenius;
 import util.Estilo;
+import util.TallaUtil;
 
 /**
  *
@@ -56,6 +62,9 @@ public class AgregarProductoDialog extends JDialog{
     private JCheckBox chkElegante = new JCheckBox("Elegante");
     private JCheckBox chkDeporte = new JCheckBox("Deporte");
     private JCheckBox chkClasico = new JCheckBox("Clásico");
+
+    private JPanel panelInventario;
+    private Map<String, JTextField> camposInventario = new HashMap<>();
 
 
      BotonRedondeado btnGuardar = new BotonRedondeado("Guardar");
@@ -94,10 +103,16 @@ public class AgregarProductoDialog extends JDialog{
         panelCentro.add(txtPrecio);
         panelCentro.add(new JLabel("Imagen:"));
         panelCentro.add(cbImagen);
-        panelCentro.add(new JLabel("Stock:"));
-        panelCentro.add(txtStock);
         panelCentro.add(new JLabel("Categoría:"));
         panelCentro.add(cbCategoria);
+
+        panelInventario = new JPanel(new GridLayout(0, 2, 8, 4));
+        panelInventario.setBorder(BorderFactory.createEmptyBorder(8, 0, 8, 0));
+        panelCentro.add(new JLabel("Inventario:"));
+        panelCentro.add(panelInventario);
+        actualizarInventarioPorCategoria();
+
+        cbCategoria.addActionListener(e -> actualizarInventarioPorCategoria());
         panelCentro.add(new JLabel("Género:"));
         panelCentro.add(cbGenero);
 
@@ -208,11 +223,49 @@ public class AgregarProductoDialog extends JDialog{
         return btnGuardar;
     }
 
-    public BotonRedondeado getBtnCancelar() {
+public BotonRedondeado getBtnCancelar() {
         return btnCancelar;
     }
-    
-    
-    
-    
+
+    private void actualizarInventarioPorCategoria() {
+        panelInventario.removeAll();
+        camposInventario.clear();
+
+        CategoriaProducto categoria = (CategoriaProducto) cbCategoria.getSelectedItem();
+        if (categoria == null) return;
+
+        List<String> tallas = TallaUtil.obtenerTallasPorCategoria(categoria);
+
+        for (String talla : tallas) {
+            JLabel labelTalla = new JLabel(talla + ":");
+            JTextField txtCantidad = new JTextField("0", 5);
+            camposInventario.put(talla, txtCantidad);
+            panelInventario.add(labelTalla);
+            panelInventario.add(txtCantidad);
+        }
+
+        panelInventario.revalidate();
+        panelInventario.repaint();
+    }
+
+    public List<StockPorTalla> obtenerInventario() {
+        List<StockPorTalla> inventario = new ArrayList<>();
+        for (Map.Entry<String, JTextField> entry : camposInventario.entrySet()) {
+            String talla = entry.getKey();
+            try {
+                int cantidad = Integer.parseInt(entry.getValue().getText().trim());
+                inventario.add(new StockPorTalla(talla, cantidad));
+            } catch (NumberFormatException e) {
+                inventario.add(new StockPorTalla(talla, 0));
+            }
+        }
+        return inventario;
+    }
+
+    public int getStockTotal() {
+        return obtenerInventario().stream()
+                .mapToInt(s -> s.getCantidad())
+                .sum();
+    }
+
 }

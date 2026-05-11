@@ -66,6 +66,17 @@ public class ProductoPantalla extends JPanel {
         panelDetalles.setLayout(new BoxLayout(panelDetalles, BoxLayout.Y_AXIS));
         panelDetalles.setOpaque(false);
 
+        if (producto.getTallas() != null && !producto.getTallas().isEmpty()) {
+            String[] tallasArray = producto.getTallas().toArray(new String[0]);
+            comboTallas = new ComboBoxGenius<>(tallasArray);
+            JLabel lblTalla = new JLabel("Talla:");
+            lblTalla.setFont(FontLoader.cargarFont(Estilo.FONT_OPNS_COND_REGULAR, 16));
+            panelDetalles.add(lblTalla);
+            panelDetalles.add(comboTallas);
+        } else {
+            comboTallas = new ComboBoxGenius<>(new String[]{"Única"});
+        }
+
         panelDetalles.add(tagsLbl);
         panelDetalles.add(precioLbl);
         panelDetalles.add(agregarAlCarritoBtn);

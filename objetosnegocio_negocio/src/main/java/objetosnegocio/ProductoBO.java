@@ -6,6 +6,7 @@ package objetosnegocio;
 
 import dominio.ProductoEntidad;
 import dto_request.ProductoRequestDTO;
+import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
@@ -16,7 +17,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 /**
- *
  * @author Usuario
  */
 public class ProductoBO {
@@ -32,7 +32,7 @@ public class ProductoBO {
         validarDescripcion(dto.getDescripcion());
         validarPrecio(dto.getPrecio());
         validarRutaImagen(dto.getRutaImagen());
-        validarStock(dto.getStock());
+        validarInventario(dto.getInventario());
         validarCategoria(dto.getCategoria());
         validarGenero(dto.getGenero());
         validarTallas(dto.getTallas());
@@ -133,16 +133,19 @@ public class ProductoBO {
         }
     }
 
-    private void validarStock(Integer stock) throws NegocioException {
-        if (stock == null) {
+    private void validarInventario(List<StockPorTalla> inventario) throws NegocioException {
+        if (inventario == null || inventario.isEmpty()) {
             throw new NegocioException(
-                    "El stock es obligatorio"
+                    "El inventario es obligatorio"
             );
         }
-        if (stock < 0) {
-            throw new NegocioException(
-                    "El stock no puede ser negativo"
-            );
+        for (StockPorTalla stock : inventario) {
+            if (stock.getTalla() == null || stock.getTalla().trim().isEmpty()) {
+                throw new NegocioException("La talla es obligatoria");
+            }
+            if (stock.getCantidad() == null || stock.getCantidad() < 0) {
+                throw new NegocioException("La cantidad no puede ser negativa");
+            }
         }
     }
 

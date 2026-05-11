@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class ProductoCarritoCard extends ProductoCardBase {
     private ProductoCardDTO productoCardDTO;
+    private String tallaSeleccionada;
+    private int cantidad;
     private JLabel tallaLbl;
     private JLabel cantidadLbl;
     private BotonIcono eliminarBtn;
@@ -17,7 +19,7 @@ public class ProductoCarritoCard extends ProductoCardBase {
     private static final int ANCHO = 450;
     private static final int ALTO = 180;
 
-    public ProductoCarritoCard(ProductoCardDTO producto) {
+    public ProductoCarritoCard(ProductoCardDTO producto, String talla, int cantidad) {
         configurarLayoutHorizontal();
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.BLACK, 3),
@@ -28,6 +30,8 @@ public class ProductoCarritoCard extends ProductoCardBase {
         setMinimumSize(new Dimension(ANCHO, ALTO));
 
         this.productoCardDTO = producto;
+        this.tallaSeleccionada = talla;
+        this.cantidad = cantidad;
     }
 
 public void iniciarComponentes() {
@@ -39,8 +43,10 @@ public void iniciarComponentes() {
         crearNombreLabel(productoCardDTO.getNombreProducto(), FONT_BOLD, 16);
         crearPrecioLabel("$" + productoCardDTO.getPrecio(), FONT_REGULAR, 18);
 
-        tallaLbl = new JLabel("Talla: M");
-        cantidadLbl = new JLabel("Cantidad: 1");
+        String tallaMostrar = (tallaSeleccionada != null && !tallaSeleccionada.isEmpty())
+                ? tallaSeleccionada : "Única";
+        tallaLbl = new JLabel("Talla: " + tallaMostrar);
+        cantidadLbl = new JLabel("Cantidad: " + cantidad);
         eliminarBtn = new BotonIcono("X");
         agregarDatosAlPanel(nombreLbl, precioLbl, tallaLbl, cantidadLbl);
 
@@ -51,6 +57,14 @@ public void iniciarComponentes() {
 
 public String getProductoId() {
         return productoCardDTO.getProductoId();
+    }
+
+    public String getTallaSeleccionada() {
+        return tallaSeleccionada;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
 }

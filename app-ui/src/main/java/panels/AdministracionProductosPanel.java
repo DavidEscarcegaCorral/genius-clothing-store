@@ -87,7 +87,7 @@ public class AdministracionProductosPanel extends JPanel {
                     p.getId(),
                     p.getNombre(),
                     p.getPrecio(),
-                    p.getStock(),
+                    p.getStockTotal(),
                     p.getEstado()
             };
             //Agregamos la fila a la tabla

@@ -8,6 +8,8 @@ import enumeradores.*;
 import org.bson.types.ObjectId;
 import util.TallaUtil;
 
+import entidadesmongo.StockPorTalla;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,7 +28,7 @@ public class DatabaseSeeder {
             inicializarProductos(conexion);
 
         } catch (Exception e) {
-            LOGGER.severe("✗ Error al inicializar la base de datos: " + e.getMessage());
+            LOGGER.severe("Error al inicializar la base de datos: " + e.getMessage());
             e.printStackTrace();
         }
     }
@@ -154,7 +156,7 @@ public class DatabaseSeeder {
             String descripcion,
             BigDecimal precio,
             String rutaImagen,
-            Integer stock,
+            Integer stockTotal,
             CategoriaProducto categoria,
             EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
@@ -165,12 +167,24 @@ public class DatabaseSeeder {
         producto.setDescripcion(descripcion);
         producto.setPrecio(precio);
         producto.setRutaImagen(rutaImagen);
-        producto.setStock(stock);
         producto.setEstado(EstadoProducto.PUBLICADO);
         producto.setCategoria(categoria);
         producto.setTallas(TallaUtil.obtenerTallasPorCategoria(categoria));
         producto.setGenero(genero);
         producto.setEstilos(estilos);
+
+        List<String> tallasDisponibles = TallaUtil.obtenerTallasPorCategoria(categoria);
+        List<StockPorTalla> inventario = new ArrayList<>();
+
+        int cantidadPorTalla = tallasDisponibles.isEmpty() ? 0 : stockTotal / tallasDisponibles.size();
+        int resto = tallasDisponibles.isEmpty() ? 0 : stockTotal % tallasDisponibles.size();
+
+        for (int i = 0; i < tallasDisponibles.size(); i++) {
+            int cantidad = cantidadPorTalla + (i < resto ? 1 : 0);
+            inventario.add(new StockPorTalla(tallasDisponibles.get(i), cantidad));
+        }
+
+        producto.setInventario(inventario);
 
         return producto;
     }

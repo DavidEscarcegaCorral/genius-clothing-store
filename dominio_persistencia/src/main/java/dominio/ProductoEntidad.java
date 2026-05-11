@@ -4,7 +4,6 @@ import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
-import org.bson.types.ObjectId;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -15,7 +14,7 @@ public class ProductoEntidad {
     private String descrpcionProducto;
     private BigDecimal precio;
     private String rutaImagen;
-    private Integer stock;
+    private List<StockPorTalla> inventario;
     private EstadoProducto estado;
     private CategoriaProducto categoria;
     private List<String> tallasDisponibles;
@@ -27,7 +26,7 @@ public class ProductoEntidad {
     }
 
     public ProductoEntidad(String id, String nombre, String descrpcionProducto,
-                           BigDecimal precio, String rutaImagen, Integer stock,
+                           BigDecimal precio, String rutaImagen, List<StockPorTalla> inventario,
                            EstadoProducto estado, CategoriaProducto categoria,
                            List<String> tallasDisponibles, EtiquetaGenero genero,
                            List<EtiquetaEstilo> estilos) {
@@ -36,7 +35,7 @@ public class ProductoEntidad {
         this.descrpcionProducto = descrpcionProducto;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
-        this.stock = stock;
+        this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
         this.tallasDisponibles = tallasDisponibles;
@@ -84,12 +83,19 @@ public class ProductoEntidad {
         this.rutaImagen = rutaImagen;
     }
 
-    public Integer getStock() {
-        return stock;
+    public List<StockPorTalla> getInventario() {
+        return inventario;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setInventario(List<StockPorTalla> inventario) {
+        this.inventario = inventario;
+    }
+
+    public Integer getStockTotal() {
+        if (inventario == null) return 0;
+        return inventario.stream()
+                .mapToInt(s -> s.getCantidad() != null ? s.getCantidad() : 0)
+                .sum();
     }
 
     public EstadoProducto getEstado() {

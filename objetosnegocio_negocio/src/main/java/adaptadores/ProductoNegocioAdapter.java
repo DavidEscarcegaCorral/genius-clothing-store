@@ -18,9 +18,6 @@ import java.util.List;
  */
 public class ProductoNegocioAdapter {
 
-    /**
-     * Convierte un ProductoEntradaDTO a ProductoEntidad
-     */
     public ProductoEntidad convertirEntradaAEntidad(
             ProductoRequestDTO productoDTO) {
 
@@ -34,9 +31,8 @@ public class ProductoNegocioAdapter {
         producto.setDescrpcionProducto(productoDTO.getDescripcion());
         producto.setPrecio(productoDTO.getPrecio());
         producto.setRutaImagen(productoDTO.getRutaImagen());
-        producto.setStock(productoDTO.getStock());
+        producto.setInventario(convertirInventarioDtoADominio(productoDTO.getInventario()));
 
-        // Estado inicial por defecto
         producto.setEstado(EstadoProducto.BORRADOR);
 
         producto.setCategoria(productoDTO.getCategoria());
@@ -47,9 +43,6 @@ public class ProductoNegocioAdapter {
         return producto;
     }
 
-    /**
-     * Convierte una entidad a DTO de salida
-     */
     public ProductoResponseDTO convertirEntidadASalida(
             ProductoEntidad producto) {
 
@@ -63,7 +56,7 @@ public class ProductoNegocioAdapter {
                 producto.getDescrpcionProducto(),
                 producto.getPrecio(),
                 producto.getRutaImagen(),
-                producto.getStock(),
+                convertirInventarioDominioADto(producto.getInventario()),
                 producto.getEstado(),
                 producto.getCategoria(),
                 producto.getTallasDisponibles(),
@@ -72,9 +65,6 @@ public class ProductoNegocioAdapter {
         );
     }
 
-    /**
-     * Convierte lista de entidades a lista de DTOs de salida
-     */
     public List<ProductoResponseDTO> convertirEntidadesASalidas(
             List<ProductoEntidad> productos) {
 
@@ -95,5 +85,23 @@ public class ProductoNegocioAdapter {
         }
 
         return productosDTO;
+    }
+
+    private List<dominio.StockPorTalla> convertirInventarioDtoADominio(List<dtos.StockPorTalla> inventarioDto) {
+        if (inventarioDto == null) return new ArrayList<>();
+        List<dominio.StockPorTalla> inventarioDominio = new ArrayList<>();
+        for (dtos.StockPorTalla item : inventarioDto) {
+            inventarioDominio.add(new dominio.StockPorTalla(item.getTalla(), item.getCantidad()));
+        }
+        return inventarioDominio;
+    }
+
+    private List<dtos.StockPorTalla> convertirInventarioDominioADto(List<dominio.StockPorTalla> inventarioDominio) {
+        if (inventarioDominio == null) return new ArrayList<>();
+        List<dtos.StockPorTalla> inventarioDto = new ArrayList<>();
+        for (dominio.StockPorTalla item : inventarioDominio) {
+            inventarioDto.add(new dtos.StockPorTalla(item.getTalla(), item.getCantidad()));
+        }
+        return inventarioDto;
     }
 }

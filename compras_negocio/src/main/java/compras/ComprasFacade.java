@@ -34,7 +34,7 @@ public class ComprasFacade implements IComprasFacade {
     }
 
     @Override
-    public CarritoDTO agregarProdcuto(String usuarioId, String productoId, int cantidad) {
+    public CarritoDTO agregarProdcuto(String usuarioId, String productoId, String talla, int cantidad) {
         try {
             if (usuarioId == null || usuarioId.isBlank()) {
                 throw new PersistenciaException(
@@ -52,9 +52,25 @@ public class ComprasFacade implements IComprasFacade {
                 throw new PersistenciaException("Producto no encontrado: " + productoId);
             }
 
-            String talla = producto.getTallasDisponibles() != null && !producto.getTallasDisponibles().isEmpty()
-                    ? producto.getTallasDisponibles().get(0)
-                    : "Única";
+            if (talla == null || talla.isBlank()) {
+                throw new PersistenciaException("Debes seleccionar una talla");
+            }
+
+            boolean tieneStock = false;
+            int stockDisponible = 0;
+            if (producto.getInventario() != null) {
+                for (dominio.StockPorTalla stock : producto.getInventario()) {
+                    if (stock.getTalla().equals(talla)) {
+                        stockDisponible = stock.getCantidad() != null ? stock.getCantidad() : 0;
+                        tieneStock = stockDisponible > 0;
+                        break;
+                    }
+                }
+            }
+
+            if (!tieneStock) {
+                throw new PersistenciaException("No hay stock disponible para la talla " + talla);
+            }
 
             CarritoEntidad carritoActualizado = carritoDAO.agregarProducto(
                     usuarioId,
@@ -113,6 +129,7 @@ public class ComprasFacade implements IComprasFacade {
                 productoDTO.setNombre(item.getNombre());
                 productoDTO.setPrecio(item.getPrecio());
                 productoDTO.setRutaImagen(item.getRutaImagen());
+                productoDTO.setCantidad(item.getCantidad() != null ? item.getCantidad() : 1);
 
                 List<String> tallas = new ArrayList<>();
                 if (item.getTallaSeleccionada() != null) {

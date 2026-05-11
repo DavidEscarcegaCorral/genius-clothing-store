@@ -19,7 +19,7 @@ import org.bson.types.ObjectId;
  * @author Usuario
  */
 public class ProductoMongoEntidad {
-    
+
     @BsonId
     private ObjectId id;
 
@@ -27,21 +27,21 @@ public class ProductoMongoEntidad {
     private String descripcion;
     private BigDecimal precio;
     private String rutaImagen;
-    private Integer stock;
+    private List<StockPorTalla> inventario;
     private EstadoProducto estado;
     private CategoriaProducto categoria;
     private List<String> tallas;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
-    //para evitar errores y que se cree vacia 
     public ProductoMongoEntidad() {
         this.tallas = new ArrayList<>();
         this.estilos = new ArrayList<>();
+        this.inventario = new ArrayList<>();
     }
 
     public ProductoMongoEntidad(String nombre, String descripcion,
-            BigDecimal precio, String rutaImagen, Integer stock,
+            BigDecimal precio, String rutaImagen, List<StockPorTalla> inventario,
             EstadoProducto estado, CategoriaProducto categoria,
             List<String> tallas, EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
@@ -50,7 +50,7 @@ public class ProductoMongoEntidad {
         this.descripcion = descripcion;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
-        this.stock = stock;
+        this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
         this.tallas = tallas;
@@ -60,7 +60,7 @@ public class ProductoMongoEntidad {
 
     public ProductoMongoEntidad(ObjectId id, String nombre,
             String descripcion, BigDecimal precio,
-            String rutaImagen, Integer stock,
+            String rutaImagen, List<StockPorTalla> inventario,
             EstadoProducto estado, CategoriaProducto categoria,
             List<String> tallas, EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
@@ -70,7 +70,7 @@ public class ProductoMongoEntidad {
         this.descripcion = descripcion;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
-        this.stock = stock;
+        this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
         this.tallas = tallas;
@@ -141,12 +141,19 @@ public class ProductoMongoEntidad {
         this.rutaImagen = rutaImagen;
     }
 
-    public Integer getStock() {
-        return stock;
+    public List<StockPorTalla> getInventario() {
+        return inventario;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setInventario(List<StockPorTalla> inventario) {
+        this.inventario = inventario;
+    }
+
+    public Integer getStockTotal() {
+        if (inventario == null) return 0;
+        return inventario.stream()
+                .mapToInt(s -> s.getCantidad() != null ? s.getCantidad() : 0)
+                .sum();
     }
 
     public EstadoProducto getEstado() {
@@ -197,7 +204,7 @@ public class ProductoMongoEntidad {
                 + ", descripcion='" + descripcion + '\''
                 + ", precio=" + precio
                 + ", rutaImagen='" + rutaImagen + '\''
-                + ", stock=" + stock
+                + ", inventario=" + inventario
                 + ", estado=" + estado
                 + ", categoria=" + categoria
                 + ", tallas=" + tallas

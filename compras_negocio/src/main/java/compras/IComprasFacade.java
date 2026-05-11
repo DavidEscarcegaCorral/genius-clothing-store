@@ -5,7 +5,7 @@ import dtos.CarritoDTO;
 public interface IComprasFacade {
     CarritoDTO obtenerCarrito(String usuarioId);
 
-    CarritoDTO agregarProdcuto(String usuarioId, String productoId, int cantidad);
+    CarritoDTO agregarProdcuto(String usuarioId, String productoId, String talla, int cantidad);
 
     CarritoDTO eliminarProducto(String usuarioId, String productoId);
 

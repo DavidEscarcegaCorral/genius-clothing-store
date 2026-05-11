@@ -70,8 +70,9 @@ public class CatalagoControl {
     private void agregarAlCarrito() {
         if (panelDetalleActual != null && carritoControl != null) {
             ProductoCardDTO producto = panelDetalleActual.getProductoParaCarrito();
+            String talla = panelDetalleActual.getTallaSeleccionada();
             if (producto != null) {
-                carritoControl.agregarProductoAlCarrito(producto);
+                carritoControl.agregarProductoAlCarrito(producto, talla);
             }
         }
     }
