@@ -7,16 +7,16 @@ import util.ImageUtil;
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class ProductoPanelBase extends JPanel {
+public abstract class ProductoCardBase extends JPanel {
     protected JLabel imagenLbl;
     protected JLabel nombreLbl;
     protected JLabel precioLbl;
     protected JPanel panelDatos;
 
-    protected static final String FONT_BOLD = Estilo.FONT_OPNS_COND_BLOD;
+    protected static final String FONT_BOLD = Estilo.FONT_OPNS_COND_BOLD;
     protected static final String FONT_REGULAR = Estilo.FONT_OPNS_COND_REGULAR;
 
-    protected ProductoPanelBase() {
+    protected ProductoCardBase() {
         initBase();
     }
 
