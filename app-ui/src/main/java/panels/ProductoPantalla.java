@@ -3,7 +3,7 @@ package panels;
 import componentes.BotonRedondeado;
 import componentes.ComboBoxGenius;
 import componentes.ProductoTagsLabel;
-import dtos.salida.ProductoSalidaDTO;
+import dto_response.ProductoSalidaDTO;
 import util.Estilo;
 import util.FontLoader;
 import util.ImageUtil;

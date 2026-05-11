@@ -1,53 +1,59 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package dtos.entrada;
+package dto_response;
 
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- *
- * @author Usuario
- */
-public class ProductoEntradaDTO {
+public class ProductoSalidaDTO {
+    private String id;
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
     private String rutaImagen;
     private Integer stock;
+    private EstadoProducto estado;
     private CategoriaProducto categoria;
     private List<String> tallas;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
-    public ProductoEntradaDTO() {
+    public ProductoSalidaDTO() {
     }
 
-    public ProductoEntradaDTO(
-                       String nombre,
-                       String descripcion,
-                       BigDecimal precio,
-                       String rutaImagen,
-                       Integer stock,
-                       CategoriaProducto categoria,
-                       List<String> tallas,
-                       EtiquetaGenero genero,
-                       List<EtiquetaEstilo> estilos) {
+    public ProductoSalidaDTO(String id,
+                             String nombre,
+                             String descripcion,
+                             BigDecimal precio,
+                             String rutaImagen,
+                             Integer stock,
+                             EstadoProducto estado,
+                             CategoriaProducto categoria,
+                             List<String> tallas,
+                             EtiquetaGenero genero,
+                             List<EtiquetaEstilo> estilos) {
+        this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
         this.stock = stock;
+        this.estado = estado;
         this.categoria = categoria;
         this.tallas = tallas;
         this.genero = genero;
         this.estilos = estilos;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -90,6 +96,14 @@ public class ProductoEntradaDTO {
         this.stock = stock;
     }
 
+    public EstadoProducto getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoProducto estado) {
+        this.estado = estado;
+    }
+
     public CategoriaProducto getCategoria() {
         return categoria;
     }
@@ -126,5 +140,3 @@ public class ProductoEntradaDTO {
         return "$" + precio.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
     }
 }
-
-

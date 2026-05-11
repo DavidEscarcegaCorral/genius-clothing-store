@@ -2,11 +2,11 @@ package repository;
 
 import dominio.UsuarioEntidad;
 import enumeradores.RolUsuario;
-import org.bson.types.ObjectId;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UsuarioRepository {
     private List<UsuarioEntidad> usuariosMock;
@@ -27,7 +27,7 @@ public class UsuarioRepository {
 
         // Usuario 1
         usuariosMock.add(new UsuarioEntidad(
-                new ObjectId(),
+                UUID.randomUUID().toString(),
                 "Juan",
                 "Perez",
                 "Garcia",
@@ -42,7 +42,7 @@ public class UsuarioRepository {
         ));
 
         usuariosMock.add(new UsuarioEntidad(
-                new ObjectId(),
+                UUID.randomUUID().toString(),
                 "David",
                 "Escarcega",
                 "Corral",

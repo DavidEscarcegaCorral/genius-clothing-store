@@ -5,8 +5,8 @@
 package adaptadores;
 
 import dominio.ProductoEntidad;
-import dtos.entrada.ProductoEntradaDTO;
-import dtos.salida.ProductoSalidaDTO;
+import dto_request.ProductoRequestDTO;
+import dto_response.ProductoSalidaDTO;
 import enumeradores.EstadoProducto;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class ProductoNegocioAdapter {
      * Convierte un ProductoEntradaDTO a ProductoEntidad
      */
     public ProductoEntidad convertirEntradaAEntidad(
-            ProductoEntradaDTO productoDTO) {
+            ProductoRequestDTO productoDTO) {
 
         if (productoDTO == null) {
             return null;

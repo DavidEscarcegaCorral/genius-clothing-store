@@ -1,8 +1,8 @@
 package mappers;
 
 import dominio.ProductoEntidad;
+import dto_response.ProductoSalidaDTO;
 import dtos.ProductoCardDTO;
-import dtos.salida.ProductoSalidaDTO;
 
 public class ProductoMapper {
     public static ProductoCardDTO entidadADTO(ProductoEntidad entidad) {

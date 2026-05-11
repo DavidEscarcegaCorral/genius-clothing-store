@@ -3,8 +3,8 @@ package control.catalago;
 import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
 import control.navegacion.INavegador;
+import dto_response.ProductoSalidaDTO;
 import dtos.ProductoCardDTO;
-import dtos.salida.ProductoSalidaDTO;
 import panels.MainPagePantalla;
 import panels.ProductoPantalla;
 
