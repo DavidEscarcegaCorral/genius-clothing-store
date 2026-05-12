@@ -1,5 +1,6 @@
 package panels;
 
+import componentes.OpcionesCarritoPanel;
 import componentes.ProductoCarritoCard;
 
 import javax.swing.*;

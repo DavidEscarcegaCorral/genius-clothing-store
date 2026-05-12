@@ -1,6 +1,5 @@
-package panels;
+package componentes;
 
-import componentes.BotonPlano;
 import util.Estilo;
 import util.FontLoader;
 
