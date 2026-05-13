@@ -35,7 +35,7 @@ public class AppCoordinator {
     private CatalagoControl catalagoControl;
     private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
-    
+
     public AppCoordinator() {
         this.logInFrame = new LogInFrame();
         this.globalFrame = new GlobalFrame();
@@ -50,7 +50,7 @@ public class AppCoordinator {
     }
 
     public void iniciar() {
-        inicializarBaseDeDatos();
+//        inicializarBaseDeDatos();
         inicializarControles();
         configurarNavegacion();
         mostrarHome();
@@ -60,7 +60,7 @@ public class AppCoordinator {
         DatabaseSeeder.inicializarProductosSiEstaVacio();
     }
 
-private void inicializarControles() {
+    private void inicializarControles() {
         loginControl = new LoginControl(
                 logInFrame.getLogInPanel(),
                 globalFrame.getHeader(),
@@ -93,8 +93,8 @@ private void inicializarControles() {
         navegacionControl.setGlobalFrame(globalFrame);
         navegacionControl.setLogInFrame(logInFrame);
         navegacionControl.setAdministracionProductoFrame(adminFrame);
-        navegacionControl.setDialogAgregarProducto(adminControl.getAgregarProductoDialog()); 
-        navegacionControl.setDialogEditarProducto(adminControl.getEditarProductoDialog()); 
+        navegacionControl.setDialogAgregarProducto(adminControl.getAgregarProductoDialog());
+        navegacionControl.setDialogEditarProducto(adminControl.getEditarProductoDialog());
         navegacionControl.setCarritoControl(carritoControl);
         globalFrame.getHeader().setCarritoAction(e -> navegacionControl.navegarACarrito());
     }

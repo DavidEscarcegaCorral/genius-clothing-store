@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class CatalagoFacade implements ICatalagoFacade {
+    // implementar el control
     private ProductosRepository repository;
 
     public CatalagoFacade() {
