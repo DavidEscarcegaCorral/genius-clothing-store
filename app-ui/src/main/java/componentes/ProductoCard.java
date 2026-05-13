@@ -20,16 +20,16 @@ public class ProductoCard extends ProductoCardBase {
     }
 
     private void iniciarComponentes() {
-        cargarImagen(productoCardDTO.getRutaImg(), 230, 230);
+        cargarImagen(productoCardDTO.getRutaImagen(), 230, 230);
         imagenLbl.setBorder(BorderFactory.createEmptyBorder(0, 0, 10, 0));
 
         configurarPanelDatos(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
-        crearNombreLabel(productoCardDTO.getNombreProdcto(), FONT_BOLD, 18);
-        crearPrecioLabel(productoCardDTO.getPrecioFormateado(), FONT_REGULAR, 20);
+        crearNombreLabel(productoCardDTO.getNombreProducto(), FONT_BOLD, 18);
+        crearPrecioLabel("$" + productoCardDTO.getPrecio(), FONT_REGULAR, 20);
 
-        generoLbl = new JLabel(productoCardDTO.getGeneroProcuto().getValor());
+        generoLbl = new JLabel(productoCardDTO.getGenero().getValor());
         generoLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 20));
 
         agregarDatosAlPanel(nombreLbl, precioLbl, generoLbl);
@@ -39,7 +39,7 @@ public class ProductoCard extends ProductoCardBase {
     }
 
     public String getProductoId() {
-        return productoCardDTO.getProdcutoId();
+        return productoCardDTO.getProductoId();
     }
 
 }

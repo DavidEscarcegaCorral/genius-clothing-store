@@ -9,7 +9,7 @@ import dao.IProductoDAO;
 import dao.ProductoDAO;
 import dominio.ProductoEntidad;
 import dto_request.ProductoRequestDTO;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
 import excepciones.PersistenciaException;
@@ -42,7 +42,7 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public List<ProductoSalidaDTO> obtenerProductos() throws NegocioException {
+    public List<ProductoResponseDTO> obtenerProductos() throws NegocioException {
         try {
             List<ProductoEntidad> entidades = productoDAO.obtenerProductos();
             return productoAdapter.convertirEntidadesASalidas(entidades);
@@ -52,7 +52,7 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public ProductoSalidaDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException {
+    public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException {
         bo.validarProducto(producto);
         try {
             //Convertir a entidad
@@ -67,7 +67,7 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public ProductoSalidaDTO publicarProducto(String id) throws NegocioException {
+    public ProductoResponseDTO publicarProducto(String id) throws NegocioException {
         bo.validarId(id);
         try {
             //Buscamos el producto por el id
@@ -84,7 +84,7 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public ProductoSalidaDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException {
+    public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException {
         //Validar que no sean nulo
         bo.validarId(id);
         bo.validarEstado(estado);

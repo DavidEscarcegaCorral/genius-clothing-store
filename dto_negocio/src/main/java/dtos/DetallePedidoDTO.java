@@ -1,26 +1,21 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
 
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
 
-/**
- *
- * @author Usuario
- */
 public class DetallePedidoDTO {
 
-    private Integer idDetallePedidoDTO;
-    private ProductoSalidaDTO producto;
+    private Integer idDetallePedido;
+    private ProductoResponseDTO producto;
     private Integer cantidad;
     private Double precioUnitario;
     private Double subtotal;
     private Double descuento;
 
-    public DetallePedidoDTO(Integer idDetallePedidoDTO, ProductoSalidaDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
-        this.idDetallePedidoDTO = idDetallePedidoDTO;
+    public DetallePedidoDTO() {
+    }
+
+    public DetallePedidoDTO(Integer idDetallePedido, ProductoResponseDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+        this.idDetallePedido = idDetallePedido;
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
@@ -28,7 +23,7 @@ public class DetallePedidoDTO {
         this.descuento = descuento;
     }
 
-    public DetallePedidoDTO(ProductoSalidaDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+    public DetallePedidoDTO(ProductoResponseDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
@@ -36,19 +31,20 @@ public class DetallePedidoDTO {
         this.descuento = descuento;
     }
 
-    public Integer getIdDetallePedidoDTO() {
-        return idDetallePedidoDTO;
+
+    public Integer getIdDetallePedido() {
+        return idDetallePedido;
     }
 
-    public void setIdDetallePedidoDTO(Integer idDetallePedidoDTO) {
-        this.idDetallePedidoDTO = idDetallePedidoDTO;
+    public void setIdDetallePedido(Integer idDetallePedido) {
+        this.idDetallePedido = idDetallePedido;
     }
 
-    public ProductoSalidaDTO getProducto() {
+    public ProductoResponseDTO getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoSalidaDTO producto) {
+    public void setProducto(ProductoResponseDTO producto) {
         this.producto = producto;
     }
 
@@ -69,7 +65,7 @@ public class DetallePedidoDTO {
     }
 
     public Double getSubtotal() {
-        return cantidad * precioUnitario;
+        return subtotal;
     }
 
     public void setSubtotal(Double subtotal) {

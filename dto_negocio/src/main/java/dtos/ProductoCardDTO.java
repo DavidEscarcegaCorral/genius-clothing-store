@@ -5,64 +5,60 @@ import enumeradores.EtiquetaGenero;
 import java.math.BigDecimal;
 
 public class ProductoCardDTO {
-    private String prodcutoId;
-    private String nombreProdcto;
-    private BigDecimal precioProducto;
-    private EtiquetaGenero generoProcuto;
-    private String rutaImg;
+    private String productoId;
+    private String nombreProducto;
+    private BigDecimal precio;
+    private EtiquetaGenero genero;
+    private String rutaImagen;
 
     public ProductoCardDTO() {
     }
 
-    public ProductoCardDTO(String prodcutoId, String nombreProdcto, BigDecimal precioProducto, EtiquetaGenero generoProcuto, String rutaImg) {
-        this.prodcutoId = prodcutoId;
-        this.nombreProdcto = nombreProdcto;
-        this.precioProducto = precioProducto;
-        this.generoProcuto = generoProcuto;
-        this.rutaImg = rutaImg;
+    public ProductoCardDTO(String productoId, String nombreProducto, BigDecimal precio, EtiquetaGenero genero, String rutaImagen) {
+        this.productoId = productoId;
+        this.nombreProducto = nombreProducto;
+        this.precio = precio;
+        this.genero = genero;
+        this.rutaImagen = rutaImagen;
     }
 
-    public String getProdcutoId() {
-        return prodcutoId;
+    public String getProductoId() {
+        return productoId;
     }
 
-    public void setProdcutoId(String prodcutoId) {
-        this.prodcutoId = prodcutoId;
+    public void setProductoId(String productoId) {
+        this.productoId = productoId;
     }
 
-    public String getNombreProdcto() {
-        return nombreProdcto;
+    public String getNombreProducto() {
+        return nombreProducto;
     }
 
-    public void setNombreProdcto(String nombreProdcto) {
-        this.nombreProdcto = nombreProdcto;
+    public void setNombreProducto(String nombreProducto) {
+        this.nombreProducto = nombreProducto;
     }
 
-    public BigDecimal getPrecioProducto() {
-        return precioProducto;
+    public BigDecimal getPrecio() {
+        return precio;
     }
 
-    public void setPrecioProducto(BigDecimal precioProducto) {
-        this.precioProducto = precioProducto;
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
     }
 
-    public EtiquetaGenero getGeneroProcuto() {
-        return generoProcuto;
+    public EtiquetaGenero getGenero() {
+        return genero;
     }
 
-    public void setGeneroProcuto(EtiquetaGenero generoProcuto) {
-        this.generoProcuto = generoProcuto;
+    public void setGenero(EtiquetaGenero genero) {
+        this.genero = genero;
     }
 
-    public String getRutaImg() {
-        return rutaImg;
+    public String getRutaImagen() {
+        return rutaImagen;
     }
 
-    public void setRutaImg(String rutaImg) {
-        this.rutaImg = rutaImg;
-    }
-
-    public String getPrecioFormateado() {
-        return "$" + precioProducto.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+    public void setRutaImagen(String rutaImagen) {
+        this.rutaImagen = rutaImagen;
     }
 }

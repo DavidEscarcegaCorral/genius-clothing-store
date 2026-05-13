@@ -9,6 +9,8 @@ import java.awt.*;
 
 public class ProductoCarritoCard extends ProductoCardBase {
     private ProductoCardDTO productoCardDTO;
+    private String tallaSeleccionada;
+    private int cantidad;
     private JLabel tallaLbl;
     private JLabel cantidadLbl;
     private BotonIcono eliminarBtn;
@@ -17,7 +19,7 @@ public class ProductoCarritoCard extends ProductoCardBase {
     private static final int ANCHO = 450;
     private static final int ALTO = 180;
 
-    public ProductoCarritoCard(ProductoCardDTO producto) {
+    public ProductoCarritoCard(ProductoCardDTO producto, String talla, int cantidad) {
         configurarLayoutHorizontal();
         setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(Color.BLACK, 3),
@@ -28,24 +30,24 @@ public class ProductoCarritoCard extends ProductoCardBase {
         setMinimumSize(new Dimension(ANCHO, ALTO));
 
         this.productoCardDTO = producto;
+        this.tallaSeleccionada = talla;
+        this.cantidad = cantidad;
     }
 
-    public void iniciarComponentes() {
-        cargarImagen(productoCardDTO.getRutaImg(), 170, 170);
+public void iniciarComponentes() {
+        cargarImagen(productoCardDTO.getRutaImagen(), 170, 170);
 
         configurarPanelDatos(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
         panelDatos.setBorder(BorderFactory.createEmptyBorder(10, 15, 10, 15));
 
-        crearNombreLabel(productoCardDTO.getNombreProdcto(), FONT_BOLD, 16);
-        crearPrecioLabel(productoCardDTO.getPrecioFormateado(), FONT_REGULAR, 18);
+        crearNombreLabel(productoCardDTO.getNombreProducto(), FONT_BOLD, 16);
+        crearPrecioLabel("$" + productoCardDTO.getPrecio(), FONT_REGULAR, 18);
 
-        // Datos de pruebaq
-        tallaLbl = new JLabel("Talla: M");
-        tallaLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 14));
-        cantidadLbl = new JLabel("Cantidad: 1");
-        cantidadLbl.setFont(FontLoader.cargarFont(FONT_REGULAR, 14));
+        String tallaMostrar = (tallaSeleccionada != null && !tallaSeleccionada.isEmpty())
+                ? tallaSeleccionada : "Única";
+        tallaLbl = new JLabel("Talla: " + tallaMostrar);
+        cantidadLbl = new JLabel("Cantidad: " + cantidad);
         eliminarBtn = new BotonIcono("X");
-        eliminarBtn.setForeground(Color.BLACK);
         agregarDatosAlPanel(nombreLbl, precioLbl, tallaLbl, cantidadLbl);
 
         agregarComponente(imagenLbl);
@@ -53,8 +55,16 @@ public class ProductoCarritoCard extends ProductoCardBase {
         agregarComponente(eliminarBtn);
     }
 
-    public String getProductoId() {
-        return productoCardDTO.getProdcutoId();
+public String getProductoId() {
+        return productoCardDTO.getProductoId();
+    }
+
+    public String getTallaSeleccionada() {
+        return tallaSeleccionada;
+    }
+
+    public int getCantidad() {
+        return cantidad;
     }
 
 }

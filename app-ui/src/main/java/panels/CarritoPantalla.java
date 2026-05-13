@@ -1,5 +1,6 @@
 package panels;
 
+import componentes.OpcionesCarritoPanel;
 import componentes.ProductoCarritoCard;
 
 import javax.swing.*;
@@ -42,6 +43,12 @@ public class CarritoPantalla extends PantallaBase {
 
     public void agregarEspacioVertical(int pixels) {
         contenedorProductosPanel.add(Box.createVerticalStrut(pixels));
+        contenedorProductosPanel.revalidate();
+        contenedorProductosPanel.repaint();
+    }
+
+    public void limpiarProductos() {
+        contenedorProductosPanel.removeAll();
         contenedorProductosPanel.revalidate();
         contenedorProductosPanel.repaint();
     }

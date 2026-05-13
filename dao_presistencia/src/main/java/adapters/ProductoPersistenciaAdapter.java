@@ -5,6 +5,7 @@
 package adapters;
 
 import dominio.ProductoEntidad;
+import dominio.StockPorTalla;
 import entidadesmongo.ProductoMongoEntidad;
 import excepciones.PersistenciaException;
 import java.util.ArrayList;
@@ -16,20 +17,7 @@ import org.bson.types.ObjectId;
  * @author Usuario
  */
 public class ProductoPersistenciaAdapter {
-    
-/**
- * Adapter encargado de convertir objetos del dominio limpio
- * a entidades MongoDB y viceversa.
- */
 
-    /**
-     * Convierte un producto del dominio limpio
-     * a una entidad MongoDB.
-     *
-     * @param producto producto del dominio.
-     * @return entidad MongoDB.
-     * @throws PersistenciaException si el id no es válido.
-     */
     public ProductoMongoEntidad convertirAMongo(ProductoEntidad producto)
             throws PersistenciaException {
 
@@ -44,7 +32,7 @@ public class ProductoPersistenciaAdapter {
         entidadMongo.setDescripcion(producto.getDescrpcionProducto());
         entidadMongo.setPrecio(producto.getPrecio());
         entidadMongo.setRutaImagen(producto.getRutaImagen());
-        entidadMongo.setStock(producto.getStock());
+        entidadMongo.setInventario(convertirInventarioDominioAMongo(producto.getInventario()));
         entidadMongo.setEstado(producto.getEstado());
         entidadMongo.setCategoria(producto.getCategoria());
         entidadMongo.setTallas(producto.getTallasDisponibles());
@@ -54,13 +42,6 @@ public class ProductoPersistenciaAdapter {
         return entidadMongo;
     }
 
-    /**
-     * Convierte una entidad MongoDB
-     * a un producto del dominio limpio.
-     *
-     * @param entidadMongo entidad recuperada de MongoDB.
-     * @return producto limpio.
-     */
     public ProductoEntidad convertirADominio(
             ProductoMongoEntidad entidadMongo) {
 
@@ -75,7 +56,7 @@ public class ProductoPersistenciaAdapter {
         producto.setDescrpcionProducto(entidadMongo.getDescripcion());
         producto.setPrecio(entidadMongo.getPrecio());
         producto.setRutaImagen(entidadMongo.getRutaImagen());
-        producto.setStock(entidadMongo.getStock());
+        producto.setInventario(convertirInventarioMongoADominio(entidadMongo.getInventario()));
         producto.setEstado(entidadMongo.getEstado());
         producto.setCategoria(entidadMongo.getCategoria());
         producto.setTallasDisponibles(entidadMongo.getTallas());
@@ -85,13 +66,6 @@ public class ProductoPersistenciaAdapter {
         return producto;
     }
 
-    /**
-     * Convierte una lista de entidades MongoDB
-     * a productos del dominio limpio.
-     *
-     * @param entidadesMongo lista MongoDB.
-     * @return lista de productos limpios.
-     */
     public List<ProductoEntidad> convertirListaADominio(
             List<ProductoMongoEntidad> entidadesMongo) {
 
@@ -108,15 +82,6 @@ public class ProductoPersistenciaAdapter {
         return productos;
     }
 
-    /**
-     * Convierte String a ObjectId.
-     *
-     * Si viene null o vacío, Mongo generará el id.
-     *
-     * @param id identificador como texto.
-     * @return ObjectId.
-     * @throws PersistenciaException si el formato no es válido.
-     */
     public ObjectId convertirStringAObjectId(String id)
             throws PersistenciaException {
 
@@ -133,12 +98,6 @@ public class ProductoPersistenciaAdapter {
         return new ObjectId(id);
     }
 
-    /**
-     * Convierte ObjectId a String.
-     *
-     * @param id ObjectId.
-     * @return id como texto.
-     */
     public String convertirObjectIdAString(ObjectId id) {
 
         if (id == null) {
@@ -147,6 +106,24 @@ public class ProductoPersistenciaAdapter {
 
         return id.toHexString();
     }
-    
+
+    private List<entidadesmongo.StockPorTalla> convertirInventarioDominioAMongo(List<dominio.StockPorTalla> inventarioDominio) {
+        if (inventarioDominio == null) return new ArrayList<>();
+        List<entidadesmongo.StockPorTalla> inventarioMongo = new ArrayList<>();
+        for (dominio.StockPorTalla item : inventarioDominio) {
+            inventarioMongo.add(new entidadesmongo.StockPorTalla(item.getTalla(), item.getCantidad()));
+        }
+        return inventarioMongo;
+    }
+
+    private List<dominio.StockPorTalla> convertirInventarioMongoADominio(List<entidadesmongo.StockPorTalla> inventarioMongo) {
+        if (inventarioMongo == null) return new ArrayList<>();
+        List<dominio.StockPorTalla> inventarioDominio = new ArrayList<>();
+        for (entidadesmongo.StockPorTalla item : inventarioMongo) {
+            inventarioDominio.add(new dominio.StockPorTalla(item.getTalla(), item.getCantidad()));
+        }
+        return inventarioDominio;
+    }
+
 }
 

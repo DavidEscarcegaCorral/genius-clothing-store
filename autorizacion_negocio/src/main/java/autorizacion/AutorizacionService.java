@@ -1,42 +1,56 @@
 package autorizacion;
 
-import dtos.CredencialesDTO;
+import dao.UsuarioDAO;
+import dto_request.CredencialesDTO;
 import excepciones.CredencialesInvalidasException;
 import excepciones.UsuarioBloqueadoException;
 import objetosnegocio.UsuarioBO;
-import repository.UsuarioRepository;
 
 public class AutorizacionService implements IAutorizacionService {
-    // Repositorio Mock
-    private UsuarioRepository repository;
+
+    private final UsuarioDAO usuarioDAO;
 
     public AutorizacionService() {
-        this.repository = new UsuarioRepository();
+        this.usuarioDAO = new UsuarioDAO();
     }
 
     @Override
     public UsuarioBO verificarLogin(CredencialesDTO credencialesDTO) {
-        boolean usuarioExistente = repository.existeUsuario(
-                credencialesDTO.usuario(),
-                credencialesDTO.password());
+        try {
+            boolean usuarioExistente = usuarioDAO.existeUsuario(
+                    credencialesDTO.usuario(),
+                    credencialesDTO.password());
 
-        if (!usuarioExistente) {
-            throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
+            if (!usuarioExistente) {
+                throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
+            }
+
+            dominio.UsuarioEntidad usuarioEntidad = usuarioDAO.buscarPorUsuario(credencialesDTO.usuario());
+
+            if (usuarioEntidad == null) {
+                throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
+            }
+
+            UsuarioBO usuarioBO = new UsuarioBO(
+                    usuarioEntidad.getId(),
+                    usuarioEntidad.getNombre(),
+                    usuarioEntidad.getApellidoPaterno(),
+                    usuarioEntidad.getEmail(),
+                    usuarioEntidad.getNombreUsuario(),
+                    usuarioEntidad.getPasswordHash(),
+                    usuarioEntidad.getRol(),
+                    usuarioEntidad.isActivo()
+            );
+
+            if (!usuarioBO.puedeIniciarSesion()) {
+                throw new UsuarioBloqueadoException("La cuenta está inactiva o bloqueada.");
+            }
+
+            return usuarioBO;
+        } catch (excepciones.PersistenciaException e) {
+            throw new CredencialesInvalidasException("Error al iniciar sesión: " + e.getMessage());
+        } catch (CredencialesInvalidasException | UsuarioBloqueadoException e) {
+            throw e;
         }
-
-        // de momento solo devuelve datos de login para trabajar en sesionservice
-        UsuarioBO usuarioBO = new UsuarioBO(
-                credencialesDTO.usuario(),
-                credencialesDTO.password(),
-                true
-        );
-
-        // Regla para validar que el usuario no este en estado inactivo
-        if (!usuarioBO.puedeIniciarSesion()) {
-            throw new UsuarioBloqueadoException("La cuenta está inactiva o bloqueada.");
-        }
-
-        return usuarioBO;
-
     }
 }

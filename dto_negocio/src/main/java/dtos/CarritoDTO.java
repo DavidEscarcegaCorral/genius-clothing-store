@@ -1,58 +1,58 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dtos;
 
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Usuario
- */
 public class CarritoDTO {
 
-    private Integer idCarritoDTO;
-    private ProductoSalidaDTO producto;
-    private Integer cantidad;
+    private Integer idCarrito;
+    private List<ProductoResponseDTO> productos;
+    private Integer cantidadTotal;
 
-    public CarritoDTO(Integer idCarritoDTO, ProductoSalidaDTO producto, Integer cantidad) {
-        this.idCarritoDTO = idCarritoDTO;
-        this.producto = producto;
-        this.cantidad = cantidad;
+    public CarritoDTO(Integer idCarrito, List<ProductoResponseDTO> productos, Integer cantidadTotal) {
+        this.idCarrito = idCarrito;
+        this.productos = productos;
+        this.cantidadTotal = cantidadTotal;
     }
 
-    public CarritoDTO(ProductoSalidaDTO producto, Integer cantidad) {
-        this.producto = producto;
-        this.cantidad = cantidad;
+    public CarritoDTO(List<ProductoResponseDTO> productos, Integer cantidadTotal) {
+        this.productos = productos;
+        this.cantidadTotal = cantidadTotal;
     }
 
     public CarritoDTO() {
+        this.productos = new ArrayList<>();
     }
 
-    public ProductoSalidaDTO getProducto() {
-        return producto;
+    public List<ProductoResponseDTO> getProductos() {
+        return productos;
     }
 
-    public void setProducto(ProductoSalidaDTO producto) {
-        this.producto = producto;
+    public void setProductos(List<ProductoResponseDTO> productos) {
+        this.productos = productos;
     }
 
-    public Integer getCantidad() {
-        return cantidad;
+    public Integer getCantidadTotal() {
+        return cantidadTotal;
     }
 
-    public void setCantidad(Integer cantidad) {
-        this.cantidad = cantidad;
+    public void setCantidadTotal(Integer cantidadTotal) {
+        this.cantidadTotal = cantidadTotal;
     }
 
-    public Integer getIdCarritoDTO() {
-        return idCarritoDTO;
+    public Integer getIdCarrito() {
+        return idCarrito;
     }
 
-    public void setIdCarritoDTO(Integer idCarrito) {
-        this.idCarritoDTO = idCarrito;
+    public void setIdCarrito(Integer idCarrito) {
+        this.idCarrito = idCarrito;
     }
 
-
+    public void agregarProducto(ProductoResponseDTO producto) {
+        if (this.productos == null) {
+            this.productos = new ArrayList<>();
+        }
+        this.productos.add(producto);
+    }
 }

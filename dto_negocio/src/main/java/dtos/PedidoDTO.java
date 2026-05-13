@@ -80,13 +80,7 @@ public class PedidoDTO {
     }
 
     public Double getTotal() {
-       Double total = 0.0;
-       //Recorremos la lista de detalle pedido
-       for(DetallePedidoDTO d : detalles){
-           //Sumamos por ca
-           total= total + d.getSubtotal();
-       }
-       return total;
+        return total;
     }
 
     public void setTotal(Double total) {

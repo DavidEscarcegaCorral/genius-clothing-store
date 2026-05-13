@@ -4,43 +4,45 @@ import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
+import dtos.StockPorTalla;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductoSalidaDTO {
+public class ProductoResponseDTO {
     private String id;
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
     private String rutaImagen;
-    private Integer stock;
+    private List<StockPorTalla> inventario;
     private EstadoProducto estado;
     private CategoriaProducto categoria;
     private List<String> tallas;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
+    private Integer cantidad;
 
-    public ProductoSalidaDTO() {
+    public ProductoResponseDTO() {
     }
 
-    public ProductoSalidaDTO(String id,
-                             String nombre,
-                             String descripcion,
-                             BigDecimal precio,
-                             String rutaImagen,
-                             Integer stock,
-                             EstadoProducto estado,
-                             CategoriaProducto categoria,
-                             List<String> tallas,
-                             EtiquetaGenero genero,
-                             List<EtiquetaEstilo> estilos) {
+    public ProductoResponseDTO(String id,
+                               String nombre,
+                               String descripcion,
+                               BigDecimal precio,
+                               String rutaImagen,
+                               List<StockPorTalla> inventario,
+                               EstadoProducto estado,
+                               CategoriaProducto categoria,
+                               List<String> tallas,
+                               EtiquetaGenero genero,
+                               List<EtiquetaEstilo> estilos) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.precio = precio;
         this.rutaImagen = rutaImagen;
-        this.stock = stock;
+        this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
         this.tallas = tallas;
@@ -88,12 +90,19 @@ public class ProductoSalidaDTO {
         this.rutaImagen = rutaImagen;
     }
 
-    public Integer getStock() {
-        return stock;
+    public List<StockPorTalla> getInventario() {
+        return inventario;
     }
 
-    public void setStock(Integer stock) {
-        this.stock = stock;
+    public void setInventario(List<StockPorTalla> inventario) {
+        this.inventario = inventario;
+    }
+
+    public Integer getStockTotal() {
+        if (inventario == null) return 0;
+        return inventario.stream()
+                .mapToInt(s -> s.getCantidad() != null ? s.getCantidad() : 0)
+                .sum();
     }
 
     public EstadoProducto getEstado() {
@@ -136,7 +145,11 @@ public class ProductoSalidaDTO {
         this.estilos = estilos;
     }
 
-    public String getPrecioFormateado() {
-        return "$" + precio.setScale(2, BigDecimal.ROUND_HALF_UP).toString();
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 }

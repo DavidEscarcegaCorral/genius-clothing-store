@@ -9,7 +9,8 @@ import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
 import dto_request.ProductoRequestDTO;
-import dto_response.ProductoSalidaDTO;
+import dto_response.ProductoResponseDTO;
+import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
@@ -97,7 +98,7 @@ public class AdministracionProductosControl implements IObserver {
             String descripcion = agregarProductoDialog.getTxtDescripcion().getText().trim();
             BigDecimal precio = new BigDecimal(agregarProductoDialog.getTxtPrecio().getText().trim());
             String rutaImagen = (String) agregarProductoDialog.getCbImagen().getSelectedItem();
-            Integer stock = Integer.parseInt(agregarProductoDialog.getTxtStock().getText().trim());
+            List<StockPorTalla> inventario = agregarProductoDialog.obtenerInventario();
 
             CategoriaProducto categoria = (CategoriaProducto) agregarProductoDialog.getCbCategoria().getSelectedItem();
             EtiquetaGenero genero = (EtiquetaGenero) agregarProductoDialog.getCbGenero().getSelectedItem();
@@ -137,17 +138,16 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
-            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, stock, categoria, tallas, genero, estilos);
+            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, tallas, genero, estilos);
             service.agregarProducto(dto);
 
-            // Refrescamos la tabla
             cargarTabla();
             JOptionPane.showMessageDialog(agregarProductoDialog, "Producto agregado correctamente");
             agregarProductoDialog.setVisible(false);
         } catch (NegocioException e) {
             JOptionPane.showMessageDialog(agregarProductoDialog, e.getMessage());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(agregarProductoDialog, "El precio y el stock deben ser números válidos.");
+            JOptionPane.showMessageDialog(agregarProductoDialog, "El precio y las cantidades deben ser números válidos.");
         }
     }
 
@@ -169,7 +169,7 @@ public class AdministracionProductosControl implements IObserver {
         }
     }
 
-    public List<ProductoSalidaDTO> obtenerProductos() {
+    public List<ProductoResponseDTO> obtenerProductos() {
         try {
             return service.obtenerProductos();
         } catch (NegocioException e) {
@@ -182,7 +182,7 @@ public class AdministracionProductosControl implements IObserver {
     //Esto es para llenar la tabla del panel
     public void cargarTabla() {
         try {
-            List<ProductoSalidaDTO> productos = service.obtenerProductos();
+            List<ProductoResponseDTO> productos = service.obtenerProductos();
             administracionProductosPanel.cargarTabla(productos);
         } catch (NegocioException e) {
             System.out.println("Error al cargar los productos " + e.getMessage());
