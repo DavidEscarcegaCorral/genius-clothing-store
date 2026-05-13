@@ -5,13 +5,14 @@
 package administracion;
 
 import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
 import excepcion.NegocioException;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -20,8 +21,8 @@ import java.util.List;
  * @author Usuario
  */
 public class ControlValidarProducto {
-    
-    public void validarProducto(ProductoRequestDTO dto)throws NegocioException {
+
+    public void validarProducto(ProductoDTO dto) throws NegocioException {
         if (dto == null) {
             throw new NegocioException(
                     "El producto no puede ser nulo"
@@ -179,5 +180,5 @@ public class ControlValidarProducto {
             );
         }
     }
-    
+
 }

@@ -19,7 +19,7 @@ public class CatalagoControl {
     private ICatalagoFacade catalagoService;
     private INavegador INavegador;
     private CarritoControl carritoControl;
-    private ProductoPantalla panelDetalleActual;
+    private ProductoPantalla prodcutoPantalla;
 
     public CatalagoControl(MainPagePantalla mainPagePantalla,
                            ICatalagoFacade catalagoService,
@@ -34,7 +34,7 @@ public class CatalagoControl {
     }
 
     public void cargarCatalago() {
-        List<ProductoCardDTO> productos = catalagoService.obtenerCatalagoMainPage();
+        List<ProductoCardDTO> productos = catalagoService.cargarCategoria();
         List<ProductoCardDTO> novedades = productos.stream()
                 .limit(5)
                 .collect(Collectors.toList());
@@ -59,18 +59,18 @@ public class CatalagoControl {
         ProductoResponseDTO dto = catalagoService.obtenerProductoPorId(id);
 
         if (dto != null) {
-            panelDetalleActual = new ProductoPantalla();
-            panelDetalleActual.cargarDatosProducto(dto);
-            panelDetalleActual.setAgregarAlCarritoListener(e -> agregarAlCarrito());
+            prodcutoPantalla = new ProductoPantalla();
+            prodcutoPantalla.cargarDatosProducto(dto);
+            prodcutoPantalla.setAgregarAlCarritoListener(e -> agregarAlCarrito());
 
-            INavegador.navegarADetalleProdcuto(panelDetalleActual);
+            INavegador.navegarADetalleProdcuto(prodcutoPantalla);
         }
     }
 
     private void agregarAlCarrito() {
-        if (panelDetalleActual != null && carritoControl != null) {
-            ProductoCardDTO producto = panelDetalleActual.getProductoParaCarrito();
-            String talla = panelDetalleActual.getTallaSeleccionada();
+        if (prodcutoPantalla != null && carritoControl != null) {
+            ProductoCardDTO producto = prodcutoPantalla.getProductoParaCarrito();
+            String talla = prodcutoPantalla.getTallaSeleccionada();
             if (producto != null) {
                 carritoControl.agregarProductoAlCarrito(producto, talla);
             }

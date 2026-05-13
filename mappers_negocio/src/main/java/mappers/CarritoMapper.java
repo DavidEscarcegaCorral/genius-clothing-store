@@ -1,11 +1,14 @@
 package mappers;
+
 import dominio.CarritoEntidad;
 import dominio.ItemCarrito;
-import dtos.CarritoDTO;
 import dto_response.ProductoResponseDTO;
+import dtos.CarritoDTO;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * Mapper para convertir CarritoEntidad a CarritoDTO y viceversa
  */
@@ -36,6 +39,7 @@ public class CarritoMapper {
         dto.setCantidadTotal(productos.size());
         return dto;
     }
+
     /**
      * Obtiene la cantidad total de items en el carrito (sumando cantidades)
      */
@@ -47,6 +51,7 @@ public class CarritoMapper {
                 .mapToInt(item -> item.getCantidad() != null ? item.getCantidad() : 1)
                 .sum();
     }
+
     /**
      * Obtiene el subtotal del carrito (suma de precio * cantidad)
      */
@@ -63,6 +68,7 @@ public class CarritoMapper {
                 })
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
+
     /**
      * Obtiene la cantidad de productos diferentes en el carrito
      */

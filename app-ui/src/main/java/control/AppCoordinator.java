@@ -2,8 +2,8 @@ package control;
 
 import administracion.AdministracionFacade;
 import administracion.IAdministracionFacade;
-import autorizacion.AutorizacionService;
-import autorizacion.IAutorizacionService;
+import autorizacion.AutorizacionFacade;
+import autorizacion.IAutorizacionFacade;
 import catalago.CatalagoFacade;
 import catalago.ICatalagoFacade;
 import compras.ComprasFacade;
@@ -25,7 +25,7 @@ public class AppCoordinator {
     private final GlobalFrame globalFrame;
     private final AdministracionProductoFrame adminFrame;
 
-    private final IAutorizacionService autorizacionService;
+    private final IAutorizacionFacade autorizacionService;
     private final ICatalagoFacade catalagoFacade;
     private final IAdministracionFacade administracionService;
     private final IComprasFacade comprasFacade;
@@ -41,7 +41,7 @@ public class AppCoordinator {
         this.globalFrame = new GlobalFrame();
         this.adminFrame = new AdministracionProductoFrame();
 
-        this.autorizacionService = new AutorizacionService();
+        this.autorizacionService = new AutorizacionFacade();
         this.catalagoFacade = new CatalagoFacade();
         this.administracionService = new AdministracionFacade();
         this.comprasFacade = new ComprasFacade();

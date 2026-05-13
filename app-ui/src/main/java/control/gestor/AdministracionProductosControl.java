@@ -8,7 +8,7 @@ import administracion.IAdministracionFacade;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dto_response.ProductoResponseDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
@@ -102,7 +102,7 @@ public class AdministracionProductosControl implements IObserver {
 
             CategoriaProducto categoria = (CategoriaProducto) agregarProductoDialog.getCbCategoria().getSelectedItem();
             EtiquetaGenero genero = (EtiquetaGenero) agregarProductoDialog.getCbGenero().getSelectedItem();
-            
+
             List<EtiquetaEstilo> estilos = new ArrayList<>();
             if (agregarProductoDialog.getChkCasual().isSelected()) {
                 estilos.add(EtiquetaEstilo.CASUAL);
@@ -125,7 +125,7 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
-            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
+            ProductoDTO dto = new ProductoDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
             service.agregarProducto(dto);
 
             cargarTabla();

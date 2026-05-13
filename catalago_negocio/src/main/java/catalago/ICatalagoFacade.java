@@ -6,7 +6,7 @@ import dtos.ProductoCardDTO;
 import java.util.List;
 
 public interface ICatalagoFacade {
-    List<ProductoCardDTO> obtenerCatalagoMainPage();
+    List<ProductoCardDTO> cargarCategoria();
 
     ProductoResponseDTO obtenerProductoPorId(String id);
 }

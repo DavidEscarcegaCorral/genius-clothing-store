@@ -1,9 +1,9 @@
 package control.auth;
 
-import autorizacion.IAutorizacionService;
+import autorizacion.IAutorizacionFacade;
 import autorizacion.SesionService;
 import control.navegacion.NavegacionControl;
-import dto_request.CredencialesDTO;
+import dto_request.UsuarioLoginDTO;
 import objetosnegocio.UsuarioBO;
 import panels.Header;
 import panels.LogInPantalla;
@@ -14,12 +14,12 @@ import static util.MensajeUtil.mostrarError;
 public class LoginControl {
     private final LogInPantalla logInPantalla;
     private final Header header;
-    private final IAutorizacionService autorizacionService;
+    private final IAutorizacionFacade autorizacionService;
     private final NavegacionControl navegacionControl;
 
     public LoginControl(LogInPantalla logInPantalla,
                         Header header,
-                        IAutorizacionService autorizacionService,
+                        IAutorizacionFacade autorizacionService,
                         NavegacionControl navegacionControl) {
         this.logInPantalla = logInPantalla;
         this.header = header;
@@ -49,11 +49,11 @@ public class LoginControl {
         }
 
         // Crear el DTO
-        CredencialesDTO credencialesDTO = new CredencialesDTO(usuario, contraseña);
+        UsuarioLoginDTO usuarioLoginDTO = new UsuarioLoginDTO(usuario, contraseña);
 
         // mejorar el manejo de excepciones
         try {
-            UsuarioBO userLogeado = autorizacionService.verificarLogin(credencialesDTO);
+            UsuarioBO userLogeado = autorizacionService.verificarLogin(usuarioLoginDTO);
             SesionService.iniciarSesion(userLogeado);
             navegacionControl.abrirAdministracionProductosFrame();
         } catch (Exception e) {

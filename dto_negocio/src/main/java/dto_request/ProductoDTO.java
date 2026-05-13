@@ -4,10 +4,10 @@
  */
 package dto_request;
 
+import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
-import dtos.StockPorTalla;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Usuario
  */
-public class ProductoRequestDTO {
+public class ProductoDTO {
     private String nombre;
     private String descripcion;
     private BigDecimal precio;
@@ -27,10 +27,10 @@ public class ProductoRequestDTO {
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
-    public ProductoRequestDTO() {
+    public ProductoDTO() {
     }
 
-    public ProductoRequestDTO(
+    public ProductoDTO(
             String nombre,
             String descripcion,
             BigDecimal precio,
