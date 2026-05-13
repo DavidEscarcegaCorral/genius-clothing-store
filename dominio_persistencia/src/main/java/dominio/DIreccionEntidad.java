@@ -9,15 +9,20 @@ public class DIreccionEntidad {
     private String ciudad;
     private String estado;
     private String codigoPostal;
-    private String pais;
     private String referencias;
 
     public DIreccionEntidad() {
     }
 
-    public DIreccionEntidad(String id, String calle, String numeroExterior, String numeroInterior,
-                           String colonia, String ciudad, String estado, String codigoPostal,
-                           String pais, String referencias) {
+    public DIreccionEntidad(String id,
+                            String calle,
+                            String numeroExterior,
+                            String numeroInterior,
+                            String colonia,
+                            String ciudad,
+                            String estado,
+                            String codigoPostal,
+                            String referencias) {
         this.id = id;
         this.calle = calle;
         this.numeroExterior = numeroExterior;
@@ -26,22 +31,6 @@ public class DIreccionEntidad {
         this.ciudad = ciudad;
         this.estado = estado;
         this.codigoPostal = codigoPostal;
-        this.pais = pais;
-        this.referencias = referencias;
-    }
-
-    // Constructor sin ID (para creación)
-    public DIreccionEntidad(String calle, String numeroExterior, String numeroInterior,
-                           String colonia, String ciudad, String estado, String codigoPostal,
-                           String pais, String referencias) {
-        this.calle = calle;
-        this.numeroExterior = numeroExterior;
-        this.numeroInterior = numeroInterior;
-        this.colonia = colonia;
-        this.ciudad = ciudad;
-        this.estado = estado;
-        this.codigoPostal = codigoPostal;
-        this.pais = pais;
         this.referencias = referencias;
     }
 
@@ -109,14 +98,6 @@ public class DIreccionEntidad {
         this.codigoPostal = codigoPostal;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
     public String getReferencias() {
         return referencias;
     }
@@ -139,7 +120,6 @@ public class DIreccionEntidad {
         sb.append(", ").append(ciudad != null ? ciudad : "");
         sb.append(", ").append(estado != null ? estado : "");
         sb.append(", C.P. ").append(codigoPostal != null ? codigoPostal : "");
-        sb.append(", ").append(pais != null ? pais : "");
 
         return sb.toString().trim();
     }
@@ -155,7 +135,6 @@ public class DIreccionEntidad {
                 ", ciudad='" + ciudad + '\'' +
                 ", estado='" + estado + '\'' +
                 ", codigoPostal='" + codigoPostal + '\'' +
-                ", pais='" + pais + '\'' +
                 ", referencias='" + referencias + '\'' +
                 '}';
     }

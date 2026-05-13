@@ -1,16 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package adapters;
 
 import dominio.ProductoEntidad;
-import dominio.StockPorTalla;
 import entidadesmongo.ProductoMongoEntidad;
 import excepciones.PersistenciaException;
+import org.bson.types.ObjectId;
+
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.types.ObjectId;
 
 /**
  *

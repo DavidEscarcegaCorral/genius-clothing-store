@@ -30,7 +30,6 @@ public class DireccionPersistenciaAdapter {
         mongoEntidad.setCiudad(direccion.getCiudad());
         mongoEntidad.setEstado(direccion.getEstado());
         mongoEntidad.setCodigoPostal(direccion.getCodigoPostal());
-        mongoEntidad.setPais(direccion.getPais());
         mongoEntidad.setReferencias(direccion.getReferencias());
 
         return mongoEntidad;
@@ -57,7 +56,6 @@ public class DireccionPersistenciaAdapter {
         direccion.setCiudad(mongoEntidad.getCiudad());
         direccion.setEstado(mongoEntidad.getEstado());
         direccion.setCodigoPostal(mongoEntidad.getCodigoPostal());
-        direccion.setPais(mongoEntidad.getPais());
         direccion.setReferencias(mongoEntidad.getReferencias());
 
         return direccion;
