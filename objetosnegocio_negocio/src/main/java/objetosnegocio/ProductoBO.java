@@ -47,4 +47,9 @@ public class ProductoBO {
         ProductoEntidad publicar = dao.publicarProducto(id, EstadoProducto.PUBLICADO);
         return adaptador.convertirEntidadASalida(publicar);
     }
+    
+    public ProductoResponseDTO buscarPorId(String id) throws PersistenciaException{
+        ProductoEntidad buscar = dao.buscarPorId(id);
+        return adaptador.convertirEntidadASalida(buscar);
+    }
 }

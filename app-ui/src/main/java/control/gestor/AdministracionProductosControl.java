@@ -125,6 +125,7 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
+            
             ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
             service.agregarProducto(dto);
 

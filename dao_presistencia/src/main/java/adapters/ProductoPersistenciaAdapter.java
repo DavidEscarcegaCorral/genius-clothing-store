@@ -66,8 +66,7 @@ public class ProductoPersistenciaAdapter {
         return producto;
     }
 
-    public List<ProductoEntidad> convertirListaADominio(
-            List<ProductoMongoEntidad> entidadesMongo) {
+    public List<ProductoEntidad> convertirListaADominio(List<ProductoMongoEntidad> entidadesMongo) {
 
         List<ProductoEntidad> productos = new ArrayList<>();
 

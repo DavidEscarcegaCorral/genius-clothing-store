@@ -72,4 +72,13 @@ public class ControlAdministrarProducto {
         }
      
     }
+    
+    public ProductoResponseDTO buscarPorId(String id) throws NegocioException{
+        try{
+            ProductoResponseDTO buscar = bo.buscarPorId(id);
+            return buscar;
+        }catch(PersistenciaException e){
+            throw new NegocioException("Error al buscar por id");
+        }
+    }
 }

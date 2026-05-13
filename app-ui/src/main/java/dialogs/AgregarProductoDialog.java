@@ -14,7 +14,10 @@ import enumeradores.EtiquetaGenero;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -61,11 +64,13 @@ public class AgregarProductoDialog extends JDialog{
     private JPanel panelInventario;
     private Map<String, JTextField> camposInventario = new HashMap<>();
 
-
-     BotonRedondeado btnGuardar = new BotonRedondeado("Guardar");
-     BotonRedondeado btnCancelar = new BotonRedondeado("Cancelar");
+    BotonRedondeado btnGuardar = new BotonRedondeado("Guardar");
+    BotonRedondeado btnCancelar = new BotonRedondeado("Cancelar");
 
     public AgregarProductoDialog() {
+        
+        cbCategoria = new ComboBoxGenius<>(CategoriaProducto.values());
+        cbGenero = new ComboBoxGenius<>(EtiquetaGenero.values());
         setTitle("Agregar un producto");
         setLayout(new BorderLayout());
         getContentPane().setBackground(Estilo.AMARILLO_GENIUS);
@@ -75,44 +80,62 @@ public class AgregarProductoDialog extends JDialog{
     }
     
     private void inicializarComponentes(){
-        JPanel panelBotones = new JPanel();
-        panelBotones.add(btnGuardar);
-        panelBotones.add(btnCancelar);
-        add(panelBotones,BorderLayout.SOUTH);  
-        
-        cbCategoria = new ComboBoxGenius<>(CategoriaProducto.values());
-        cbGenero = new ComboBoxGenius<>(EtiquetaGenero.values());
-        cbImagen  = new ComboBoxGenius<>(new String[]{
-        "/img/TenisSL72OG.png",
-        "/img/PlayeraPoloNikeSportswear.jpg"
-        });
-        JPanel panelCentro = new JPanel(new GridLayout(0, 2, 8, 8));
-        //Esto es para agregarle espacio a los paneles y que no queden pegados
-        panelCentro.setBorder(BorderFactory.createEmptyBorder(12, 16, 12, 16));
+        JPanel panelCentro = new JPanel(new GridBagLayout());
+        panelCentro.setOpaque(false);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(4, 8, 4, 8);
+        //Movemos los componentes a la izquierda
+        gbc.anchor = GridBagConstraints.WEST;
+        //Evitamos que se expandam
+        gbc.fill = GridBagConstraints.NONE;
 
-        panelCentro.add(new JLabel("Nombre:"));
-        panelCentro.add(txtNombre);
-        panelCentro.add(new JLabel("Descripción:"));
-        panelCentro.add(txtDescripcion);
-        panelCentro.add(new JLabel("Precio:"));
-        panelCentro.add(txtPrecio);
-        panelCentro.add(new JLabel("Imagen:"));
-        panelCentro.add(cbImagen);
-        panelCentro.add(new JLabel("Categoría:"));
-        panelCentro.add(cbCategoria);
+        // Nombre
+        //Columnas
+        gbc.gridx = 0;
+        //Filas
+        gbc.gridy = 0; 
+        panelCentro.add(new JLabel("Nombre:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(txtNombre, gbc);
 
-        panelInventario = new JPanel(new GridLayout(0, 2, 8, 4));
-        panelInventario.setBorder(BorderFactory.createEmptyBorder(8, 0, 8, 0));
-        panelCentro.add(new JLabel("Inventario:"));
-        panelCentro.add(panelInventario);
-        actualizarInventarioPorCategoria();
+        // Descripción
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panelCentro.add(new JLabel("Descripción:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(txtDescripcion, gbc);
 
-        cbCategoria.addActionListener(e -> actualizarInventarioPorCategoria());
-        panelCentro.add(new JLabel("Género:"));
-        panelCentro.add(cbGenero);
+        // Precio
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panelCentro.add(new JLabel("Precio:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(txtPrecio, gbc);
 
-        //Estilos en su propio panel
+        // Imagen
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panelCentro.add(new JLabel("Imagen:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(cbImagen, gbc);
+
+        // Categoría
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panelCentro.add(new JLabel("Categoría:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(cbCategoria, gbc);
+
+        // Género
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panelCentro.add(new JLabel("Género:"), gbc);
+        gbc.gridx = 1;
+        panelCentro.add(cbGenero, gbc);
+
+        // Estilos
         JPanel panelEstilos = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
+        panelEstilos.setOpaque(false);
         panelEstilos.add(chkCasual);
         panelEstilos.add(chkDeportivo);
         panelEstilos.add(chkUrbano);
@@ -120,12 +143,34 @@ public class AgregarProductoDialog extends JDialog{
         panelEstilos.add(chkElegante);
         panelEstilos.add(chkDeporte);
         panelEstilos.add(chkClasico);
-        panelCentro.add(new JLabel("Estilos:"));  panelCentro.add(panelEstilos);
-        add(panelCentro);
+        gbc.gridx = 0;
+        gbc.gridy = 6; 
+        panelCentro.add(new JLabel("Estilos:"), gbc);
+        gbc.gridx = 1;
         
-        panelCentro.setOpaque(false);
-        panelEstilos.setOpaque(false);
+        panelCentro.add(panelEstilos, gbc);
+
+        // Inventario
+        panelInventario = new JPanel(new GridLayout(0, 4, 8, 4));
+        panelInventario.setOpaque(false);
+        panelInventario.setBorder(BorderFactory.createTitledBorder("Inventario por talla"));
+        actualizarInventarioPorCategoria();
+        cbCategoria.addActionListener(e -> actualizarInventarioPorCategoria());
+        gbc.gridx = 0;
+        gbc.gridy = 7;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panelCentro.add(panelInventario, gbc);
+
+        // Botones
+        JPanel panelBotones = new JPanel();
         panelBotones.setOpaque(false);
+        panelBotones.add(btnGuardar);
+        panelBotones.add(btnCancelar);
+        gbc.gridy = 8;
+        panelCentro.add(panelBotones, gbc);
+
+        add(panelCentro, BorderLayout.CENTER);
     }
 
     public CampoTextoGenius getTxtNombre() {

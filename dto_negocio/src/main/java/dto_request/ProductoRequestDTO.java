@@ -49,6 +49,19 @@ public class ProductoRequestDTO {
         this.estilos = estilos;
     }
 
+    public ProductoRequestDTO(String nombre, String descripcion, BigDecimal precio, String rutaImagen, CategoriaProducto categoria, List<String> tallas, EtiquetaGenero genero, List<EtiquetaEstilo> estilos) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.rutaImagen = rutaImagen;
+        this.categoria = categoria;
+        this.tallas = tallas;
+        this.genero = genero;
+        this.estilos = estilos;
+    }
+
+    
+    
     public String getNombre() {
         return nombre;
     }

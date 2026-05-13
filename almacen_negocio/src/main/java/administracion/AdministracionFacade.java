@@ -49,8 +49,9 @@ public class AdministracionFacade implements IAdministracionFacade {
     @Override
     public ProductoResponseDTO publicarProducto(String id) throws NegocioException {
         validar.validarId(id);
+        ProductoResponseDTO buscar = administrar.buscarPorId(id);
+        validar.validarPublicacion(buscar);
         return administrar.publicarProducto(id);
-
     }
 
     @Override

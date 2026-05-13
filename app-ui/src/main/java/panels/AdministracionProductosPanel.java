@@ -23,6 +23,7 @@ public class AdministracionProductosPanel extends JPanel {
     private BotonRedondeado agregarProducto;
     private BotonRedondeado publicarProducto;
     private BotonRedondeado modificarProducto;
+    private BotonRedondeado botonRegresar;
     JTable tabla = new JTable();
 
     public AdministracionProductosPanel() {
@@ -43,6 +44,8 @@ public class AdministracionProductosPanel extends JPanel {
         add(panelNorte, BorderLayout.NORTH);
         JPanel panelBotones = new JPanel();
 
+        botonRegresar = new BotonRedondeado("Atras");
+        panelBotones.add(botonRegresar);
         agregarProducto = new BotonRedondeado("Agregar Producto");
         panelBotones.add(agregarProducto);
         publicarProducto = new BotonRedondeado("Publicar Producto");
