@@ -102,20 +102,7 @@ public class AdministracionProductosControl implements IObserver {
 
             CategoriaProducto categoria = (CategoriaProducto) agregarProductoDialog.getCbCategoria().getSelectedItem();
             EtiquetaGenero genero = (EtiquetaGenero) agregarProductoDialog.getCbGenero().getSelectedItem();
-
-            List<String> tallas = new ArrayList<>();
-            if (agregarProductoDialog.getChkCH().isSelected()) {
-                tallas.add("CH");
-            }
-            if (agregarProductoDialog.getChkM().isSelected()) {
-                tallas.add("M");
-            }
-            if (agregarProductoDialog.getChkG().isSelected()) {
-                tallas.add("G");
-            }
-            if (agregarProductoDialog.getChkXG().isSelected()) {
-                tallas.add("XG");
-            }
+            
             List<EtiquetaEstilo> estilos = new ArrayList<>();
             if (agregarProductoDialog.getChkCasual().isSelected()) {
                 estilos.add(EtiquetaEstilo.CASUAL);
@@ -138,7 +125,7 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
-            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, tallas, genero, estilos);
+            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
             service.agregarProducto(dto);
 
             cargarTabla();

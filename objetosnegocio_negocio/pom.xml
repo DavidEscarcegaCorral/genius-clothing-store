@@ -28,6 +28,11 @@
             <artifactId>dominio_persistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>dao_presistencia</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

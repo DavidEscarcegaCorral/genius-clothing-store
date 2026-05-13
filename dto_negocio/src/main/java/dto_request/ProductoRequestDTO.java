@@ -37,7 +37,6 @@ public class ProductoRequestDTO {
             String rutaImagen,
             List<StockPorTalla> inventario,
             CategoriaProducto categoria,
-            List<String> tallas,
             EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
         this.nombre = nombre;
@@ -46,7 +45,6 @@ public class ProductoRequestDTO {
         this.rutaImagen = rutaImagen;
         this.inventario = inventario;
         this.categoria = categoria;
-        this.tallas = tallas;
         this.genero = genero;
         this.estilos = estilos;
     }

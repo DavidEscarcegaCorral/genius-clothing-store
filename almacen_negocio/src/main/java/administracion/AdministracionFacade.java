@@ -23,79 +23,42 @@ import java.util.List;
  * @author Usuario
  */
 public class AdministracionFacade implements IAdministracionFacade {
-    private ProductosRepository repository;
-    private final ProductoBO bo;
-    private final ProductoNegocioAdapter productoAdapter;
-    private final IProductoDAO productoDAO;
-
+    
+    private ControlAdministrarProducto administrar;
+    private ControlValidarProducto validar;
+    
+    
+    
     public AdministracionFacade() {
-        this.productoAdapter = new ProductoNegocioAdapter();
-        this.productoDAO = new ProductoDAO();
-        this.bo = new ProductoBO();
+        this.administrar = ControlAdministrarProducto.getInstance();
+        this.validar = new ControlValidarProducto();
     }
-
-    public AdministracionFacade(IProductoDAO ProductoDAO) {
-        this.productoDAO = ProductoDAO;
-        this.productoAdapter = new ProductoNegocioAdapter();
-        this.bo = new ProductoBO();
-
-    }
-
+    
     @Override
     public List<ProductoResponseDTO> obtenerProductos() throws NegocioException {
-        try {
-            List<ProductoEntidad> entidades = productoDAO.obtenerProductos();
-            return productoAdapter.convertirEntidadesASalidas(entidades);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al intentar ver todos los productos");
-        }
+        return administrar.verProductos();
     }
 
     @Override
     public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException {
-        bo.validarProducto(producto);
-        try {
-            //Convertir a entidad
-            ProductoEntidad entidad = productoAdapter.convertirEntradaAEntidad(producto);
-            //Llamar al dao
-            ProductoEntidad entidadGuardada = productoDAO.agregarProducto(entidad);
-            //Regresar el dto
-            return productoAdapter.convertirEntidadASalida(entidadGuardada);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al intentar agregar el producto");
-        }
+        validar.validarProducto(producto);
+        return administrar.agregarProducto(producto);
+
     }
 
     @Override
     public ProductoResponseDTO publicarProducto(String id) throws NegocioException {
-        bo.validarId(id);
-        try {
-            //Buscamos el producto por el id
-            ProductoEntidad entidad = productoDAO.buscarPorId(id);
-            bo.validarPublicacion(entidad);
-            bo.validarExistencia(entidad);
-            //Lo mandamos a la dao
-            ProductoEntidad productoPublicado = productoDAO.publicarProducto(id, EstadoProducto.PUBLICADO);
-            //Regresamos el producto como dto de salida
-            return productoAdapter.convertirEntidadASalida(productoPublicado);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al intentar publicar el producto", ex);
-        }
+        validar.validarId(id);
+        return administrar.publicarProducto(id);
+
     }
 
     @Override
     public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException {
-        //Validar que no sean nulo
-        bo.validarId(id);
-        bo.validarEstado(estado);
-        try {
-            ProductoEntidad entidad = productoDAO.buscarPorId(id);
-            bo.validarExistencia(entidad);
-            ProductoEntidad entidadActualizada = productoDAO.cambiarEstado(id, estado);
-            return productoAdapter.convertirEntidadASalida(entidadActualizada);
-        } catch (PersistenciaException ex) {
-            throw new NegocioException("Error al intentar actualizar el producto", ex);
-        }
+        validar.validarId(id);
+        validar.validarEstado(estado);
+        return administrar.editarProducto(id, estado);
+
     }
 }
 

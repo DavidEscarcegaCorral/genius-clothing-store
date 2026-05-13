@@ -50,11 +50,6 @@ public class AgregarProductoDialog extends JDialog{
     private ComboBoxGenius<CategoriaProducto> cbCategoria;
     private ComboBoxGenius<EtiquetaGenero> cbGenero;
 
-    JCheckBox chkCH = new JCheckBox("CH");
-    JCheckBox chkM = new JCheckBox("M");
-    JCheckBox chkG = new JCheckBox("G");
-    JCheckBox chkXG = new JCheckBox("XG");
-
     private JCheckBox chkCasual = new JCheckBox("Casual");
     private JCheckBox chkDeportivo = new JCheckBox("Deportivo");
     private JCheckBox chkUrbano = new JCheckBox("Urbano");
@@ -116,15 +111,6 @@ public class AgregarProductoDialog extends JDialog{
         panelCentro.add(new JLabel("Género:"));
         panelCentro.add(cbGenero);
 
-        //Tallas en su propio panel
-        JPanel panelTallas = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
-        panelTallas.add(chkCH);
-        panelTallas.add(chkM);
-        panelTallas.add(chkG);
-        panelTallas.add(chkXG);
-        panelCentro.add(new JLabel("Tallas:"));
-        panelCentro.add(panelTallas);
-
         //Estilos en su propio panel
         JPanel panelEstilos = new JPanel(new FlowLayout(FlowLayout.LEFT, 4, 0));
         panelEstilos.add(chkCasual);
@@ -138,7 +124,6 @@ public class AgregarProductoDialog extends JDialog{
         add(panelCentro);
         
         panelCentro.setOpaque(false);
-        panelTallas.setOpaque(false);
         panelEstilos.setOpaque(false);
         panelBotones.setOpaque(false);
     }
@@ -175,22 +160,6 @@ public class AgregarProductoDialog extends JDialog{
         return cbGenero;
     }
 
-    public JCheckBox getChkCH() {
-        return chkCH;
-    }
-
-    public JCheckBox getChkM() {
-        return chkM;
-    }
-
-    public JCheckBox getChkG() {
-        return chkG;
-    }
-
-    public JCheckBox getChkXG() {
-        return chkXG;
-    }
-
     public JCheckBox getChkCasual() {
         return chkCasual;
     }
@@ -223,7 +192,7 @@ public class AgregarProductoDialog extends JDialog{
         return btnGuardar;
     }
 
-public BotonRedondeado getBtnCancelar() {
+    public BotonRedondeado getBtnCancelar() {
         return btnCancelar;
     }
 
