@@ -9,6 +9,7 @@ import java.awt.*;
 public class CarritoPantalla extends PantallaBase {
     private JPanel panelContenedor;
     private JPanel contenedorProductosPanel;
+    private JLabel subTotalLbl;
     private OpcionesCarritoPanel opcionesCarritoPanel;
 
     private final String TITULO_CARRITO = "Tu Carrito";
