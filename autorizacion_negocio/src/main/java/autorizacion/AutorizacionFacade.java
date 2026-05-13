@@ -1,31 +1,31 @@
 package autorizacion;
 
 import dao.UsuarioDAO;
-import dto_request.CredencialesDTO;
+import dto_request.UsuarioLoginDTO;
 import excepciones.CredencialesInvalidasException;
 import excepciones.UsuarioBloqueadoException;
 import objetosnegocio.UsuarioBO;
 
-public class AutorizacionService implements IAutorizacionService {
+public class AutorizacionFacade implements IAutorizacionFacade {
 
     private final UsuarioDAO usuarioDAO;
 
-    public AutorizacionService() {
+    public AutorizacionFacade() {
         this.usuarioDAO = new UsuarioDAO();
     }
 
     @Override
-    public UsuarioBO verificarLogin(CredencialesDTO credencialesDTO) {
+    public UsuarioBO verificarLogin(UsuarioLoginDTO usuarioLoginDTO) {
         try {
             boolean usuarioExistente = usuarioDAO.existeUsuario(
-                    credencialesDTO.usuario(),
-                    credencialesDTO.password());
+                    usuarioLoginDTO.usuario(),
+                    usuarioLoginDTO.password());
 
             if (!usuarioExistente) {
                 throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
             }
 
-            dominio.UsuarioEntidad usuarioEntidad = usuarioDAO.buscarPorUsuario(credencialesDTO.usuario());
+            dominio.UsuarioEntidad usuarioEntidad = usuarioDAO.buscarPorUsuario(usuarioLoginDTO.usuario());
 
             if (usuarioEntidad == null) {
                 throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");

@@ -6,13 +6,13 @@ package administracion;
 
 import dominio.ProductoEntidad;
 import dto_request.ProductoRequestDTO;
-import dto_response.ProductoResponseDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
 import excepcion.NegocioException;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -21,8 +21,8 @@ import java.util.List;
  * @author Usuario
  */
 public class ControlValidarProducto {
-    
-    public void validarProducto(ProductoRequestDTO dto)throws NegocioException {
+
+    public void validarProducto(ProductoDTO dto) throws NegocioException {
         if (dto == null) {
             throw new NegocioException(
                     "El producto no puede ser nulo"
@@ -55,8 +55,8 @@ public class ControlValidarProducto {
         throw new NegocioException("El estado nuevo no puede ser igual al actual");
         }
     }
-    
-    
+
+
 
     public void validarExistencia(ProductoResponseDTO dto)throws NegocioException {
 
@@ -75,6 +75,7 @@ public class ControlValidarProducto {
         );
     }
     }
+
     private void validarNombre(String nombre) throws NegocioException {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new NegocioException(
@@ -196,6 +197,6 @@ public class ControlValidarProducto {
                     "Debe existir al menos un estilo"
             );
         }
-    }   
+    }
     
 }

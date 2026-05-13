@@ -8,7 +8,7 @@ import administracion.IAdministracionFacade;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dto_response.ProductoResponseDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
@@ -39,6 +39,7 @@ public class AdministracionProductosControl implements IObserver {
     private final AgregarProductoDialog agregarProductoDialog;
     private final EditarProductoDialog editarProductoDialog;
     private String idProducto;
+    private EstadoProducto estadoProducto;
 
     public AdministracionProductosControl(AdministracionProductosPanel administracionProductosPanel, Header header, IAdministracionFacade service, NavegacionControl navegacion, AgregarProductoDialog agregarProductoDialog, EditarProductoDialog editarProductoDialog) {
         this.administracionProductosPanel = administracionProductosPanel;
@@ -68,6 +69,7 @@ public class AdministracionProductosControl implements IObserver {
                 if (fila != -1) {
                     //Obtenemos el id y el estado para usarlos
                     idProducto = administracionProductosPanel.getTabla().getValueAt(fila, 0).toString();
+                    estadoProducto = (EstadoProducto) administracionProductosPanel.getTabla().getValueAt(fila, 4);
                 }
             }
         });
@@ -84,7 +86,6 @@ public class AdministracionProductosControl implements IObserver {
     public void abrirPublicarProductoDialog() {
         navegacion.abrirPublicarProductoDialog();
     }
-    
 
     public AgregarProductoDialog getAgregarProductoDialog() {
         return agregarProductoDialog;
@@ -127,8 +128,9 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
-            
+
             ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
+            ProductoDTO dto = new ProductoDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
             service.agregarProducto(dto);
 
             cargarTabla();
@@ -158,7 +160,7 @@ public class AdministracionProductosControl implements IObserver {
             }
         }
     }
-    
+
     public void editarProducto(){
         if(idProducto == null){
             JOptionPane.showMessageDialog(null, "Debe seleccionar un producto primero");

@@ -4,17 +4,10 @@
  */
 package administracion;
 
-import adaptadores.ProductoNegocioAdapter;
-import dao.IProductoDAO;
-import dao.ProductoDAO;
-import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
-import excepciones.PersistenciaException;
-import objetosnegocio.ProductoBO;
-import repository.ProductosRepository;
 
 import java.util.List;
 
@@ -23,24 +16,23 @@ import java.util.List;
  * @author Usuario
  */
 public class AdministracionFacade implements IAdministracionFacade {
-    
+
     private ControlAdministrarProducto administrar;
     private ControlValidarProducto validar;
-    
-    
-    
+
+
     public AdministracionFacade() {
         this.administrar = ControlAdministrarProducto.getInstance();
         this.validar = new ControlValidarProducto();
     }
-    
+
     @Override
     public List<ProductoResponseDTO> obtenerProductos() throws NegocioException {
         return administrar.verProductos();
     }
 
     @Override
-    public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException {
+    public ProductoResponseDTO agregarProducto(ProductoDTO producto) throws NegocioException {
         validar.validarProducto(producto);
         return administrar.agregarProducto(producto);
 

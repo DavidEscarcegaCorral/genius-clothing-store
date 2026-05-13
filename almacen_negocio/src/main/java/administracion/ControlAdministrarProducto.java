@@ -4,73 +4,73 @@
  */
 package administracion;
 
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
 import excepciones.PersistenciaException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import objetosnegocio.ProductoBO;
+
+import java.util.List;
 
 /**
  *
  * @author Usuario
  */
 public class ControlAdministrarProducto {
-    
+
     private static ControlAdministrarProducto instancia;
     private ProductoBO bo;
 
     private ControlAdministrarProducto() {
-    this.bo = new ProductoBO();
-    } 
-    public static ControlAdministrarProducto getInstance(){
-        if(instancia == null){
+        this.bo = new ProductoBO();
+    }
+
+    public static ControlAdministrarProducto getInstance() {
+        if (instancia == null) {
             instancia = new ControlAdministrarProducto();
         }
         return instancia;
     }
-    
-      public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException{
-       if(producto == null){
-           throw new NegocioException("El producto no puede estar vacio");
-       }
+
+    public ProductoResponseDTO agregarProducto(ProductoDTO producto) throws NegocioException {
+        if (producto == null) {
+            throw new NegocioException("El producto no puede estar vacio");
+        }
         try {
             ProductoResponseDTO regresarProducto = bo.agregarProducto(producto);
-              return regresarProducto;
+            return regresarProducto;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al intentar agregar el producto");
-        }     
+        }
     }
-    
-    public ProductoResponseDTO editarProducto(String id, EstadoProducto estado) throws NegocioException{
+
+    public ProductoResponseDTO editarProducto(String id, EstadoProducto estado) throws NegocioException {
         try {
             ProductoResponseDTO regresarProducto = bo.editarProducto(id, estado);
-             return regresarProducto;
+            return regresarProducto;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al intentar editar el producto");
         }
     }
-    
-    public List<ProductoResponseDTO>verProductos() throws NegocioException{      
+
+    public List<ProductoResponseDTO> verProductos() throws NegocioException {
         try {
-            List<ProductoResponseDTO> productos =bo.verProductos();
+            List<ProductoResponseDTO> productos = bo.verProductos();
             return productos;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al ver los productos");
         }
     }
-    
-    public ProductoResponseDTO publicarProducto(String id) throws NegocioException{
+
+    public ProductoResponseDTO publicarProducto(String id) throws NegocioException {
         try {
-             ProductoResponseDTO productoPublicado = bo.publicarProducto(id);
+            ProductoResponseDTO productoPublicado = bo.publicarProducto(id);
             return productoPublicado;
         } catch (PersistenciaException ex) {
             throw new NegocioException("Error al intentar publicar el producto");
         }
-     
+
     }
     
     public ProductoResponseDTO buscarPorId(String id) throws NegocioException{

@@ -7,10 +7,11 @@ package objetosnegocio;
 import adaptadores.ProductoNegocioAdapter;
 import dao.ProductoDAO;
 import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 import excepciones.PersistenciaException;
+
 import java.util.List;
 
 
@@ -24,26 +25,26 @@ public class ProductoBO {
 
     public ProductoBO() {
         this.dao = new ProductoDAO();
-         this.adaptador = new ProductoNegocioAdapter();
+        this.adaptador = new ProductoNegocioAdapter();
     }
-    
-    public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws PersistenciaException{
+
+    public ProductoResponseDTO agregarProducto(ProductoDTO producto) throws PersistenciaException {
         ProductoEntidad entidad = adaptador.convertirEntradaAEntidad(producto);
         dao.agregarProducto(entidad);
         return adaptador.convertirEntidadASalida(entidad);
     }
-    
-    public ProductoResponseDTO editarProducto(String id, EstadoProducto estado) throws PersistenciaException{
+
+    public ProductoResponseDTO editarProducto(String id, EstadoProducto estado) throws PersistenciaException {
         ProductoEntidad entidad = dao.cambiarEstado(id, estado);
         return adaptador.convertirEntidadASalida(entidad);
     }
-    
-    public List<ProductoResponseDTO>verProductos() throws PersistenciaException{      
+
+    public List<ProductoResponseDTO> verProductos() throws PersistenciaException {
         List<ProductoEntidad> entidades = dao.obtenerProductos();
-        return adaptador.convertirEntidadesASalidas(entidades);      
+        return adaptador.convertirEntidadesASalidas(entidades);
     }
-    
-    public ProductoResponseDTO publicarProducto(String id) throws PersistenciaException{
+
+    public ProductoResponseDTO publicarProducto(String id) throws PersistenciaException {
         ProductoEntidad publicar = dao.publicarProducto(id, EstadoProducto.PUBLICADO);
         return adaptador.convertirEntidadASalida(publicar);
     }

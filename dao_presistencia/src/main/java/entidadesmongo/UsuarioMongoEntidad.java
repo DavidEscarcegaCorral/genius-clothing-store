@@ -21,8 +21,8 @@ public class UsuarioMongoEntidad {
     public UsuarioMongoEntidad() {
     }
 
-    public UsuarioMongoEntidad(String nombre, String apellidoPaterno, String apellidoMaterno, 
-            String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo) {
+    public UsuarioMongoEntidad(String nombre, String apellidoPaterno, String apellidoMaterno,
+                               String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo) {
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
         this.apellidoMaterno = apellidoMaterno;

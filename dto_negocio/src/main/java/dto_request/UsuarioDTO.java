@@ -1,6 +1,6 @@
 package dto_request;
 
-public class UsuarioRequestDTO {
+public class UsuarioDTO {
     private String nombreUsuario;
     private String nombre;
     private String apellidoPaterno;
@@ -9,7 +9,7 @@ public class UsuarioRequestDTO {
     private String contraseña;
     private String contraseñaConfirmacion;
 
-    public UsuarioRequestDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, String contraseñaConfirmacion) {
+    public UsuarioDTO(String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, String contraseñaConfirmacion) {
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -19,7 +19,7 @@ public class UsuarioRequestDTO {
         this.contraseñaConfirmacion = contraseñaConfirmacion;
     }
 
-    public UsuarioRequestDTO() {
+    public UsuarioDTO() {
 
     }
 

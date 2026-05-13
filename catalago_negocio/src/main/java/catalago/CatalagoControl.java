@@ -7,6 +7,5 @@ public class CatalagoControl {
 
     public CatalagoControl(IProductoDAO productoDAO) {
         this.productoDAO = productoDAO;
-
     }
 }
