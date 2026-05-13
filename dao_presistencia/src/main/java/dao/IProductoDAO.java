@@ -3,9 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package dao;
+
 import dominio.ProductoEntidad;
 import enumeradores.EstadoProducto;
 import excepciones.PersistenciaException;
+
 import java.util.List;
 
 /**
@@ -13,11 +15,16 @@ import java.util.List;
  * @author Usuario
  */
 public interface IProductoDAO {
-    
-    public ProductoEntidad agregarProducto(ProductoEntidad producto)throws PersistenciaException;
-    public ProductoEntidad cambiarEstado(String id,EstadoProducto estado)throws PersistenciaException;
-    public ProductoEntidad publicarProducto(String id,EstadoProducto estado)throws PersistenciaException;
-    public ProductoEntidad buscarPorId(String id)throws PersistenciaException;
-    public List<ProductoEntidad> obtenerProductos()throws PersistenciaException;
-     public List<ProductoEntidad> obtenerProductosPublicados()throws PersistenciaException ;
+
+    ProductoEntidad agregarProducto(ProductoEntidad producto) throws PersistenciaException;
+
+    ProductoEntidad cambiarEstado(String id, EstadoProducto estado) throws PersistenciaException;
+
+    ProductoEntidad publicarProducto(String id, EstadoProducto estado) throws PersistenciaException;
+
+    ProductoEntidad buscarPorId(String id) throws PersistenciaException;
+
+    List<ProductoEntidad> obtenerProductos() throws PersistenciaException;
+
+    List<ProductoEntidad> obtenerProductosPublicados() throws PersistenciaException;
 }
