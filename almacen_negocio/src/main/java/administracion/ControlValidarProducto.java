@@ -5,7 +5,7 @@
 package administracion;
 
 import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
+import dto_request.ProductoDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
@@ -198,5 +198,5 @@ public class ControlValidarProducto {
             );
         }
     }
-    
+
 }
