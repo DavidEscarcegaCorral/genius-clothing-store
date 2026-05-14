@@ -1,6 +1,6 @@
 package catalago;
 
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
 
 import java.util.List;
@@ -8,5 +8,13 @@ import java.util.List;
 public interface ICatalagoFacade {
     List<ProductoCardDTO> cargarCategoria();
 
-    ProductoResponseDTO obtenerProductoPorId(String id);
+    List<ProductoCardDTO> cargarTodosProductos();
+
+    ProductoDTO obtenerProductoPorId(String id);
+
+    List<ProductoCardDTO> buscarPorCategoria(String categoria);
+
+    List<ProductoCardDTO> buscarPorGenero(String genero);
+
+    List<ProductoCardDTO> buscarPorNombre(String nombre);
 }

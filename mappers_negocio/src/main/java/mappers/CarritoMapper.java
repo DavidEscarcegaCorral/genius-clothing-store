@@ -2,7 +2,7 @@ package mappers;
 
 import dominio.CarritoEntidad;
 import dominio.ItemCarrito;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.CarritoDTO;
 
 import java.math.BigDecimal;
@@ -21,10 +21,10 @@ public class CarritoMapper {
             return new CarritoDTO();
         }
         CarritoDTO dto = new CarritoDTO();
-        List<ProductoResponseDTO> productos = new ArrayList<>();
+        List<ProductoDTO> productos = new ArrayList<>();
         if (carrito.getItems() != null && !carrito.getItems().isEmpty()) {
             for (ItemCarrito item : carrito.getItems()) {
-                ProductoResponseDTO productoDTO = new ProductoResponseDTO();
+                ProductoDTO productoDTO = new ProductoDTO();
                 productoDTO.setId(item.getProductoId());
                 productoDTO.setNombre(item.getNombre());
                 productoDTO.setPrecio(item.getPrecio());

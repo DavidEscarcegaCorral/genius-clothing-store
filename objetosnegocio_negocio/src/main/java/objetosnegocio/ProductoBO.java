@@ -7,8 +7,7 @@ package objetosnegocio;
 import adaptadores.ProductoNegocioAdapter;
 import dao.ProductoDAO;
 import dominio.ProductoEntidad;
-import dto_request.ProductoDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import enumeradores.EstadoProducto;
 import excepciones.PersistenciaException;
 
@@ -28,28 +27,28 @@ public class ProductoBO {
         this.adaptador = new ProductoNegocioAdapter();
     }
 
-    public ProductoResponseDTO agregarProducto(ProductoDTO producto) throws PersistenciaException {
+    public ProductoDTO agregarProducto(dto_response.ProductoDTO producto) throws PersistenciaException {
         ProductoEntidad entidad = adaptador.convertirEntradaAEntidad(producto);
         dao.agregarProducto(entidad);
         return adaptador.convertirEntidadASalida(entidad);
     }
 
-    public ProductoResponseDTO editarProducto(String id, EstadoProducto estado) throws PersistenciaException {
+    public ProductoDTO editarProducto(String id, EstadoProducto estado) throws PersistenciaException {
         ProductoEntidad entidad = dao.cambiarEstado(id, estado);
         return adaptador.convertirEntidadASalida(entidad);
     }
 
-    public List<ProductoResponseDTO> verProductos() throws PersistenciaException {
+    public List<ProductoDTO> verProductos() throws PersistenciaException {
         List<ProductoEntidad> entidades = dao.obtenerProductos();
         return adaptador.convertirEntidadesASalidas(entidades);
     }
 
-    public ProductoResponseDTO publicarProducto(String id) throws PersistenciaException {
+    public ProductoDTO publicarProducto(String id) throws PersistenciaException {
         ProductoEntidad publicar = dao.publicarProducto(id, EstadoProducto.PUBLICADO);
         return adaptador.convertirEntidadASalida(publicar);
     }
-    
-    public ProductoResponseDTO buscarPorId(String id) throws PersistenciaException{
+
+    public ProductoDTO buscarPorId(String id) throws PersistenciaException {
         ProductoEntidad buscar = dao.buscarPorId(id);
         return adaptador.convertirEntidadASalida(buscar);
     }

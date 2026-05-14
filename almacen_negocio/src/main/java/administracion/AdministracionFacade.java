@@ -4,8 +4,7 @@
  */
 package administracion;
 
-import dto_request.ProductoDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
 
@@ -27,30 +26,30 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public List<ProductoResponseDTO> obtenerProductos() throws NegocioException {
+    public List<ProductoDTO> obtenerProductos() throws NegocioException {
         return administrar.verProductos();
     }
 
     @Override
-    public ProductoResponseDTO agregarProducto(ProductoDTO producto) throws NegocioException {
+    public ProductoDTO agregarProducto(dto_response.ProductoDTO producto) throws NegocioException {
         validar.validarProducto(producto);
         return administrar.agregarProducto(producto);
 
     }
 
     @Override
-    public ProductoResponseDTO publicarProducto(String id) throws NegocioException {
+    public ProductoDTO publicarProducto(String id) throws NegocioException {
         validar.validarId(id);
-        ProductoResponseDTO buscar = administrar.buscarPorId(id);
+        ProductoDTO buscar = administrar.buscarPorId(id);
         validar.validarPublicacion(buscar);
         return administrar.publicarProducto(id);
     }
 
     @Override
-    public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estadoNuevo) throws NegocioException {
+    public ProductoDTO actualizarProducto(String id, EstadoProducto estadoNuevo) throws NegocioException {
         validar.validarId(id);
-        ProductoResponseDTO producto = administrar.buscarPorId(id);
-        validar.validarEstado(producto.getEstado(), estadoNuevo); 
+        ProductoDTO producto = administrar.buscarPorId(id);
+        validar.validarEstado(producto.getEstado(), estadoNuevo);
         return administrar.editarProducto(id, estadoNuevo);
 
     }

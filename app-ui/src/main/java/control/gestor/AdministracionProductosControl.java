@@ -8,8 +8,7 @@ import administracion.IAdministracionFacade;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
 import dialogs.EditarProductoDialog;
-import dto_request.ProductoRequestDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
@@ -55,8 +54,11 @@ public class AdministracionProductosControl implements IObserver {
         administracionProductosPanel.getAgregarProducto().addActionListener(e -> abrirDialogAgregarProducto());
         administracionProductosPanel.getModificarProducto().addActionListener(e -> abrirDialogEditarProducto());
         administracionProductosPanel.getPublicarProducto().addActionListener(e -> publicarProducto());
+        administracionProductosPanel.getBotonRegresar().addActionListener(e -> navegacion.abrirLoginFrame());
+        agregarProductoDialog.getBtnCancelar().addActionListener(e -> agregarProductoDialog.dispose());
         agregarProductoDialog.getBtnGuardar().addActionListener(e -> AgregarProducto());
-
+        editarProductoDialog.getBtnAceptar().addActionListener(e -> editarProducto());
+        editarProductoDialog.getBtnCancelar().addActionListener(e -> editarProductoDialog.dispose());
         administracionProductosPanel.getTabla().getSelectionModel().addListSelectionListener(e -> {
             //Entra a la condición cuando ya dejas de seleccionar
             if (!e.getValueIsAdjusting()) {
@@ -125,7 +127,8 @@ public class AdministracionProductosControl implements IObserver {
             if (agregarProductoDialog.getChkClasico().isSelected()) {
                 estilos.add(EtiquetaEstilo.CLASICO);
             }
-            ProductoRequestDTO dto = new ProductoRequestDTO(nombre, descripcion, precio, rutaImagen, inventario, categoria, genero, estilos);
+
+            dto_response.ProductoDTO dto = new dto_response.ProductoDTO(null, nombre, descripcion, precio, rutaImagen, inventario, EstadoProducto.BORRADOR, categoria, inventario.stream().map(s -> s.getTalla()).toList(), genero, estilos);
             service.agregarProducto(dto);
 
             cargarTabla();
@@ -156,7 +159,26 @@ public class AdministracionProductosControl implements IObserver {
         }
     }
 
-    public List<ProductoResponseDTO> obtenerProductos() {
+    public void editarProducto() {
+        if (idProducto == null) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto primero");
+            return;
+        }
+        EstadoProducto nuevoEstado = (EstadoProducto) editarProductoDialog.getCombo().getSelectedItem();
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas cambiar el estado del producto?", "Confirmar Publicación", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            try {
+                service.actualizarProducto(idProducto, nuevoEstado);
+                JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
+                cargarTabla();
+                editarProductoDialog.setVisible(false);
+            } catch (NegocioException e) {
+                JOptionPane.showMessageDialog(null, "Error al intentar cambiar el estado del producto" + e.getMessage());
+            }
+        }
+    }
+
+    public List<ProductoDTO> obtenerProductos() {
         try {
             return service.obtenerProductos();
         } catch (NegocioException e) {
@@ -169,7 +191,7 @@ public class AdministracionProductosControl implements IObserver {
     //Esto es para llenar la tabla del panel
     public void cargarTabla() {
         try {
-            List<ProductoResponseDTO> productos = service.obtenerProductos();
+            List<ProductoDTO> productos = service.obtenerProductos();
             administracionProductosPanel.cargarTabla(productos);
         } catch (NegocioException e) {
             System.out.println("Error al cargar los productos " + e.getMessage());

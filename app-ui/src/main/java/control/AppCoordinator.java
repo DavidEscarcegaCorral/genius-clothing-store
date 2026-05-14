@@ -11,7 +11,7 @@ import compras.IComprasFacade;
 import conexion.DatabaseSeeder;
 import control.auth.LoginControl;
 import control.carrito.CarritoControl;
-import control.catalago.CatalagoControl;
+import control.catalago.ProdcutosControl;
 import control.gestor.AdministracionProductosControl;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
@@ -32,7 +32,7 @@ public class AppCoordinator {
 
     private final NavegacionControl navegacionControl;
     private LoginControl loginControl;
-    private CatalagoControl catalagoControl;
+    private ProdcutosControl prodcutosControl;
     private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
 
@@ -72,7 +72,7 @@ public class AppCoordinator {
                 catalagoFacade,
                 comprasFacade);
 
-        catalagoControl = new CatalagoControl(
+        prodcutosControl = new ProdcutosControl(
                 globalFrame.getMainPagePanel(),
                 catalagoFacade,
                 navegacionControl,

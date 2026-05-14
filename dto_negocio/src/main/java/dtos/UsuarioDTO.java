@@ -4,7 +4,7 @@ import enumeradores.RolUsuario;
 
 public class UsuarioDTO {
 
-    private Integer idUsuarioDTO;
+    private Integer id;
     private String nombreUsuario;
     private String nombre;
     private String apellidoPaterno;
@@ -13,8 +13,8 @@ public class UsuarioDTO {
     private String contraseña;
     private RolUsuario rol;
 
-    public UsuarioDTO(Integer idUsuarioDTO, String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, RolUsuario rol) {
-        this.idUsuarioDTO = idUsuarioDTO;
+    public UsuarioDTO(Integer id, String nombreUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String correo, String contraseña, RolUsuario rol) {
+        this.id = id;
         this.nombreUsuario = nombreUsuario;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -102,12 +102,12 @@ public class UsuarioDTO {
         this.rol = rol;
     }
 
-    public Integer getIdUsuarioDTO() {
-        return idUsuarioDTO;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdUsuarioDTO(Integer idUsuario) {
-        this.idUsuarioDTO = idUsuario;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 
