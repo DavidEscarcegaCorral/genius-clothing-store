@@ -3,21 +3,21 @@ package autorizacion;
 import dao.UsuarioDAO;
 import dto_request.UsuarioLoginDTO;
 import excepciones.CredencialesInvalidasException;
-import excepciones.UsuarioBloqueadoException;
+import excepciones.PersistenciaException;
 import objetosnegocio.UsuarioBO;
 
 public class AutorizacionFacade implements IAutorizacionFacade {
 
-    private final UsuarioDAO usuarioDAO;
+    private final AutorizacionControl autorizacionControl;
 
     public AutorizacionFacade() {
-        this.usuarioDAO = new UsuarioDAO();
+        this.autorizacionControl = new AutorizacionControl(new UsuarioDAO());
     }
 
     @Override
     public UsuarioBO verificarLogin(UsuarioLoginDTO usuarioLoginDTO) {
         try {
-            boolean usuarioExistente = usuarioDAO.existeUsuario(
+            boolean usuarioExistente = autorizacionControl.verificarUsuarioExistente(
                     usuarioLoginDTO.usuario(),
                     usuarioLoginDTO.password());
 
@@ -25,32 +25,30 @@ public class AutorizacionFacade implements IAutorizacionFacade {
                 throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
             }
 
-            dominio.UsuarioEntidad usuarioEntidad = usuarioDAO.buscarPorUsuario(usuarioLoginDTO.usuario());
+            dominio.UsuarioEntidad usuarioEntidad = autorizacionControl.buscarPorUsuario(usuarioLoginDTO.usuario());
 
             if (usuarioEntidad == null) {
                 throw new CredencialesInvalidasException("Usuario o contraseña incorrectos.");
             }
 
-            UsuarioBO usuarioBO = new UsuarioBO(
-                    usuarioEntidad.getId(),
-                    usuarioEntidad.getNombre(),
-                    usuarioEntidad.getApellidoPaterno(),
-                    usuarioEntidad.getEmail(),
-                    usuarioEntidad.getNombreUsuario(),
-                    usuarioEntidad.getPasswordHash(),
-                    usuarioEntidad.getRol(),
-                    usuarioEntidad.isActivo()
-            );
+            UsuarioBO usuarioBO = autorizacionControl.convertirEntidadABO(usuarioEntidad);
 
             if (!usuarioBO.puedeIniciarSesion()) {
-                throw new UsuarioBloqueadoException("La cuenta está inactiva o bloqueada.");
+                throw new CredencialesInvalidasException("La cuenta está inactiva o bloqueada.");
             }
 
             return usuarioBO;
-        } catch (excepciones.PersistenciaException e) {
+        } catch (PersistenciaException e) {
             throw new CredencialesInvalidasException("Error al iniciar sesión: " + e.getMessage());
-        } catch (CredencialesInvalidasException | UsuarioBloqueadoException e) {
-            throw e;
+        }
+    }
+
+    public UsuarioBO obtenerUsuarioPorId(String id) {
+        try {
+            dominio.UsuarioEntidad entidad = autorizacionControl.buscarPorId(id);
+            return autorizacionControl.convertirEntidadABO(entidad);
+        } catch (PersistenciaException e) {
+            throw new CredencialesInvalidasException("Error al obtener usuario: " + e.getMessage());
         }
     }
 }

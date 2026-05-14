@@ -50,7 +50,7 @@ public class AppCoordinator {
     }
 
     public void iniciar() {
-//        inicializarBaseDeDatos();
+        inicializarBaseDeDatos();
         inicializarControles();
         configurarNavegacion();
         mostrarHome();

@@ -5,4 +5,6 @@ import objetosnegocio.UsuarioBO;
 
 public interface IAutorizacionFacade {
     UsuarioBO verificarLogin(UsuarioLoginDTO usuarioLoginDTO);
+
+    UsuarioBO obtenerUsuarioPorId(String id);
 }
