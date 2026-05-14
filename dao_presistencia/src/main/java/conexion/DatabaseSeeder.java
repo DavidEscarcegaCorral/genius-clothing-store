@@ -3,12 +3,12 @@ package conexion;
 import com.mongodb.client.MongoCollection;
 import entidadesmongo.CarritoMongoEntidad;
 import entidadesmongo.ProductoMongoEntidad;
+import entidadesmongo.StockPorTalla;
 import entidadesmongo.UsuarioMongoEntidad;
 import enumeradores.*;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 import util.TallaUtil;
-
-import entidadesmongo.StockPorTalla;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -22,7 +22,6 @@ public class DatabaseSeeder {
     public static void inicializarProductosSiEstaVacio() {
         try {
             ConexionMongoDB conexion = ConexionMongoDB.getInstance();
-
             eliminarYCargarDatos(conexion);
 
         } catch (Exception e) {
@@ -36,12 +35,12 @@ public class DatabaseSeeder {
         MongoCollection<CarritoMongoEntidad> coleccionCarritos = conexion.getCollection("carritos", CarritoMongoEntidad.class);
         MongoCollection<ProductoMongoEntidad> coleccionProductos = conexion.getCollection("productos", ProductoMongoEntidad.class);
 
-        LOGGER.info("Eliminando datos existentes de la base de datos...");
-        coleccionUsuarios.deleteMany(new org.bson.Document());
-        coleccionCarritos.deleteMany(new org.bson.Document());
-        coleccionProductos.deleteMany(new org.bson.Document());
+        LOGGER.info("Eliminando datos existentes de la base de datos.");
+        coleccionUsuarios.deleteMany(new Document());
+        coleccionCarritos.deleteMany(new Document());
+        coleccionProductos.deleteMany(new Document());
 
-        LOGGER.info("Cargando datos del seeder...");
+        LOGGER.info("Cargando datos del seeder.");
         inicializarUsuarios(conexion);
         inicializarCarritos(conexion);
         inicializarProductos(conexion);
@@ -62,7 +61,7 @@ public class DatabaseSeeder {
                     "David",
                     "Escarcega",
                     "Corral",
-                    "david@genius.com",
+                    "davidaescarcega@gmail.com",
                     "admin",
                     "1234",
                     RolUsuario.ADMINISTRADOR,
@@ -70,11 +69,11 @@ public class DatabaseSeeder {
             ));
 
             usuarios.add(new UsuarioMongoEntidad(
-                    "Juan",
+                    "Angel",
                     "Perez",
-                    "Garcia",
-                    "juan.perez@email.com",
-                    "juan",
+                    "Gaxiola",
+                    "",
+                    "Angel",
                     "1234",
                     RolUsuario.CLIENTE,
                     true

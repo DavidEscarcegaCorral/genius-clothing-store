@@ -1,43 +1,77 @@
 package catalago;
 
-import dominio.ProductoEntidad;
-import dto_response.ProductoResponseDTO;
+import dao.ProductoDAO;
+import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
-import mappers.ProductoMapper;
-import repository.ProductosRepository;
+import excepciones.PersistenciaException;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CatalagoFacade implements ICatalagoFacade {
-    // implementar el control
-    private ProductosRepository repository;
+    private final CatalagoControl catalagoControl;
 
     public CatalagoFacade() {
-        repository = new ProductosRepository();
+        this.catalagoControl = new CatalagoControl(new ProductoDAO());
     }
 
     @Override
-    public List<ProductoCardDTO> obtenerCatalagoMainPage() {
-        List<ProductoEntidad> entidades = repository.obtenerProductos();
-
-        return entidades.stream()
-                .map(ProductoMapper::entidadADTO)
-                .collect(Collectors.toList());
-    }
-
-    @Override
-    public ProductoResponseDTO obtenerProductoPorId(String id) {
+    public List<ProductoCardDTO> cargarCategoria() {
         try {
-            ProductoEntidad entidad = repository.buscarPorId(id);
-
-            if (entidad != null) {
-                return ProductoMapper.entidadADtoCompleto(entidad);
-            }
-        } catch (Exception e) {
-            System.err.println("Error al obtener el detalle del producto: " + e.getMessage());
+            return catalagoControl.cargarProductosPublicados();
+        } catch (PersistenciaException e) {
+            System.err.println("Error al cargar productos: " + e.getMessage());
+            return new ArrayList<>();
         }
+    }
 
-        return null;
+    @Override
+    public List<ProductoCardDTO> cargarTodosProductos() {
+        try {
+            return catalagoControl.cargarTodosProductos();
+        } catch (PersistenciaException e) {
+            System.err.println("Error al cargar todos los productos: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public ProductoDTO obtenerProductoPorId(String id) {
+        try {
+            return catalagoControl.obtenerProductoPorId(id);
+        } catch (PersistenciaException e) {
+            System.err.println("Error al obtener producto: " + e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public List<ProductoCardDTO> buscarPorCategoria(String categoria) {
+        try {
+            return catalagoControl.buscarPorCategoria(categoria);
+        } catch (PersistenciaException e) {
+            System.err.println("Error al buscar por categoría: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<ProductoCardDTO> buscarPorGenero(String genero) {
+        try {
+            return catalagoControl.buscarPorGenero(genero);
+        } catch (PersistenciaException e) {
+            System.err.println("Error al buscar por género: " + e.getMessage());
+            return new ArrayList<>();
+        }
+    }
+
+    @Override
+    public List<ProductoCardDTO> buscarPorNombre(String nombre) {
+        try {
+            return catalagoControl.buscarPorNombre(nombre);
+        } catch (PersistenciaException e) {
+            System.err.println("Error al buscar por nombre: " + e.getMessage());
+            return new ArrayList<>();
+        }
     }
 }

@@ -2,8 +2,8 @@ package control;
 
 import administracion.AdministracionFacade;
 import administracion.IAdministracionFacade;
-import autorizacion.AutorizacionService;
-import autorizacion.IAutorizacionService;
+import autorizacion.AutorizacionFacade;
+import autorizacion.IAutorizacionFacade;
 import catalago.CatalagoFacade;
 import catalago.ICatalagoFacade;
 import compras.ComprasFacade;
@@ -11,7 +11,7 @@ import compras.IComprasFacade;
 import conexion.DatabaseSeeder;
 import control.auth.LoginControl;
 import control.carrito.CarritoControl;
-import control.catalago.CatalagoControl;
+import control.catalago.ProdcutosControl;
 import control.gestor.AdministracionProductosControl;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
@@ -25,14 +25,14 @@ public class AppCoordinator {
     private final GlobalFrame globalFrame;
     private final AdministracionProductoFrame adminFrame;
 
-    private final IAutorizacionService autorizacionService;
+    private final IAutorizacionFacade autorizacionService;
     private final ICatalagoFacade catalagoFacade;
     private final IAdministracionFacade administracionService;
     private final IComprasFacade comprasFacade;
 
     private final NavegacionControl navegacionControl;
     private LoginControl loginControl;
-    private CatalagoControl catalagoControl;
+    private ProdcutosControl prodcutosControl;
     private CarritoControl carritoControl;
     private AdministracionProductosControl adminControl;
 
@@ -41,7 +41,7 @@ public class AppCoordinator {
         this.globalFrame = new GlobalFrame();
         this.adminFrame = new AdministracionProductoFrame();
 
-        this.autorizacionService = new AutorizacionService();
+        this.autorizacionService = new AutorizacionFacade();
         this.catalagoFacade = new CatalagoFacade();
         this.administracionService = new AdministracionFacade();
         this.comprasFacade = new ComprasFacade();
@@ -50,7 +50,7 @@ public class AppCoordinator {
     }
 
     public void iniciar() {
-//        inicializarBaseDeDatos();
+        inicializarBaseDeDatos();
         inicializarControles();
         configurarNavegacion();
         mostrarHome();
@@ -72,7 +72,7 @@ public class AppCoordinator {
                 catalagoFacade,
                 comprasFacade);
 
-        catalagoControl = new CatalagoControl(
+        prodcutosControl = new ProdcutosControl(
                 globalFrame.getMainPagePanel(),
                 catalagoFacade,
                 navegacionControl,

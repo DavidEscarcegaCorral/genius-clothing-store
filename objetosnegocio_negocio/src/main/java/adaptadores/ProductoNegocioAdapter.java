@@ -5,8 +5,7 @@
 package adaptadores;
 
 import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import enumeradores.EstadoProducto;
 
 import java.util.ArrayList;
@@ -19,7 +18,7 @@ import java.util.List;
 public class ProductoNegocioAdapter {
 
     public ProductoEntidad convertirEntradaAEntidad(
-            ProductoRequestDTO productoDTO) {
+            dto_response.ProductoDTO productoDTO) {
 
         if (productoDTO == null) {
             return null;
@@ -43,14 +42,14 @@ public class ProductoNegocioAdapter {
         return producto;
     }
 
-    public ProductoResponseDTO convertirEntidadASalida(
+    public ProductoDTO convertirEntidadASalida(
             ProductoEntidad producto) {
 
         if (producto == null) {
             return null;
         }
 
-        return new ProductoResponseDTO(
+        return new ProductoDTO(
                 producto.getId(),
                 producto.getNombre(),
                 producto.getDescrpcionProducto(),
@@ -65,10 +64,10 @@ public class ProductoNegocioAdapter {
         );
     }
 
-    public List<ProductoResponseDTO> convertirEntidadesASalidas(
+    public List<ProductoDTO> convertirEntidadesASalidas(
             List<ProductoEntidad> productos) {
 
-        List<ProductoResponseDTO> productosDTO = new ArrayList<>();
+        List<ProductoDTO> productosDTO = new ArrayList<>();
 
         if (productos == null) {
             return productosDTO;
@@ -76,7 +75,7 @@ public class ProductoNegocioAdapter {
 
         for (ProductoEntidad producto : productos) {
 
-            ProductoResponseDTO productoDTO =
+            ProductoDTO productoDTO =
                     convertirEntidadASalida(producto);
 
             if (productoDTO != null) {

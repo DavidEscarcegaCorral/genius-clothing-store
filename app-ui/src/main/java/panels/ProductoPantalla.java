@@ -3,7 +3,7 @@ package panels;
 import componentes.BotonRedondeado;
 import componentes.ComboBoxGenius;
 import componentes.ProductoTagsLabel;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
 import util.Estilo;
 import util.FontLoader;
@@ -14,7 +14,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ProductoPantalla extends JPanel {
-    private ProductoResponseDTO producto;
+    private ProductoDTO producto;
     private JLabel imagenLbl;
     private JLabel nombreLbl;
     private JLabel precioLbl;
@@ -84,7 +84,7 @@ public class ProductoPantalla extends JPanel {
         panelDetalles.add(agregarAlCarritoBtn);
     }
 
-    public void cargarDatosProducto(ProductoResponseDTO productoDTO) {
+    public void cargarDatosProducto(ProductoDTO productoDTO) {
         this.producto = productoDTO;
         iniciarComponentes();
     }

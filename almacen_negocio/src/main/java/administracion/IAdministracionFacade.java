@@ -4,8 +4,7 @@
  */
 package administracion;
 
-import dto_request.ProductoRequestDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import enumeradores.EstadoProducto;
 import excepcion.NegocioException;
 
@@ -16,11 +15,11 @@ import java.util.List;
  * @author Usuario
  */
 public interface IAdministracionFacade {
-    public List<ProductoResponseDTO> obtenerProductos() throws NegocioException;
+    public List<ProductoDTO> obtenerProductos() throws NegocioException;
 
-    public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws NegocioException;
+    public ProductoDTO agregarProducto(dto_response.ProductoDTO producto) throws NegocioException;
 
-    public ProductoResponseDTO publicarProducto(String id) throws NegocioException;
+    public ProductoDTO publicarProducto(String id) throws NegocioException;
 
-    public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException;
+    public ProductoDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException;
 }

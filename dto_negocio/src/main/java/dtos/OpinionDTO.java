@@ -7,20 +7,20 @@ package dtos;
 /**
  *
  * @author Usuario
- *    
+ *
  */
 public class OpinionDTO {
-    
-    private Integer idOpinion;
-    private String opinion;
 
-    public OpinionDTO(Integer idOpinion, String opinion) {
+    private Integer idOpinion;
+    private String contenido;
+
+    public OpinionDTO(Integer idOpinion, String contenido) {
         this.idOpinion = idOpinion;
-        this.opinion = opinion;
+        this.contenido = contenido;
     }
 
-    public OpinionDTO(String opinion) {
-        this.opinion = opinion;
+    public OpinionDTO(String contenido) {
+        this.contenido = contenido;
     }
 
     public Integer getIdOpinion() {
@@ -31,13 +31,13 @@ public class OpinionDTO {
         this.idOpinion = idOpinion;
     }
 
-    public String getOpinion() {
-        return opinion;
+    public String getContenido() {
+        return contenido;
     }
 
-    public void setOpinion(String opinion) {
-        this.opinion = opinion;
+    public void setContenido(String contenido) {
+        this.contenido = contenido;
     }
-    
-    
+
+
 }
