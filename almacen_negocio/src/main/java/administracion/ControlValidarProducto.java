@@ -47,13 +47,16 @@ public class ControlValidarProducto {
         }
     }
 
-    public void validarEstado(EstadoProducto estado) throws NegocioException {
-        if (estado == null) {
-            throw new NegocioException(
-                    "El estado es obligatorio"
-            );
+    public void validarEstado(EstadoProducto actual,EstadoProducto nuevo) throws NegocioException {
+        if (nuevo == null) {
+            throw new NegocioException("El estado es obligatorio");
+        }
+        if (actual == nuevo) {
+        throw new NegocioException("El estado nuevo no puede ser igual al actual");
         }
     }
+    
+    
 
     public void validarExistencia(ProductoResponseDTO dto)throws NegocioException {
 

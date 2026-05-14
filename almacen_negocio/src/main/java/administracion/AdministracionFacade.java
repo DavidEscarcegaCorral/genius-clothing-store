@@ -55,10 +55,11 @@ public class AdministracionFacade implements IAdministracionFacade {
     }
 
     @Override
-    public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estado) throws NegocioException {
+    public ProductoResponseDTO actualizarProducto(String id, EstadoProducto estadoNuevo) throws NegocioException {
         validar.validarId(id);
-        validar.validarEstado(estado);
-        return administrar.editarProducto(id, estado);
+        ProductoResponseDTO producto = administrar.buscarPorId(id);
+        validar.validarEstado(producto.getEstado(), estadoNuevo); 
+        return administrar.editarProducto(id, estadoNuevo);
 
     }
 }

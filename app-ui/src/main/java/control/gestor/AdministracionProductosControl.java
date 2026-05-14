@@ -39,7 +39,6 @@ public class AdministracionProductosControl implements IObserver {
     private final AgregarProductoDialog agregarProductoDialog;
     private final EditarProductoDialog editarProductoDialog;
     private String idProducto;
-    private EstadoProducto estadoProducto;
 
     public AdministracionProductosControl(AdministracionProductosPanel administracionProductosPanel, Header header, IAdministracionFacade service, NavegacionControl navegacion, AgregarProductoDialog agregarProductoDialog, EditarProductoDialog editarProductoDialog) {
         this.administracionProductosPanel = administracionProductosPanel;
@@ -55,8 +54,11 @@ public class AdministracionProductosControl implements IObserver {
         administracionProductosPanel.getAgregarProducto().addActionListener(e -> abrirDialogAgregarProducto());
         administracionProductosPanel.getModificarProducto().addActionListener(e -> abrirDialogEditarProducto());
         administracionProductosPanel.getPublicarProducto().addActionListener(e -> publicarProducto());
+        administracionProductosPanel.getBotonRegresar().addActionListener(e -> navegacion.abrirLoginFrame());
+        agregarProductoDialog.getBtnCancelar().addActionListener(e -> agregarProductoDialog.dispose());
         agregarProductoDialog.getBtnGuardar().addActionListener(e -> AgregarProducto());
-
+        editarProductoDialog.getBtnAceptar().addActionListener(e -> editarProducto());
+        editarProductoDialog.getBtnCancelar().addActionListener(e -> editarProductoDialog.dispose());
         administracionProductosPanel.getTabla().getSelectionModel().addListSelectionListener(e -> {
             //Entra a la condición cuando ya dejas de seleccionar
             if (!e.getValueIsAdjusting()) {
@@ -66,7 +68,6 @@ public class AdministracionProductosControl implements IObserver {
                 if (fila != -1) {
                     //Obtenemos el id y el estado para usarlos
                     idProducto = administracionProductosPanel.getTabla().getValueAt(fila, 0).toString();
-                    estadoProducto = (EstadoProducto) administracionProductosPanel.getTabla().getValueAt(fila, 4);
                 }
             }
         });
@@ -83,6 +84,7 @@ public class AdministracionProductosControl implements IObserver {
     public void abrirPublicarProductoDialog() {
         navegacion.abrirPublicarProductoDialog();
     }
+    
 
     public AgregarProductoDialog getAgregarProductoDialog() {
         return agregarProductoDialog;
@@ -153,6 +155,25 @@ public class AdministracionProductosControl implements IObserver {
                 cargarTabla();
             } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(null, "Error al intentar publicar el producto" + e.getMessage());
+            }
+        }
+    }
+    
+    public void editarProducto(){
+        if(idProducto == null){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un producto primero");
+            return;
+        }
+         EstadoProducto nuevoEstado = (EstadoProducto) editarProductoDialog.getCombo().getSelectedItem();
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Deseas cambiar el estado del producto?","Confirmar Publicación",JOptionPane.YES_NO_OPTION);
+        if(respuesta == JOptionPane.YES_OPTION){
+            try{
+                service.actualizarProducto(idProducto, nuevoEstado);
+                JOptionPane.showMessageDialog(null, "Producto actualizado correctamente");
+                cargarTabla();
+                editarProductoDialog.setVisible(false);
+            }catch(NegocioException e){
+                JOptionPane.showMessageDialog(null, "Error al intentar cambiar el estado del producto" + e.getMessage());
             }
         }
     }

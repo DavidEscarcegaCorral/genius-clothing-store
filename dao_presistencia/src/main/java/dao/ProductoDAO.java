@@ -7,6 +7,7 @@ package dao;
 import adapters.ProductoPersistenciaAdapter;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Aggregates;
 import com.mongodb.client.result.UpdateResult;
 import conexion.ConexionMongoDB;
 import dominio.ProductoEntidad;
@@ -19,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.mongodb.client.model.Filters.eq;
+import com.mongodb.client.model.Projections;
 import static com.mongodb.client.model.Updates.set;
+import org.bson.conversions.Bson;
 
 /**
  *
@@ -109,13 +112,17 @@ public class ProductoDAO implements IProductoDAO {
 
     @Override
     public List<ProductoEntidad> obtenerProductos() throws PersistenciaException {
-        try {
-            //Todos los resultados los convierte a una lista
-            List<ProductoMongoEntidad> mongoProductoLista = coleccionProductos.find().into(new ArrayList<>());
-            return productoAdapter.convertirListaADominio(mongoProductoLista);
-        } catch (MongoException e) {
-            throw new PersistenciaException("Error al ver todos los productos");
-        }
+         try {
+             //Es donde se usa $project y le dice a mongo que debe de incluir tipo select de sql
+        List<Bson> pipeline = List.of(Aggregates.project(Projections.fields(
+                    //Solo va a mostrar estos campos y los demas los excluye
+                    Projections.include("_id","nombre", "precio", "inventario", "estado"))));
+        //Hacemos que el pipeline mappee sobre la coleccion de productos y que cada resultado sea un ProductoMongoEntidad
+        List<ProductoMongoEntidad> mongoProductoLista = coleccionProductos.aggregate(pipeline, ProductoMongoEntidad.class).into(new ArrayList<>());
+        return productoAdapter.convertirListaADominio(mongoProductoLista);
+    } catch (MongoException e) {
+        throw new PersistenciaException("Error al ver todos los productos");
+    }
     }
 
     @Override

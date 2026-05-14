@@ -78,6 +78,12 @@ public class AdministracionProductosPanel extends JPanel {
         return tabla;
     }
 
+    public BotonRedondeado getBotonRegresar() {
+        return botonRegresar;
+    }
+    
+    
+
     public void cargarTabla(List<ProductoResponseDTO> productos) {
         //Definimos las columnas que queremos mostrar en las tablas
         String[] columnas = {"ID", "Nombre", "Precio", "Stock", "Estado"};
