@@ -30,12 +30,10 @@ public class ProductoMongoEntidad {
     private List<StockPorTalla> inventario;
     private EstadoProducto estado;
     private CategoriaProducto categoria;
-    private List<String> tallas;
     private EtiquetaGenero genero;
     private List<EtiquetaEstilo> estilos;
 
     public ProductoMongoEntidad() {
-        this.tallas = new ArrayList<>();
         this.estilos = new ArrayList<>();
         this.inventario = new ArrayList<>();
     }
@@ -43,7 +41,7 @@ public class ProductoMongoEntidad {
     public ProductoMongoEntidad(String nombre, String descripcion,
             BigDecimal precio, String rutaImagen, List<StockPorTalla> inventario,
             EstadoProducto estado, CategoriaProducto categoria,
-            List<String> tallas, EtiquetaGenero genero,
+            EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
 
         this.nombre = nombre;
@@ -53,7 +51,6 @@ public class ProductoMongoEntidad {
         this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
-        this.tallas = tallas;
         this.genero = genero;
         this.estilos = estilos;
     }
@@ -62,7 +59,7 @@ public class ProductoMongoEntidad {
             String descripcion, BigDecimal precio,
             String rutaImagen, List<StockPorTalla> inventario,
             EstadoProducto estado, CategoriaProducto categoria,
-            List<String> tallas, EtiquetaGenero genero,
+            EtiquetaGenero genero,
             List<EtiquetaEstilo> estilos) {
 
         this.id = id;
@@ -73,7 +70,6 @@ public class ProductoMongoEntidad {
         this.inventario = inventario;
         this.estado = estado;
         this.categoria = categoria;
-        this.tallas = tallas;
         this.genero = genero;
         this.estilos = estilos;
     }
@@ -172,14 +168,6 @@ public class ProductoMongoEntidad {
         this.categoria = categoria;
     }
 
-    public List<String> getTallas() {
-        return tallas;
-    }
-
-    public void setTallas(List<String> tallas) {
-        this.tallas = tallas;
-    }
-
     public EtiquetaGenero getGenero() {
         return genero;
     }
@@ -207,7 +195,6 @@ public class ProductoMongoEntidad {
                 + ", inventario=" + inventario
                 + ", estado=" + estado
                 + ", categoria=" + categoria
-                + ", tallas=" + tallas
                 + ", genero=" + genero
                 + ", estilos=" + estilos
                 + '}';

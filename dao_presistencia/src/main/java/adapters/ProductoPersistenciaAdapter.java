@@ -31,7 +31,6 @@ public class ProductoPersistenciaAdapter {
         entidadMongo.setInventario(convertirInventarioDominioAMongo(producto.getInventario()));
         entidadMongo.setEstado(producto.getEstado());
         entidadMongo.setCategoria(producto.getCategoria());
-        entidadMongo.setTallas(producto.getTallasDisponibles());
         entidadMongo.setGenero(producto.getGenero());
         entidadMongo.setEstilos(producto.getEstilos());
 
@@ -55,7 +54,6 @@ public class ProductoPersistenciaAdapter {
         producto.setInventario(convertirInventarioMongoADominio(entidadMongo.getInventario()));
         producto.setEstado(entidadMongo.getEstado());
         producto.setCategoria(entidadMongo.getCategoria());
-        producto.setTallasDisponibles(entidadMongo.getTallas());
         producto.setGenero(entidadMongo.getGenero());
         producto.setEstilos(entidadMongo.getEstilos());
 

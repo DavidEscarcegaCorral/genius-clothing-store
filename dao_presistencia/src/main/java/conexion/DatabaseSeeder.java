@@ -185,7 +185,6 @@ public class DatabaseSeeder {
         producto.setRutaImagen(rutaImagen);
         producto.setEstado(EstadoProducto.PUBLICADO);
         producto.setCategoria(categoria);
-        producto.setTallas(TallaUtil.obtenerTallasPorCategoria(categoria));
         producto.setGenero(genero);
         producto.setEstilos(estilos);
 
