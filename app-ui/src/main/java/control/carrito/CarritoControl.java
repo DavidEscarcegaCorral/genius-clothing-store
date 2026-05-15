@@ -4,6 +4,7 @@ import autorizacion.SesionService;
 import catalago.ICatalagoFacade;
 import componentes.ProductoCarritoCard;
 import compras.IComprasFacade;
+import dto_response.ProductoDTO;
 import dtos.CarritoDTO;
 import dtos.ProductoCardDTO;
 import panels.CarritoPantalla;
@@ -41,7 +42,7 @@ public class CarritoControl {
             carritoPantalla.limpiarProductos();
 
             if (carrito != null && carrito.getProductos() != null) {
-                for (dto_response.ProductoResponseDTO prod : carrito.getProductos()) {
+                for (ProductoDTO prod : carrito.getProductos()) {
                     dtos.ProductoCardDTO cardDTO = new dtos.ProductoCardDTO();
                     cardDTO.setProductoId(prod.getId());
                     cardDTO.setNombreProducto(prod.getNombre());

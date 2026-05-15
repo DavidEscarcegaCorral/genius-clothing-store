@@ -4,7 +4,7 @@ import catalago.ICatalagoFacade;
 import componentes.ProductoCard;
 import control.carrito.CarritoControl;
 import control.navegacion.INavegador;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
 import panels.MainPagePantalla;
 import panels.ProductoPantalla;
@@ -14,17 +14,17 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CatalagoControl {
+public class ProdcutosControl {
     private MainPagePantalla mainPagePantalla;
     private ICatalagoFacade catalagoService;
     private INavegador INavegador;
     private CarritoControl carritoControl;
-    private ProductoPantalla panelDetalleActual;
+    private ProductoPantalla prodcutoPantalla;
 
-    public CatalagoControl(MainPagePantalla mainPagePantalla,
-                           ICatalagoFacade catalagoService,
-                           INavegador INavegador,
-                           CarritoControl carritoControl) {
+    public ProdcutosControl(MainPagePantalla mainPagePantalla,
+                            ICatalagoFacade catalagoService,
+                            INavegador INavegador,
+                            CarritoControl carritoControl) {
         this.mainPagePantalla = mainPagePantalla;
         this.catalagoService = catalagoService;
         this.INavegador = INavegador;
@@ -34,7 +34,7 @@ public class CatalagoControl {
     }
 
     public void cargarCatalago() {
-        List<ProductoCardDTO> productos = catalagoService.obtenerCatalagoMainPage();
+        List<ProductoCardDTO> productos = catalagoService.cargarCategoria();
         List<ProductoCardDTO> novedades = productos.stream()
                 .limit(5)
                 .collect(Collectors.toList());
@@ -56,21 +56,21 @@ public class CatalagoControl {
     }
 
     private void abrirDetalle(String id) {
-        ProductoResponseDTO dto = catalagoService.obtenerProductoPorId(id);
+        ProductoDTO dto = catalagoService.obtenerProductoPorId(id);
 
         if (dto != null) {
-            panelDetalleActual = new ProductoPantalla();
-            panelDetalleActual.cargarDatosProducto(dto);
-            panelDetalleActual.setAgregarAlCarritoListener(e -> agregarAlCarrito());
+            prodcutoPantalla = new ProductoPantalla();
+            prodcutoPantalla.cargarDatosProducto(dto);
+            prodcutoPantalla.setAgregarAlCarritoListener(e -> agregarAlCarrito());
 
-            INavegador.navegarADetalleProdcuto(panelDetalleActual);
+            INavegador.navegarADetalleProdcuto(prodcutoPantalla);
         }
     }
 
     private void agregarAlCarrito() {
-        if (panelDetalleActual != null && carritoControl != null) {
-            ProductoCardDTO producto = panelDetalleActual.getProductoParaCarrito();
-            String talla = panelDetalleActual.getTallaSeleccionada();
+        if (prodcutoPantalla != null && carritoControl != null) {
+            ProductoCardDTO producto = prodcutoPantalla.getProductoParaCarrito();
+            String talla = prodcutoPantalla.getTallaSeleccionada();
             if (producto != null) {
                 carritoControl.agregarProductoAlCarrito(producto, talla);
             }

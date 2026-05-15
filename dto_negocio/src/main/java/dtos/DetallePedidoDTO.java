@@ -1,11 +1,11 @@
 package dtos;
 
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 
 public class DetallePedidoDTO {
 
     private Integer idDetallePedido;
-    private ProductoResponseDTO producto;
+    private ProductoDTO producto;
     private Integer cantidad;
     private Double precioUnitario;
     private Double subtotal;
@@ -14,7 +14,7 @@ public class DetallePedidoDTO {
     public DetallePedidoDTO() {
     }
 
-    public DetallePedidoDTO(Integer idDetallePedido, ProductoResponseDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+    public DetallePedidoDTO(Integer idDetallePedido, ProductoDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.idDetallePedido = idDetallePedido;
         this.producto = producto;
         this.cantidad = cantidad;
@@ -23,7 +23,7 @@ public class DetallePedidoDTO {
         this.descuento = descuento;
     }
 
-    public DetallePedidoDTO(ProductoResponseDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
+    public DetallePedidoDTO(ProductoDTO producto, Integer cantidad, Double precioUnitario, Double subtotal, Double descuento) {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precioUnitario = precioUnitario;
@@ -40,11 +40,11 @@ public class DetallePedidoDTO {
         this.idDetallePedido = idDetallePedido;
     }
 
-    public ProductoResponseDTO getProducto() {
+    public ProductoDTO getProducto() {
         return producto;
     }
 
-    public void setProducto(ProductoResponseDTO producto) {
+    public void setProducto(ProductoDTO producto) {
         this.producto = producto;
     }
 

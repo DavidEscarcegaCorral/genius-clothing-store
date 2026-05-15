@@ -1,7 +1,7 @@
 package mappers;
 
 import dominio.ProductoEntidad;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
 import dtos.StockPorTalla;
 
@@ -19,8 +19,8 @@ public class ProductoMapper {
         );
     }
 
-    public static ProductoResponseDTO entidadADtoCompleto(ProductoEntidad entidad) {
-        return new ProductoResponseDTO(
+    public static ProductoDTO entidadADtoCompleto(ProductoEntidad entidad) {
+        return new ProductoDTO(
                 entidad.getId(),
                 entidad.getNombre(),
                 entidad.getDescrpcionProducto(),

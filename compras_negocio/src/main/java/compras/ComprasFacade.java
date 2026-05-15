@@ -5,7 +5,7 @@ import dao.ProductoDAO;
 import dominio.CarritoEntidad;
 import dominio.ItemCarrito;
 import dominio.ProductoEntidad;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.CarritoDTO;
 import excepciones.PersistenciaException;
 
@@ -121,10 +121,10 @@ public class ComprasFacade implements IComprasFacade {
 
         CarritoDTO dto = new CarritoDTO();
 
-        List<ProductoResponseDTO> productos = new ArrayList<>();
+        List<ProductoDTO> productos = new ArrayList<>();
         if (entidad.getItems() != null) {
             for (ItemCarrito item : entidad.getItems()) {
-                ProductoResponseDTO productoDTO = new ProductoResponseDTO();
+                ProductoDTO productoDTO = new ProductoDTO();
                 productoDTO.setId(item.getProductoId());
                 productoDTO.setNombre(item.getNombre());
                 productoDTO.setPrecio(item.getPrecio());

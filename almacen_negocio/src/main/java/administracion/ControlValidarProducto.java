@@ -4,15 +4,14 @@
  */
 package administracion;
 
-import dominio.ProductoEntidad;
-import dto_request.ProductoRequestDTO;
-import dto_response.ProductoResponseDTO;
+import dto_response.ProductoDTO;
 import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
 import excepcion.NegocioException;
+
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -21,8 +20,8 @@ import java.util.List;
  * @author Usuario
  */
 public class ControlValidarProducto {
-    
-    public void validarProducto(ProductoRequestDTO dto)throws NegocioException {
+
+    public void validarProducto(ProductoDTO dto) throws NegocioException {
         if (dto == null) {
             throw new NegocioException(
                     "El producto no puede ser nulo"
@@ -47,18 +46,17 @@ public class ControlValidarProducto {
         }
     }
 
-    public void validarEstado(EstadoProducto actual,EstadoProducto nuevo) throws NegocioException {
+    public void validarEstado(EstadoProducto actual, EstadoProducto nuevo) throws NegocioException {
         if (nuevo == null) {
             throw new NegocioException("El estado es obligatorio");
         }
         if (actual == nuevo) {
-        throw new NegocioException("El estado nuevo no puede ser igual al actual");
+            throw new NegocioException("El estado nuevo no puede ser igual al actual");
         }
     }
-    
-    
 
-    public void validarExistencia(ProductoResponseDTO dto)throws NegocioException {
+
+    public void validarExistencia(ProductoDTO dto) throws NegocioException {
 
         if (dto == null) {
             throw new NegocioException(
@@ -67,14 +65,15 @@ public class ControlValidarProducto {
         }
     }
 
-    public void validarPublicacion(ProductoResponseDTO dto)throws NegocioException {
-          validarExistencia(dto);
+    public void validarPublicacion(ProductoDTO dto) throws NegocioException {
+        validarExistencia(dto);
         if (dto.getEstado() == EstadoProducto.PUBLICADO) {
-        throw new NegocioException(
-                "El producto ya está publicado"
-        );
+            throw new NegocioException(
+                    "El producto ya está publicado"
+            );
+        }
     }
-    }
+
     private void validarNombre(String nombre) throws NegocioException {
         if (nombre == null || nombre.trim().isEmpty()) {
             throw new NegocioException(
@@ -135,34 +134,34 @@ public class ControlValidarProducto {
         }
     }
 
-        private void validarInventario(List<StockPorTalla> inventario) throws NegocioException {
-    if (inventario == null || inventario.isEmpty()) {
-        throw new NegocioException(
-                "El inventario es obligatorio"
-        );
-    }
-    boolean existeTallaDisponible = false;
-    for (StockPorTalla stock : inventario) {
-        if (stock.getTalla() == null ||
-                stock.getTalla().trim().isEmpty()) {
+    private void validarInventario(List<StockPorTalla> inventario) throws NegocioException {
+        if (inventario == null || inventario.isEmpty()) {
             throw new NegocioException(
-                    "La talla es obligatoria"
+                    "El inventario es obligatorio"
             );
         }
-        if (stock.getCantidad() == null ||
-                stock.getCantidad() < 0) {
+        boolean existeTallaDisponible = false;
+        for (StockPorTalla stock : inventario) {
+            if (stock.getTalla() == null ||
+                    stock.getTalla().trim().isEmpty()) {
+                throw new NegocioException(
+                        "La talla es obligatoria"
+                );
+            }
+            if (stock.getCantidad() == null ||
+                    stock.getCantidad() < 0) {
+                throw new NegocioException(
+                        "La cantidad no puede ser negativa"
+                );
+            }
+            if (stock.getCantidad() > 0) {
+                existeTallaDisponible = true;
+            }
+        }
+        if (!existeTallaDisponible) {
             throw new NegocioException(
-                    "La cantidad no puede ser negativa"
+                    "Debe existir al menos una talla con stock"
             );
-        }
-        if (stock.getCantidad() > 0) {
-            existeTallaDisponible = true;
-        }
-        }
-    if (!existeTallaDisponible) {
-        throw new NegocioException(
-                "Debe existir al menos una talla con stock"
-          );
         }
     }
 
@@ -196,6 +195,6 @@ public class ControlValidarProducto {
                     "Debe existir al menos un estilo"
             );
         }
-    }   
+    }
     
 }
