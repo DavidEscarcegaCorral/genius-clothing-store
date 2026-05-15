@@ -75,6 +75,7 @@ public class AdministracionProductosControl implements IObserver {
     }
 
     public void abrirDialogAgregarProducto() {
+        agregarProductoDialog.cargarImagenes(cargarImagenes());
         navegacion.abrirAgregarProductoDialog();
     }
 
@@ -178,6 +179,7 @@ public class AdministracionProductosControl implements IObserver {
         }
     }
 
+
     public List<ProductoDTO> obtenerProductos() {
         try {
             return service.obtenerProductos();
@@ -194,9 +196,29 @@ public class AdministracionProductosControl implements IObserver {
             List<ProductoDTO> productos = service.obtenerProductos();
             administracionProductosPanel.cargarTabla(productos);
         } catch (NegocioException e) {
-            System.out.println("Error al cargar los productos " + e.getMessage());
+             JOptionPane.showMessageDialog(null, "Error al cargar los productos: " + e.getMessage());
         }
     }
+    
+    private String[] cargarImagenes() {
+    try {
+        //Buscamos las imagenes de los recursos
+        java.net.URL url = getClass().getResource("/img");
+        //Lo convertimos a objeto file
+        java.io.File carpeta = new java.io.File(url.toURI());
+        //Listamos solo los archivos que sean imagenes
+        String[] archivos = carpeta.list((dir, nombre) ->nombre.endsWith(".png") || nombre.endsWith(".jpg") || nombre.endsWith(".jpeg"));
+        
+        if (archivos == null){
+            return new String[0];
+        }
+        //Si no es null le damos el prefijo img a cada imagen para que quede como ruta completa
+        return java.util.Arrays.stream(archivos).map(nombre -> "/img/" + nombre).toArray(String[]::new);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error al cargar las imágenes: " + e.getMessage());
+        return new String[0];
+    }
+}
 
     @Override
     public void cargar() {

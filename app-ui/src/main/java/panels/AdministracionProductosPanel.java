@@ -85,7 +85,7 @@ public class AdministracionProductosPanel extends JPanel {
 
     public void cargarTabla(List<ProductoDTO> productos) {
         //Definimos las columnas que queremos mostrar en las tablas
-        String[] columnas = {"ID", "Nombre", "Precio", "Stock", "Estado"};
+        String[] columnas = {"ID","Nombre", "Precio", "Stock", "Estado"};
         //Creamos una tabla con las columnas
         DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
 
@@ -103,5 +103,11 @@ public class AdministracionProductosPanel extends JPanel {
         }
         //Se lo asignamos al JTable
         tabla.setModel(modelo);
+        //Para que el usuario no pueda editar las celdas
+        tabla.setDefaultEditor(Object.class, null);
+        //Ocultamos el id
+        tabla.getColumnModel().getColumn(0).setMinWidth(0);
+        tabla.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabla.getColumnModel().getColumn(0).setWidth(0);
     }
 }

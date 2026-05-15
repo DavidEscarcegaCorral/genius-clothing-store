@@ -22,6 +22,8 @@ import java.util.List;
 import static com.mongodb.client.model.Filters.eq;
 import com.mongodb.client.model.Projections;
 import static com.mongodb.client.model.Updates.set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.conversions.Bson;
 
 /**
@@ -32,6 +34,8 @@ public class ProductoDAO implements IProductoDAO {
 
     private final MongoCollection<ProductoMongoEntidad> coleccionProductos;
     private final ProductoPersistenciaAdapter productoAdapter;
+    private static final Logger LOG = Logger.getLogger(ProductoDAO.class.getName());
+    
 
     public ProductoDAO() {
         this.coleccionProductos = ConexionMongoDB.getInstance()
@@ -51,9 +55,11 @@ public class ProductoDAO implements IProductoDAO {
                 mongoProducto.setId(new ObjectId());
             }
             coleccionProductos.insertOne(mongoProducto);
+            LOG.log(Level.INFO,"Producto agregado a la base de datos");
             return productoAdapter.convertirADominio(mongoProducto);
 
         } catch (MongoException e) {
+            LOG.log(Level.SEVERE,"No se pudo agregar al producto en la base de datos");
             throw new PersistenciaException("Error al intentar guardar el producto", e);
         }
     }
@@ -71,9 +77,10 @@ public class ProductoDAO implements IProductoDAO {
             UpdateResult resultado = coleccionProductos.updateOne(eq("_id", idObject), set("estado", estado));
 
             ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("_id", idObject)).first();
-
+            LOG.log(Level.INFO,"Estado del producto cambiado en la base de datos");
             return productoAdapter.convertirADominio(mongoProducto);
         } catch (MongoException e) {
+            LOG.log(Level.SEVERE,"No se pudo cambiar el estado al producto en la base de datos");
             throw new PersistenciaException("Error al cambiar el estado del producto");
         }
     }
@@ -87,8 +94,10 @@ public class ProductoDAO implements IProductoDAO {
         try {
             UpdateResult resultado = coleccionProductos.updateOne(eq("_id", idObject), set("estado", estado));
             ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("_id", idObject)).first();
+            LOG.log(Level.INFO,"Producto publicado en la base de datos");
             return productoAdapter.convertirADominio(mongoProducto);
         } catch (MongoException e) {
+            LOG.log(Level.SEVERE,"No se pudo publicar al producto en la base de datos");
             throw new PersistenciaException("Error al publicar el producto");
         }
 
@@ -103,9 +112,11 @@ public class ProductoDAO implements IProductoDAO {
         }
         try {
             ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("_id", idObject)).first();
+            LOG.log(Level.INFO,"Producto encontrado en la base de datos");
             return productoAdapter.convertirADominio(mongoProducto);
 
         } catch (MongoException e) {
+            LOG.log(Level.SEVERE,"No se pudo encontrar el producto en la base de datos");
             throw new PersistenciaException("Error al buscar el producto por id");
         }
     }
@@ -116,11 +127,13 @@ public class ProductoDAO implements IProductoDAO {
              //Es donde se usa $project y le dice a mongo que debe de incluir tipo select de sql
         List<Bson> pipeline = List.of(Aggregates.project(Projections.fields(
                     //Solo va a mostrar estos campos y los demas los excluye
-                    Projections.include("_id","nombre", "precio", "inventario", "estado"))));
+                    Projections.include("nombre", "precio", "inventario", "estado"))));
         //Hacemos que el pipeline mappee sobre la coleccion de productos y que cada resultado sea un ProductoMongoEntidad
         List<ProductoMongoEntidad> mongoProductoLista = coleccionProductos.aggregate(pipeline, ProductoMongoEntidad.class).into(new ArrayList<>());
+        LOG.log(Level.INFO,"Productos cargados desde la base de datos");
         return productoAdapter.convertirListaADominio(mongoProductoLista);
     } catch (MongoException e) {
+        LOG.log(Level.SEVERE,"No se puedo cargar los productos desde la base de datos");
         throw new PersistenciaException("Error al ver todos los productos");
     }
     }
@@ -130,8 +143,10 @@ public class ProductoDAO implements IProductoDAO {
         try {
             //Todos los resultados los convierte a una lista
             List<ProductoMongoEntidad> mongoProductoLista = coleccionProductos.find(eq("estado",EstadoProducto.PUBLICADO)).into(new ArrayList<>());
+            LOG.log(Level.INFO,"Productos cargados desde la base de datos");
             return productoAdapter.convertirListaADominio(mongoProductoLista);
         } catch (MongoException e) {
+            LOG.log(Level.SEVERE,"No se pudo cargar los productos publicados en la base de datos");
             throw new PersistenciaException("Error al ver todos los productos");
         }   
     }

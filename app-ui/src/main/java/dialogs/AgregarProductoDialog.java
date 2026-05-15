@@ -13,16 +13,19 @@ import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaGenero;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
@@ -46,7 +49,7 @@ public class AgregarProductoDialog extends JDialog{
     private CampoTextoGenius txtStock = new CampoTextoGenius("", 20, Color.BLACK, Color.white, 200, 36);
     String[] imagenes = {
     "/img/TenisSL72OG.png",
-    "/img/PlayeraPoloNikeSportswear.jpg"
+    "/img/PlayeraPoloNikeSportswear.jpg"           
     };
     ComboBoxGenius<String> cbImagen = new ComboBoxGenius<>(imagenes);
 
@@ -63,6 +66,7 @@ public class AgregarProductoDialog extends JDialog{
 
     private JPanel panelInventario;
     private Map<String, JTextField> camposInventario = new HashMap<>();
+    private JLabel labelImagen = new JLabel();
 
     BotonRedondeado btnGuardar = new BotonRedondeado("Guardar");
     BotonRedondeado btnCancelar = new BotonRedondeado("Cancelar");
@@ -118,17 +122,24 @@ public class AgregarProductoDialog extends JDialog{
         panelCentro.add(new JLabel("Imagen:"), gbc);
         gbc.gridx = 1;
         panelCentro.add(cbImagen, gbc);
+        
+        labelImagen.setPreferredSize(new Dimension(100, 100));
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        panelCentro.add(labelImagen, gbc);
+        gbc.gridwidth = 1;
 
         // Categoría
         gbc.gridx = 0;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         panelCentro.add(new JLabel("Categoría:"), gbc);
         gbc.gridx = 1;
         panelCentro.add(cbCategoria, gbc);
 
         // Género
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         panelCentro.add(new JLabel("Género:"), gbc);
         gbc.gridx = 1;
         panelCentro.add(cbGenero, gbc);
@@ -144,7 +155,7 @@ public class AgregarProductoDialog extends JDialog{
         panelEstilos.add(chkDeporte);
         panelEstilos.add(chkClasico);
         gbc.gridx = 0;
-        gbc.gridy = 6; 
+        gbc.gridy = 7; 
         panelCentro.add(new JLabel("Estilos:"), gbc);
         gbc.gridx = 1;
         
@@ -157,7 +168,7 @@ public class AgregarProductoDialog extends JDialog{
         actualizarInventarioPorCategoria();
         cbCategoria.addActionListener(e -> actualizarInventarioPorCategoria());
         gbc.gridx = 0;
-        gbc.gridy = 7;
+        gbc.gridy = 8;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelCentro.add(panelInventario, gbc);
@@ -167,7 +178,7 @@ public class AgregarProductoDialog extends JDialog{
         panelBotones.setOpaque(false);
         panelBotones.add(btnGuardar);
         panelBotones.add(btnCancelar);
-        gbc.gridy = 8;
+        gbc.gridy = 9;
         panelCentro.add(panelBotones, gbc);
 
         add(panelCentro, BorderLayout.CENTER);
@@ -268,9 +279,11 @@ public class AgregarProductoDialog extends JDialog{
             String talla = entry.getKey();
             try {
                 int cantidad = Integer.parseInt(entry.getValue().getText().trim());
-                inventario.add(new StockPorTalla(talla, cantidad));
+                if(cantidad> 0){
+                    inventario.add(new StockPorTalla(talla, cantidad));
+                }
             } catch (NumberFormatException e) {
-                inventario.add(new StockPorTalla(talla, 0));
+                
             }
         }
         return inventario;
@@ -280,6 +293,26 @@ public class AgregarProductoDialog extends JDialog{
         return obtenerInventario().stream()
                 .mapToInt(s -> s.getCantidad())
                 .sum();
+    }
+    //Limpiamos las imagenes del combobox y le mandamos las imagenes del control
+    public void cargarImagenes(String[] imagenes) {
+        cbImagen.removeAllItems();
+        for (String img : imagenes) {
+            cbImagen.addItem(img);
+    }
+    
+   cbImagen.addActionListener(e -> {
+         //Obtenemos la ruta de lo que se selecciono en el combobox
+        String ruta = (String) cbImagen.getSelectedItem();
+        if (ruta != null) {
+            //Cargamos la imagen desde los recursos con esa ruta para que ImageIcon la pueda leer
+            ImageIcon icon = new ImageIcon(getClass().getResource(ruta));
+            //Le damos valores de escala
+            Image img = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            //La mostramos en el label
+            labelImagen.setIcon(new ImageIcon(img));
+         }
+     });
     }
 
 }
