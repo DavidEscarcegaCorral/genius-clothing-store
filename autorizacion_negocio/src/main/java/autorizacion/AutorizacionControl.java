@@ -3,7 +3,6 @@ package autorizacion;
 import dao.IUsuarioDAO;
 import dominio.UsuarioEntidad;
 import excepciones.PersistenciaException;
-import mappers.UsuarioMapper;
 import objetosnegocio.UsuarioBO;
 
 public class AutorizacionControl {
@@ -38,6 +37,8 @@ public class AutorizacionControl {
                 entidad.getPasswordHash(),
                 entidad.getRol(),
                 entidad.isActivo()
+
+
         );
     }
 }

@@ -1,10 +1,8 @@
-/*
+package dtos;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package dto_request;
 
-import dtos.StockPorTalla;
 import enumeradores.CategoriaProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
