@@ -28,171 +28,190 @@ public class ProductoDAOTest {
     
     IProductoDAO dao = new ProductoDAO();
     
-    /*
-    Pruebas exitosas
-    */
 //    @Test
-//    public void agregarProducto()throws PersistenciaException {
+//    public void testAgregarProductoCorrectamente() throws PersistenciaException {
 //
-//    ProductoEntidad producto = new ProductoEntidad(
-//            null,
-//            "Tenis SLLL",
-//            "Tenis clásicos",
-//            new BigDecimal("2500"),
-//            "/img/TenisSL72OG.png",
-//            10,
-//            EstadoProducto.BORRADOR,
-//            CategoriaProducto.CALZADO,
-//            //Lista de tallas
-//            List.of("26", "27"),
-//            EtiquetaGenero.UNISEX,
-//            
-//            new ArrayList<>()
-//    );
+//        ProductoDAO dao = new ProductoDAO();
 //
-//    ProductoEntidad resultado = dao.agregarProducto(producto);
+//        ProductoEntidad producto = new ProductoEntidad();
 //
-//    assertNotNull(resultado);
-//    assertNotNull(resultado.getId());
-//    assertEquals("/img/TenisSL72OG.png",
-//            resultado.getRutaImagen());
-//}
-//    @Test
-//    public void cambiarEstado()throws PersistenciaException {
+//        producto.setNombre("Playera Oversize");
+//        producto.setDescrpcionProducto("Playera negra");
+//        producto.setPrecio(new BigDecimal("499.99"));
+//        producto.setRutaImagen("imagen.png");
 //
-//    ProductoEntidad producto = new ProductoEntidad(
-//            null,
-//            "Tenis SL72",
-//            "Tenis Adidas clásicos",
-//            new BigDecimal("2500"),
-//            "/img/TenisSL72OG.png",
-//            10,
-//            EstadoProducto.BORRADOR,
-//            CategoriaProducto.CALZADO,
-//            List.of("26", "27"),
-//            EtiquetaGenero.UNISEX,
-//            new ArrayList<>()
-//    );
+//        producto.setEstado(EstadoProducto.PUBLICADO);
+//        producto.setCategoria(CategoriaProducto.CAMISETA);
+//        producto.setGenero(EtiquetaGenero.UNISEX);
 //
-//    ProductoEntidad guardado =dao.agregarProducto(producto);
+//        producto.setInventario(new ArrayList<>());
+//        producto.setEstilos(new ArrayList<>());
 //
-//    ProductoEntidad actualizado =dao.cambiarEstado(guardado.getId(), EstadoProducto.PUBLICADO);
+//        ProductoEntidad resultado = dao.agregarProducto(producto);
 //
-//    assertEquals(EstadoProducto.PUBLICADO,actualizado.getEstado());
-//    
-//    }
-//    
-//    @Test
-//    public void publicarProducto() throws PersistenciaException {
-//
-//    ProductoEntidad producto = new ProductoEntidad(
-//            null,
-//            "Tenis SL75",
-//            "Tenis Adidas clásicos",
-//            new BigDecimal("2500"),
-//            "/img/TenisSL72OG.png",
-//            10,
-//            EstadoProducto.BORRADOR,
-//            CategoriaProducto.CALZADO,
-//            List.of("26", "27"),
-//            EtiquetaGenero.UNISEX,
-//            new ArrayList<>()
-//    );
-//
-//    ProductoEntidad guardado =dao.agregarProducto(producto);
-//
-//    ProductoEntidad publicado =dao.publicarProducto(guardado.getId(),EstadoProducto.PUBLICADO);
-//
-//    assertEquals(EstadoProducto.PUBLICADO,publicado.getEstado());   
-// }
-//    
-//    @Test
-//    public void buscarPorId()
-//        throws PersistenciaException {
-//
-//    ProductoEntidad producto = new ProductoEntidad(
-//            null,
-//            "Tenis SL72",
-//            "Tenis Adidas clásicos",
-//            new BigDecimal("2500"),
-//            "/img/TenisSL72OG.png",
-//            10,
-//            EstadoProducto.BORRADOR,
-//            CategoriaProducto.CALZADO,
-//            List.of("26", "27"),
-//            EtiquetaGenero.UNISEX,
-//            new ArrayList<>()
-//    );
-//
-//    ProductoEntidad guardado =dao.agregarProducto(producto);
-//
-//    ProductoEntidad encontrado =dao.buscarPorId(guardado.getId());
-//
-//    assertNotNull(encontrado);
-//
-//    assertEquals("/img/TenisSL72OG.png",encontrado.getRutaImagen());
-//    
-//   }
-//    
-//    @Test
-//    public void obtenerProductos()throws PersistenciaException {
-//
-//    ProductoEntidad producto = new ProductoEntidad(
-//            null,
-//            "Tenis SL72",
-//            "Tenis Adidas clásicos",
-//            new BigDecimal("2500"),
-//            "/img/TenisSL72OG.png",
-//            10,
-//            EstadoProducto.BORRADOR,
-//            CategoriaProducto.CALZADO,
-//            List.of("26", "27"),
-//            EtiquetaGenero.UNISEX,
-//            new ArrayList<>()
-//    );
-//
-//    dao.agregarProducto(producto);
-//
-//    List<ProductoEntidad> productos =dao.obtenerProductos();
-//
-//    assertNotNull(productos);
-//
-//    assertFalse(productos.isEmpty());
-//   }
-    
-    /*
-    Prueba de fallos
-    Verificamos que lancen la excepcion
-    */
-//    
-//    @Test
-//    public void agregarProductoError() {
-//        
-//    assertThrows(PersistenciaException.class,() -> {dao.agregarProducto(null);});
-//    
-//    }
-//    
-//    @Test
-//    public void cambiarEstadoIdInvalido() {
-//
-//    assertThrows(PersistenciaException.class,() -> {dao.cambiarEstado( "id_invalido",EstadoProducto.PUBLICADO);});
-//    
-//    }
-//    
-//    @Test
-//    public void publicarProducto_dInvalido() {
-//
-//    assertThrows(PersistenciaException.class,() -> {dao.publicarProducto("123",null);});
-//    
+//        assertNotNull(resultado);
+//        assertNotNull(resultado.getId());
+//        assertEquals("Playera Oversize", resultado.getNombre());
 //    }
 //
 //    @Test
-//    public void buscarPorIdIdInvalido() {
+//    public void testAgregarProductoNull() {
 //
-//    assertThrows(PersistenciaException.class,() -> { dao.buscarPorId("abc" );});
-//    
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        assertThrows(
+//                PersistenciaException.class,
+//                () -> dao.agregarProducto(null)
+//        );
 //    }
-//    
-//    
+//
+//    @Test
+//    public void testCambiarEstadoCorrectamente() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        ProductoEntidad producto = new ProductoEntidad();
+//
+//        producto.setNombre("Sudadera");
+//        producto.setDescrpcionProducto("Sudadera negra");
+//        producto.setPrecio(new BigDecimal("899.99"));
+//        producto.setRutaImagen("/img/imagen.png");
+//
+//        producto.setEstado(EstadoProducto.BORRADOR);
+//        producto.setCategoria(CategoriaProducto.SUDADERA);
+//        producto.setGenero(EtiquetaGenero.UNISEX);
+//
+//        producto.setInventario(new ArrayList<>());
+//        producto.setEstilos(new ArrayList<>());
+//
+//        ProductoEntidad guardado = dao.agregarProducto(producto);
+//
+//        ProductoEntidad actualizado =
+//                dao.cambiarEstado(
+//                        guardado.getId(),
+//                        EstadoProducto.PUBLICADO
+//                );
+//
+//        assertEquals(
+//                EstadoProducto.PUBLICADO,
+//                actualizado.getEstado()
+//        );
+//    }
+//
+//    @Test
+//    public void testCambiarEstadoIdInvalido() {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        assertThrows(
+//                PersistenciaException.class,
+//                () -> dao.cambiarEstado(
+//                        "123",
+//                        EstadoProducto.PUBLICADO
+//                )
+//        );
+//    }
+//
+//    @Test
+//    public void testPublicarProductoCorrectamente() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        ProductoEntidad producto = new ProductoEntidad();
+//
+//        producto.setNombre("Pantalon");
+//        producto.setDescrpcionProducto("Pantalon cargo");
+//        producto.setPrecio(new BigDecimal("799.99"));
+//        producto.setRutaImagen("/img/imagen.png");
+//
+//        producto.setEstado(EstadoProducto.BORRADOR);
+//        producto.setCategoria(CategoriaProducto.PANTALON);
+//        producto.setGenero(EtiquetaGenero.UNISEX);
+//
+//        producto.setInventario(new ArrayList<>());
+//        producto.setEstilos(new ArrayList<>());
+//
+//        ProductoEntidad guardado = dao.agregarProducto(producto);
+//
+//        ProductoEntidad publicado =
+//                dao.publicarProducto(
+//                        guardado.getId(),
+//                        EstadoProducto.PUBLICADO
+//                );
+//
+//        assertEquals(
+//                EstadoProducto.PUBLICADO,
+//                publicado.getEstado()
+//        );
+//    }
+//
+//    @Test
+//    public void testBuscarPorIdCorrectamente() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        ProductoEntidad producto = new ProductoEntidad();
+//
+//        producto.setNombre("Gorra");
+//        producto.setDescrpcionProducto("Gorra negra");
+//        producto.setPrecio(new BigDecimal("299.99"));
+//        producto.setRutaImagen("/img/imagen.png");
+//
+//        producto.setEstado(EstadoProducto.PUBLICADO);
+//        producto.setCategoria(CategoriaProducto.ACCESORIOS);
+//        producto.setGenero(EtiquetaGenero.UNISEX);
+//
+//        producto.setInventario(new ArrayList<>());
+//        producto.setEstilos(new ArrayList<>());
+//
+//        ProductoEntidad guardado = dao.agregarProducto(producto);
+//
+//        ProductoEntidad encontrado =
+//                dao.buscarPorId(guardado.getId());
+//
+//        assertNotNull(encontrado);
+//        assertEquals("Gorra", encontrado.getNombre());
+//    }
+//
+//    @Test
+//    public void testBuscarPorIdInvalido() {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        assertThrows(
+//                PersistenciaException.class,
+//                () -> dao.buscarPorId("abc")
+//        );
+//    }
+//
+//    @Test
+//    public void testObtenerProductos() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        List<ProductoEntidad> productos =
+//                dao.obtenerProductos();
+//
+//        assertNotNull(productos);
+//    }
+//
+//    @Test
+//    public void testObtenerProductosPublicados() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        List<ProductoEntidad> productos =
+//                dao.obtenerProductosPublicados();
+//
+//        assertNotNull(productos);
+//
+//        for (ProductoEntidad producto : productos) {
+//
+//            assertEquals(
+//                    EstadoProducto.PUBLICADO,
+//                    producto.getEstado()
+//            );
+//        }
+//    }  
 }
 

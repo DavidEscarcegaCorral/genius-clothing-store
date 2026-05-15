@@ -26,9 +26,7 @@ public class AdministracionFacade implements IAdministracionFacade {
     
     private ControlAdministrarProducto administrar;
     private ControlValidarProducto validar;
-    
-    
-    
+   
     public AdministracionFacade() {
         this.administrar = ControlAdministrarProducto.getInstance();
         this.validar = new ControlValidarProducto();

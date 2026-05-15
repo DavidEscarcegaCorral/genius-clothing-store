@@ -5,6 +5,7 @@
 package objetosnegocio;
 
 import adaptadores.ProductoNegocioAdapter;
+import dao.IProductoDAO;
 import dao.ProductoDAO;
 import dominio.ProductoEntidad;
 import dto_request.ProductoRequestDTO;
@@ -12,6 +13,8 @@ import dto_response.ProductoResponseDTO;
 import enumeradores.EstadoProducto;
 import excepciones.PersistenciaException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -19,12 +22,12 @@ import java.util.List;
  */
 public class ProductoBO {
 
-    private ProductoDAO dao;
+    private IProductoDAO dao;
     private ProductoNegocioAdapter adaptador;
-
+ 
     public ProductoBO() {
         this.dao = new ProductoDAO();
-         this.adaptador = new ProductoNegocioAdapter();
+        this.adaptador = new ProductoNegocioAdapter();
     }
     
     public ProductoResponseDTO agregarProducto(ProductoRequestDTO producto) throws PersistenciaException{
