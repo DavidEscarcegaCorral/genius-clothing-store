@@ -5,6 +5,7 @@
 package control.gestor;
 
 
+
 import administracion.IAdministracionFacade;
 import control.navegacion.NavegacionControl;
 import dialogs.AgregarProductoDialog;
@@ -177,17 +178,6 @@ public class AdministracionProductosControl implements IObserver {
             } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(null, "Error al intentar cambiar el estado del producto" + e.getMessage());
             }
-        }
-    }
-
-
-    public List<ProductoDTO> obtenerProductos() {
-        try {
-            return service.obtenerProductos();
-        } catch (NegocioException e) {
-            JOptionPane.showMessageDialog(null, "Error al ver los productos" + e.getMessage());
-            //regresamos una lista vacia para evitar que truene
-            return List.of();
         }
     }
 

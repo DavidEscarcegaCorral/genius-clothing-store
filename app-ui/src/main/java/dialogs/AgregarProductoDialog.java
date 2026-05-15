@@ -90,7 +90,7 @@ public class AgregarProductoDialog extends JDialog{
         gbc.insets = new Insets(4, 8, 4, 8);
         //Movemos los componentes a la izquierda
         gbc.anchor = GridBagConstraints.WEST;
-        //Evitamos que se expandam
+        //Evitamos que se expandan
         gbc.fill = GridBagConstraints.NONE;
 
         // Nombre

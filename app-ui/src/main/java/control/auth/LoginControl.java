@@ -4,6 +4,7 @@ import autorizacion.IAutorizacionFacade;
 import autorizacion.SesionService;
 import control.navegacion.NavegacionControl;
 import dto_request.UsuarioLoginDTO;
+import enumeradores.RolUsuario;
 import objetosnegocio.UsuarioBO;
 import panels.Header;
 import panels.LogInPantalla;
@@ -54,8 +55,14 @@ public class LoginControl {
         // mejorar el manejo de excepciones
         try {
             UsuarioBO userLogeado = autorizacionService.verificarLogin(usuarioLoginDTO);
-            SesionService.iniciarSesion(userLogeado);
-            navegacionControl.abrirGlobalFrame();
+            if(userLogeado.getRol() == RolUsuario.CLIENTE){
+                SesionService.iniciarSesion(userLogeado);
+                navegacionControl.abrirGlobalFrame();
+            }else{
+                navegacionControl.abrirAdministracionProductosFrame();
+            }
+
+
         } catch (Exception e) {
             mostrarError(logInPantalla, e.getMessage());
         }
