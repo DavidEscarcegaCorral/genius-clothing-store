@@ -1,6 +1,6 @@
 package dominio;
 
-public class DIreccionEntidad {
+public class DireccionEntidad {
     private String id;
     private String calle;
     private String numeroExterior;
@@ -11,10 +11,10 @@ public class DIreccionEntidad {
     private String codigoPostal;
     private String referencias;
 
-    public DIreccionEntidad() {
+    public DireccionEntidad() {
     }
 
-    public DIreccionEntidad(String id,
+    public DireccionEntidad(String id,
                             String calle,
                             String numeroExterior,
                             String numeroInterior,
@@ -126,7 +126,7 @@ public class DIreccionEntidad {
 
     @Override
     public String toString() {
-        return "DIreccionEntidad{" +
+        return "DireccionEntidad{" +
                 "id='" + id + '\'' +
                 ", calle='" + calle + '\'' +
                 ", numeroExterior='" + numeroExterior + '\'' +

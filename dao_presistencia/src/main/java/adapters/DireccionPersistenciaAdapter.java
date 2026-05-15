@@ -1,6 +1,6 @@
 package adapters;
 
-import dominio.DIreccionEntidad;
+import dominio.DireccionEntidad;
 import entidadesmongo.DireccionMongoEntidad;
 import excepciones.PersistenciaException;
 import org.bson.types.ObjectId;
@@ -13,7 +13,7 @@ public class DireccionPersistenciaAdapter {
     /**
      * Convierte una dirección del dominio a entidad MongoDB
      */
-    public DireccionMongoEntidad convertirAMongo(DIreccionEntidad direccion) throws PersistenciaException {
+    public DireccionMongoEntidad convertirAMongo(DireccionEntidad direccion) throws PersistenciaException {
         if (direccion == null) {
             return null;
         }
@@ -38,12 +38,12 @@ public class DireccionPersistenciaAdapter {
     /**
      * Convierte una entidad MongoDB a dirección del dominio
      */
-    public DIreccionEntidad convertirADominio(DireccionMongoEntidad mongoEntidad) {
+    public DireccionEntidad convertirADominio(DireccionMongoEntidad mongoEntidad) {
         if (mongoEntidad == null) {
             return null;
         }
 
-        DIreccionEntidad direccion = new DIreccionEntidad();
+        DireccionEntidad direccion = new DireccionEntidad();
 
         // Convertir ObjectId a String
         direccion.setId(convertirObjectIdAString(mongoEntidad.getId()));

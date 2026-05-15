@@ -40,9 +40,8 @@ public class ControlAdministrarProducto {
             throw new NegocioException("El producto no puede estar vacio");
         }
         try {
-            ProductoResponseDTO regresarProducto = bo.agregarProducto(producto);
-            LOG.log(Level.INFO,"Producto agregado correctamente");
             ProductoDTO regresarProducto = bo.agregarProducto(producto);
+            LOG.log(Level.INFO,"Producto agregado correctamente");
             return regresarProducto;
         } catch (PersistenciaException ex) {
             LOG.log(Level.SEVERE,"Error al intentar agregar el producto");
@@ -52,10 +51,8 @@ public class ControlAdministrarProducto {
 
     public ProductoDTO editarProducto(String id, EstadoProducto estado) throws NegocioException {
         try {
-            ProductoResponseDTO regresarProducto = bo.editarProducto(id, estado);
-            LOG.log(Level.INFO,"Producto editado correctamente");
-             return regresarProducto;
             ProductoDTO regresarProducto = bo.editarProducto(id, estado);
+            LOG.log(Level.INFO,"Producto editado correctamente");
             return regresarProducto;
         } catch (PersistenciaException ex) {
             LOG.log(Level.SEVERE,"Error al intentar editar el producto");
@@ -65,9 +62,8 @@ public class ControlAdministrarProducto {
 
     public List<ProductoDTO> verProductos() throws NegocioException {
         try {
-            List<ProductoResponseDTO> productos =bo.verProductos();
-            LOG.log(Level.INFO,"Productos cargados correctamente");
             List<ProductoDTO> productos = bo.verProductos();
+            LOG.log(Level.INFO,"Productos cargados correctamente");
             return productos;
         } catch (PersistenciaException ex) {
             LOG.log(Level.SEVERE,"Error al intentar cargar los productos");
@@ -77,32 +73,22 @@ public class ControlAdministrarProducto {
 
     public ProductoDTO publicarProducto(String id) throws NegocioException {
         try {
-            ProductoResponseDTO productoPublicado = bo.publicarProducto(id);
-            LOG.log(Level.INFO,"Producto publicado correctamente");
             ProductoDTO productoPublicado = bo.publicarProducto(id);
+            LOG.log(Level.INFO,"Producto publicado correctamente");
             return productoPublicado;
         } catch (PersistenciaException ex) {
             LOG.log(Level.SEVERE,"Error al intentar publicar el producto");
             throw new NegocioException("Error al intentar publicar el producto");
-        }  
-    }
-    
-    public ProductoResponseDTO buscarPorId(String id) throws NegocioException{
-        try{
-            ProductoResponseDTO buscar = bo.buscarPorId(id);
-            LOG.log(Level.INFO,"Producto encontrado correctamente");
-            return buscar;
-        }catch(PersistenciaException e){
-            LOG.log(Level.SEVERE,"Error al intentar buscar el producto por id");
         }
-
     }
 
     public ProductoDTO buscarPorId(String id) throws NegocioException {
         try {
             ProductoDTO buscar = bo.buscarPorId(id);
+            LOG.log(Level.INFO,"Producto encontrado correctamente");
             return buscar;
         } catch (PersistenciaException e) {
+            LOG.log(Level.SEVERE,"Error al intentar buscar el producto por id");
             throw new NegocioException("Error al buscar por id");
         }
     }

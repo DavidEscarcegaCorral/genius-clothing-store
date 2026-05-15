@@ -18,12 +18,12 @@ public class UsuarioEntidad {
     private boolean activo;
     private int intentosFallidos;
     private LocalDateTime fechaCreacion;
-    private List<DIreccionEntidad> direccionesEnvio;
+    private List<DireccionEntidad> direccionesEnvio;
 
     public UsuarioEntidad() {
     }
 
-    public UsuarioEntidad(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo, int intentosFallidos, LocalDateTime fechaCreacion, List<DIreccionEntidad> direccionesEnvio) {
+    public UsuarioEntidad(String id, String nombre, String apellidoPaterno, String apellidoMaterno, String email, String nombreUsuario, String passwordHash, RolUsuario rol, boolean activo, int intentosFallidos, LocalDateTime fechaCreacion, List<DireccionEntidad> direccionesEnvio) {
         this.id = id;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -126,11 +126,11 @@ public class UsuarioEntidad {
         this.fechaCreacion = fechaCreacion;
     }
 
-    public List<DIreccionEntidad> getDireccionesEnvio() {
+    public List<DireccionEntidad> getDireccionesEnvio() {
         return direccionesEnvio;
     }
 
-    public void setDireccionesEnvio(List<DIreccionEntidad> direccionesEnvio) {
+    public void setDireccionesEnvio(List<DireccionEntidad> direccionesEnvio) {
         this.direccionesEnvio = direccionesEnvio;
     }
 }

@@ -1,4 +1,4 @@
-package vetnas;
+package ventas;
 
 public interface IVentas {
     
