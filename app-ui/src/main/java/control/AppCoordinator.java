@@ -87,6 +87,7 @@ public class AppCoordinator {
                 new EditarProductoDialog());
 
         adminFrame.setObserver(adminControl);
+        adminControl.agregarObserver(prodcutosControl);
     }
 
     private void configurarNavegacion() {

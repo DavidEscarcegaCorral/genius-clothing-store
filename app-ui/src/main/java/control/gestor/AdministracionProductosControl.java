@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class AdministracionProductosControl implements IObserver {
 
-
+    private List<IObserver> observers = new ArrayList<>();
     private final AdministracionProductosPanel administracionProductosPanel;
     private final Header header;
     private final IAdministracionFacade service;
@@ -135,6 +135,7 @@ public class AdministracionProductosControl implements IObserver {
             service.agregarProducto(dto);
 
             cargarTabla();
+            notificarObservers();
             JOptionPane.showMessageDialog(agregarProductoDialog, "Producto agregado correctamente");
             agregarProductoDialog.setVisible(false);
         } catch (NegocioException e) {
@@ -156,6 +157,7 @@ public class AdministracionProductosControl implements IObserver {
                 service.publicarProducto(idProducto);
                 JOptionPane.showMessageDialog(null, "Producto publicado exitosamente");
                 cargarTabla();
+                notificarObservers();
             } catch (NegocioException e) {
                 JOptionPane.showMessageDialog(null, "Error al intentar publicar el producto" + e.getMessage());
             }
@@ -214,5 +216,17 @@ public class AdministracionProductosControl implements IObserver {
     @Override
     public void cargar() {
         cargarTabla();
+    }
+
+    //Esto es para agregar una clase que quiero que sea notificada o que se actualize
+    public void agregarObserver(IObserver observer) {
+        observers.add(observer);
+    }
+
+    //Este metodo es para llamar al metodo del observer de cargarlo en todos los observer registrados
+    private void notificarObservers() {
+        for (IObserver observer : observers) {
+            observer.cargar();
+        }
     }
 }

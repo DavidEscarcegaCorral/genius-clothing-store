@@ -6,6 +6,7 @@ import control.carrito.CarritoControl;
 import control.navegacion.INavegador;
 import dto_response.ProductoDTO;
 import dtos.ProductoCardDTO;
+import observer.IObserver;
 import panels.MainPagePantalla;
 import panels.ProductoPantalla;
 
@@ -14,7 +15,7 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ProdcutosControl {
+public class ProdcutosControl implements IObserver {
     private MainPagePantalla mainPagePantalla;
     private ICatalagoFacade catalagoService;
     private INavegador INavegador;
@@ -75,5 +76,10 @@ public class ProdcutosControl {
                 carritoControl.agregarProductoAlCarrito(producto, talla);
             }
         }
+    }
+
+    @Override
+    public void cargar() {
+        cargarCatalago();
     }
 }
