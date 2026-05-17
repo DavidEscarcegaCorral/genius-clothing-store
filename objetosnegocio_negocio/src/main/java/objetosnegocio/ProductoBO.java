@@ -55,4 +55,13 @@ public class ProductoBO {
         ProductoEntidad buscar = dao.buscarPorId(id);
         return adaptador.convertirEntidadASalida(buscar);
     }
+
+    public ProductoDTO buscarPorNombre(String nombre) throws PersistenciaException {
+        ProductoEntidad entidad = dao.buscarPorNombre(nombre);
+        if (entidad == null){
+            return null; //Nombre disponible
+        }
+        return adaptador.convertirEntidadASalida(entidad);
+    }
+
 }

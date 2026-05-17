@@ -108,7 +108,7 @@ public class ProductoDAO implements IProductoDAO {
         ObjectId idObject = productoAdapter.convertirStringAObjectId(id);
 
         if (idObject == null) {
-            throw new PersistenciaException("El restaurante con ese id no existe");
+            throw new PersistenciaException("El producto con ese id no existe");
         }
         try {
             ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("_id", idObject)).first();
@@ -136,6 +136,21 @@ public class ProductoDAO implements IProductoDAO {
         LOG.log(Level.SEVERE,"No se puedo cargar los productos desde la base de datos");
         throw new PersistenciaException("Error al ver todos los productos");
     }
+    }
+
+    @Override
+    public ProductoEntidad buscarPorNombre(String nombre) throws PersistenciaException {
+        try {
+            ProductoMongoEntidad mongoProducto = coleccionProductos.find(eq("nombre", nombre)).first();
+            if (mongoProducto == null){
+                return null;
+            }
+            LOG.log(Level.INFO, "Búsqueda por nombre completada");
+            return productoAdapter.convertirADominio(mongoProducto);
+        } catch (MongoException e) {
+            LOG.log(Level.SEVERE, "Error al buscar producto por nombre");
+            throw new PersistenciaException("Error al buscar el producto por nombre");
+        }
     }
 
     @Override

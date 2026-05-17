@@ -26,5 +26,7 @@ public interface IProductoDAO {
 
     List<ProductoEntidad> obtenerProductos() throws PersistenciaException;
 
+    ProductoEntidad buscarPorNombre(String nombre) throws PersistenciaException;
+
     List<ProductoEntidad> obtenerProductosPublicados() throws PersistenciaException;
 }

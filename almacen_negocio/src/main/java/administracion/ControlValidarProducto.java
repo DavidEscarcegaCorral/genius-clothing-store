@@ -11,6 +11,8 @@ import enumeradores.EstadoProducto;
 import enumeradores.EtiquetaEstilo;
 import enumeradores.EtiquetaGenero;
 import excepcion.NegocioException;
+import excepciones.PersistenciaException;
+import objetosnegocio.ProductoBO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -20,6 +22,12 @@ import java.util.List;
  * @author Usuario
  */
 public class ControlValidarProducto {
+
+    private ProductoBO bo;
+
+    public ControlValidarProducto() {
+        this.bo = new ProductoBO();
+    }
 
     public void validarProducto(ProductoDTO dto) throws NegocioException {
         if (dto == null) {
@@ -196,5 +204,15 @@ public class ControlValidarProducto {
             );
         }
     }
-    
+
+    public void validarNombreUnico(String nombre) throws NegocioException {
+        try {
+            ProductoDTO existente = bo.buscarPorNombre(nombre);
+            if (existente != null) {
+                throw new NegocioException("Ya existe un producto con ese nombre");
+            }
+        } catch (PersistenciaException e) {
+            throw new NegocioException("Error al validar el nombre del producto");
+        }
+    }
 }

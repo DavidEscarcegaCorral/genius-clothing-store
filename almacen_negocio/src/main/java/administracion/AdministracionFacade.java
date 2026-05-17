@@ -31,6 +31,7 @@ public class AdministracionFacade implements IAdministracionFacade {
 
     @Override
     public ProductoDTO agregarProducto(dto_response.ProductoDTO producto) throws NegocioException {
+        validar.validarNombreUnico(producto.getNombre());
         validar.validarProducto(producto);
         return administrar.agregarProducto(producto);
 
