@@ -212,6 +212,40 @@ public class ProductoDAOTest {
 //                    producto.getEstado()
 //            );
 //        }
-//    }  
+//    }
+//
+//    @Test
+//    public void testBuscarPorNombreExistente() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        ProductoEntidad producto = new ProductoEntidad();
+//        producto.setNombre("Tenis Jordan");
+//        producto.setDescrpcionProducto("Tenis Jordan negro");
+//        producto.setPrecio(new BigDecimal("1299.99"));
+//        producto.setRutaImagen("/img/imagen.png");
+//        producto.setEstado(EstadoProducto.BORRADOR);
+//        producto.setCategoria(CategoriaProducto.CALZADO);
+//        producto.setGenero(EtiquetaGenero.UNISEX);
+//        producto.setInventario(new ArrayList<>());
+//        producto.setEstilos(new ArrayList<>());
+//        dao.agregarProducto(producto);
+//
+//        // Busca por ese nombre y verifica que lo encuentre
+//        ProductoEntidad encontrado = dao.buscarPorNombre("Tenis Jordan");
+//
+//        assertNotNull(encontrado);
+//        assertEquals("Tenis Jordan", encontrado.getNombre());
+//    }
+//
+//    @Test
+//    public void testBuscarPorNombreNoExistente() throws PersistenciaException {
+//
+//        ProductoDAO dao = new ProductoDAO();
+//
+//        ProductoEntidad encontrado = dao.buscarPorNombre("NombreQueNoExiste12345");
+//
+//        assertNull(encontrado);
+//    }
 }
 
